@@ -1,0 +1,234 @@
+# What are Action Methods in ASP.NET Core MVC?
+Action methods in ASP.NET Core MVC are the public methods defined within a 
+Controller class that responds to incoming HTTP requests. Each action method 
+typically handles a particular HTTP request type (like GET or POST). They are 
+responsible for executing the logic needed to process the request and generate a 
+response. Action methods are annotated with attributes like [HttpGet], [HttpPost], 
+[HttpDelete], etc.,
+
+# When creating an Action Method, we must follow the below rules:
+@ The action method must be public.
+@ It cannot be overloaded.
+@ It cannot be a static method.
+@ IActionResult is the base class of all the result types an action method 
+  returns.
+@ They can accept parameters from the request (e.g., query strings, route data, 
+  form data).
+
+# What are Action Results in ASP.NET Core MVC?
+In ASP.NET Core MVC, an action method is responsible for processing the incoming 
+HTTP request and generating an appropriate HTTP response. That means the 
+Controller Action method is responsible for executing the application’s business 
+logic and then selecting a response or result to send back to the client. 
+These responses can be anything from a simple status code, plain text, a view 
+(HTML), a file, or even a JSON object. These responses are encapsulated in objects 
+known as Action Results.
+
+# ActionResult Class in ASP.NET Core MVC:
+The ActionResult class is an abstract class in ASP.NET Core MVC that serves as 
+the base class for various result types that an action method can return. It 
+allows action methods to return different types of results, such as views, JSON, 
+files, redirects, or HTTP status codes.
+
+# ExecuteResult(ActionContext context)
+This method is responsible for executing the action result synchronously and 
+writing the response to the HTTP context. Although synchronous methods are 
+straightforward, they are less efficient for I/O-bound operations compared to 
+asynchronous methods.
+
+# ExecuteResultAsync(ActionContext context)
+This method is an asynchronous version of the ExecuteResult method. It is 
+responsible for executing the action result asynchronously and writing the 
+response to the HTTP context. Asynchronous operations improve the scalability and 
+responsiveness of web applications, especially when dealing with I/O-bound tasks 
+like database operations, file access, or network calls.
+
+# Points to Remember:
+When the framework processes an action method that returns an IActionResult or 
+ActionResult, it will typically call ExecuteResultAsync on the result object. 
+This allows the framework to handle I/O-bound operations (such as database calls, file 
+access, or network requests) without blocking threads.
+
+While the framework primarily uses ExecuteResultAsync, the synchronous 
+ExecuteResult method is provided for backward compatibility and for scenarios 
+where asynchronous execution is not necessary, such as when creating Custom 
+Middleware or Components.
+
+# Types of Action Results in ASP.NET Core MVC:
+View Results: 
+  ViewResult
+  PartialViewResult
+Content Results:
+  ContentResult
+  JsonResult
+FileResult:
+Redirect Results:
+
+Status Results:
+* StatusCodeResult: Returns a specific HTTP status code.
+* BadRequestResult: Returns HTTP 400 Bad Request.
+* UnauthorizedResult: Returns HTTP 401 Unauthorized.
+* NotFoundResult: Returns a 404 Not Found status code.
+* OkResult: Returns a 200 OK status code.
+* NoContentResult: Returns HTTP 204 No Content status code.
+
+# What Should Be the Return Type of an Action Method: Action Result or Specific 
+  Derived Type?
+The choice between using ActionResult as a return type or a specific derived type 
+depends on the specific needs of the action method. Using ActionResult allows for 
+flexible return types, which can be useful in scenarios where the action method 
+needs to return different types of results based on the business logic
+
+# ViewResult in ASP.NET Core MVC
+The ViewResult class represents an action result that renders a view. This is 
+typically used in a controller action to return a view to the client. A view is a 
+file with a .cshtml extension that contains the HTML markup with C# code using 
+Razor syntax. This allows for dynamic HTML generation based on the data passed 
+from the controller.
+
+# PartialViewResult in ASP.NET Core MVC
+ A partial view is a reusable view component that can be embedded in other views. Partial 
+ views are used to render a portion of a view, which can be reused across multiple views. 
+ Unlike ViewResult, which typically renders a complete page, PartialViewResult renders a 
+ segment of HTML that can be included in other views.
+ 
+* Partial View: A partial view is a Razor view file (.cshtml) without a complete HTML 
+   structure. It is meant to be rendered as part of a parent’s view.
+
+* PartialViewResult: This is the action result returned by a controller action to render a 
+  partial view.
+
+# Understanding JsonSerializerOptions Class:
+* PropertyNamingPolicy
+  It determines how property names are written in the JSON output.
+
+  If set to JsonNamingPolicy.CamelCase, the JSON output will have property names 
+  in camelCase (e.g., FirstName becomes firstName). The default is CamelCase.
+
+  If set to null, the property names will be serialized as defined in the C# 
+  class (no transformation).
+
+* WriteIndented
+  This property controls whether the JSON output should be formatted with 
+  indents for better readability.
+  
+  When set to true, the JSON output will be formatted with indents and line 
+  breaks, making it more human-readable.
+
+  When set to false, the JSON output will be compact without any unnecessary 
+  whitespace, which is more efficient for data transfer. The default is false.
+
+* DefaultIgnoreCondition
+  This property determines the conditions under which properties are ignored 
+  during serialization.
+
+  Setting DefaultIgnoreCondition to JsonIgnoreCondition.WhenWritingNull will 
+  ignore properties with null values. If a property is null, it will not be 
+  included in the JSON output.
+
+  The default is JsonIgnoreCondition.Never, which means properties are always 
+  included.
+
+* IgnoreReadOnlyProperties
+  This property specifies whether read-only properties should be ignored during 
+  serialization
+  
+  When set to true, the JSON output will exclude properties with only a getter 
+  (or private setter) from the JSON output.
+
+  When set to false, the JSON output will include properties with only a 
+  getter (or private setter). The default is false.
+
+
+  # Content Result in ASP.NET Core MVC:
+  The ContentResult in ASP.NET Core MVC is a type of action result that returns 
+  a string as the content of the HTTP response. This is useful when we want to 
+  return a plain text response directly from a controller action.
+
+  What are MIME Types?
+  # MIME types, which stand for “Multipurpose Internet Mail Extensions,” are 
+  standardized identifiers used to specify the nature and format of a file, 
+  document, or data being transferred over the Internet.
+
+  # File Result in ASP.NET Core MVC
+  In ASP.NET Core MVC, a FileResult is an action result representing a file to 
+  be returned to the client for download or display. It’s used when we want to 
+  send a file (such as an Image, PDF, or any other type of file) as the 
+  response to an HTTP request.
+
+  # Types of FileResult:
+FileContentResult – This result type uses a byte array to send file content 
+directly to the response.
+
+FileStreamResult – This type uses a Stream object to send file content, which 
+is useful for large files.
+
+VirtualFileResult – This result serves a file specified by a virtual path, 
+allowing the file to reside anywhere in the application’s content root or web 
+root.
+
+PhysicalFileResult: PhysicalFileResult returns a file directly from a physical 
+file path on disk. It is suitable for serving files from a specific path on 
+the server’s file system.
+
+# Differences between VirtualFileResult and PhysicalFileResult in ASP.NET Core MVC:
+VirtualFileResult is used when you want to return a file from a virtual path. This path 
+is relative to the web root directory of your application. It is typically used for 
+files stored within the application’s directory structure. It is useful when you are 
+working with files within your web application’s content directory (like wwwroot or 
+other folders configured as part of your application’s web root).
+
+PhysicalFileResult is used when you want to return a file from an absolute physical 
+path on the server. This path can be outside the web root directory and can be any 
+valid path on the server where the application has access permissions. It is suitable 
+when you need to serve files stored outside the web application’s root directory, 
+such as files in a different directory on the server.
+
+# Understanding Different MIME Types:
+Image MIME Types:
+
+JPEG: image/jpeg
+PNG: image/png
+GIF: image/gif
+BMP: image/bmp
+SVG: image/svg+xml
+WebP: image/webp
+
+Common File MIME Types:
+PDF: application/pdf
+Microsoft Word: application/msword
+Microsoft Excel: application/vnd.ms-excel
+Microsoft PowerPoint: application/vnd.ms-powerpoint
+ZIP Archive: application/zip
+JSON: application/json
+XML: application/xml
+Text: text/plain
+HTML: text/html
+
+Audio and Video MIME Types:
+MP3 Audio: audio/mpeg
+WAV Audio: audio/wav
+OGG Audio: audio/ogg
+MP4 Video: video/mp4
+WebM Video: video/webm
+OGG Video: video/ogg
+
+# Differences Between ObjectResult and OKResult in ASP.NET Core MVC:
+
+ObjectResult
+It is used to return an HTTP response containing an arbitrary object that will 
+be serialized and returned as the response body. It’s commonly used to return 
+data in various formats, such as JSON, XML, or other custom content types.
+
+This can be used to return any status code, not just 200 OK. You can set 
+different status codes based on your application’s requirements.
+
+# OKResult
+It is specifically used to return a standard HTTP 200 (OK) response. 
+It always returns a 200 OK status code suitable for explicitly indicating 
+success.
+This does not allow you to provide content to be serialized directly. It’s a 
+simple way to indicate success without including a response body.
+
+What is Content Negotiation in ASP.NET Core?
+

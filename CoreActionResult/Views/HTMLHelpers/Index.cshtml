@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model CoreActionResult.Models.Employee
+@*@model CoreActionResult.Models.SecuritySettingsViewModel*@
+@{
+    var hardcodeDate = new DateTime(2025,06,20);
+    var formattedDate = hardcodeDate.ToString("yyyy-MM-dd");
+}
+@Html.TextBox("EmployeeName", null , new {@class="form-control"})
+@Html.TextBox("DateOfBirth", hardcodeDate,formattedDate, new {@class="form-control",placeholder="Enter your birth date"})
+
+<h6>TextBoxFor() HTML Helper Method in ASP.NET Core MVC Application:</h6>
+@Html.TextBoxFor(m=>m.Name, new {@class="form-control", placeholder="Enter your Name"})
+
+<h6>TextAres :</h6>
+<label for="Address">Address</label>
+@Html.TextArea("Address", null, new {@class="form-control"})
+@Html.TextAreaFor(m=>m.Address, new {@class="form-control",@row="4",@cols="20",placeholder="Enter your Address"})
+
+<h6>DropDownList HTML Helper in ASP.NET Core MVC</h6>
+<div class="form-group">
+    <label for="Department" class="from-label">Select Department</label>
+    @Html.DropDownList("Departments", new List<SelectListItem>{
+        new SelectListItem {Text = "IT", Value="1", Selected=true},
+    new SelectListItem {Text = "HR", Value="2"},
+    new SelectListItem {Text = "Payroll", Value="3"}
+    }, "Select Department" , new {@class="form-control"})
+
+    <lable class="form-check-label">
+        @Html.RadioButton("Gender", "Male", false,new {@class = "form-check-input"})
+    </lable>
+    @Html.CheckBox("SubscribeToNewsLetter",false,new {@class="form-check-input"})
+</div>

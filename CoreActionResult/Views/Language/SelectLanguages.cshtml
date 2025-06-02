@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ProgrammingLanguagesViewModel
+@{
+}
+<h2>Select Your Preferred Programming Languages</h2>
+<from asp-action="SubmitLanguages" asp-controller="Language" method="post">
+    @for(int i=0;i<Model.LanguageOptions.Count;i++)
+    {
+        <div class="form-group">
+            @Html.CheckBoxFor(m=>m.LanguageOptions[i].IsSelected)
+            <label>@Model.LanguageOptions[i].LanguageName</label>
+            @Html.HiddenFor(m=>m.LanguageOptions[i].LanguageName)
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</from>

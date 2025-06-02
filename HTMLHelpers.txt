@@ -1,0 +1,78 @@
+# What are HTML Helpers in ASP.NET Core MVC?
+HTML Helpers in ASP.NET Core MVC are methods used in Razor views to generate 
+HTML elements dynamically. They provide a way to render standard HTML 
+elements programmatically, which helps reduce the amount of manual HTML code 
+we have to write in our views.
+
+# Types of HTML Helpers in ASP.NET Core MVC
+HTML Helpers can be categorized into three types:
+1 Standard HTML Helpers:
+ These helpers generate basic HTML elements such as text boxes, checkboxes, 
+ radio buttons, etc. Examples include
+
+Html.TextBox()
+Html.TextArea()
+Html.DropDownList()
+
+Strongly Typed HTML Helpers:
+Html.TextBoxFor(model => model.PropertyName)
+Html.EditorFor(model => model.PropertyName)
+Html.DropDownListFor(model => model.PropertyName)
+
+Custom HTML Helpers:
+You can create custom HTML helpers by defining reusable methods to generate 
+specific HTML markup. These helpers are typically used when you need custom 
+functionality that the built-in helpers do not provide.
+
+# Categories of HTML Helpers Methods in ASP.NET Core MVC Application
+@ Input Control Helpers:
+Generate HTML input elements such as text boxes, checkboxes, radio buttons, 
+etc. Examples include:
+Html.TextBox()
+Html.CheckBox()
+Html.RadioButton()
+
+Display Control Helpers:
+Html.Label()
+Html.DisplayFor()
+Html.DisplayTextFor()
+
+Form Helpers:
+Html.BeginForm()
+Html.EndForm()
+
+Validation Helpers:
+Html.ValidationMessageFor()
+Html.ValidationSummary()
+
+Link HTML Helpers:
+Html.ActionLink
+Html.RouteLink
+
+# TextBoxFor() HTML Helper Method in ASP.NET Core MVC Application:
+The TextBoxFor() HTML helper is a strongly typed HTML helper method in ASP.NET 
+Core MVC that generates a text input element for a form. This helper method 
+binds a model property to a text box,
+
+# What are the Differences Between Html.TextBox and Html.TextBoxFor in ASP.NET 
+Core MVC?
+Model Binding
+Html.TextBox: It is not strongly typed and does not bind directly to a model’s 
+property. Instead, we need to specify the field’s name as a string used to 
+generate the <input> element.
+
+Html.TextBoxFor: It is strongly typed and binds directly to a specific model 
+property using a lambda expression.
+
+Type Safety
+Html.TextBox: Since it takes the field name as a string, it is not type-safe.
+You can accidentally misspell the field name, and this error will only be 
+caught at runtime. 
+
+Html.TextBoxFor: Being strongly typed, it is type-safe. The lambda expression 
+refers directly to a model property, so any issues will be caught at compile 
+time. 
+
+# what is a ListBox
+A Listbox in web applications is an input element that allows to select one or more items from 
+a list displayed within a box.

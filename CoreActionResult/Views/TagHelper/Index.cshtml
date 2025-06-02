@@ -1,0 +1,32 @@
+﻿@model List<CoreActionResult.Models.Student>
+@{
+    ViewBag.Title = "Student List";
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.StudentId</td>
+                    <td>@student.Name</td>
+                    <td>
+                        <a href="/TagHelper/details/@student.StudentId" class="btn btn-primary">View</a>
+                        @Html.ActionLink("Html Helper", "Details", "Home", new { id = student.StudentId }, new { @class = "btn btn-primary" })
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@student.StudentId" class="btn btn-primary">
+                            Tag Helper
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,101 @@
+﻿@model CoreActionResult.Models.Employee
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Employee Details";
+}
+@{
+    var breadcrumbs = new List<(string Url, string Name)>
+    {
+    ("/","Home"),
+    ("/products","Products"),
+    ("/products/1","Product 1")
+    };
+}
+@Html.Breadcrumbs(breadcrumbs)
+@Html.MetaDescrption("This s a sample page description for SEO.")
+@Html.RenderThemeCss("dark-theme")
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="caar shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Employee Details</h4>
+                </div>
+                <div class="card-body">
+                    <dv class="row mb-3">
+                        <label class="col-4">
+                            <strong>
+                                Employee ID:
+                            </strong>
+                        </label>
+                        <div class="col-8">
+                            <p class="form-control-plaintext mb-0">
+                                @Html.DisplayFor(model=>model.Id)
+                            </p>
+                        </div>
+                    </dv>
+                    <dv class="row mb-3">
+                        <label class="col-4">
+                            <strong>
+                                Full Name:
+                            </strong>
+                        </label>
+                        <div class="col-8">
+                            <p class="form-control-plaintext mb-0">
+                                @Html.DisplayFor(model => model.Name)
+                            </p>
+                        </div>
+                    </dv>
+                    <dv class="row mb-3">
+                        <label class="col-4">
+                            <strong>
+                                Designation:
+                            </strong>
+                        </label>
+                        <div class="col-8">
+                            <p class="form-control-plaintext mb-0">
+                                @Html.DisplayFor(model => model.Designation)
+                            </p>
+                        </div>
+                    </dv>
+                    <dv class="row mb-3">
+                        <label class="col-4">
+                            <strong>
+                                Department:
+                            </strong>
+                        </label>
+                        <div class="col-8">
+                            <p class="form-control-plaintext mb-0">
+                                @Html.DisplayFor(model => model.Department)
+                            </p>
+                        </div>
+                    </dv>
+                    <dv class="row mb-3">
+                        <label class="col-4">
+                            <strong>
+                                Photo
+                            </strong>
+                        </label>
+                        <div class="col-8">
+                            <p class="form-control-plaintext mb-0">
+                                @* @Html.DisplayFor(model => model.Photo) *@
+                                @* <img src="@Model.Photo" alt="@Model.AlternateText" class="img-thumbnal" style="wdth:150px; height:150px;" /> *@
+                                @Html.Image(Model.Photo, Model.AlternateText, new { @class = "img-thumbnal", style = "wdth:150px; height:150px;" })
+                                @CustomHTMLHelper.Image(Model.Photo, Model.AlternateText, new { @class = "img-thumbnal", style = "wdth:150px; height:150px;" })
+                            </p>
+                        </div>
+                    </dv>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Input With Validation</h1>
+            @Html.CustomeInputWithValidation("UserName","User Name")
+            @Html.CreatePagination(2,10)
+        </div>
+    </div>
+</div>

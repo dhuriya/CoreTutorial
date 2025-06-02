@@ -1,0 +1,21 @@
+﻿@model UserRegistrationModel
+@{
+    ViewData["Title"] = "Success";
+}
+<div class="container mt-5">
+    <h2 class="text-success text-center">Registration Successful!</h2>
+    <div class="alert alert-success mt-4">
+        <h4 class="alert-heading">Thank you for registering, @Model.Name!</h4>
+        <p>Here are the details of your registration:</p>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Name:</strong> @Model.Name</li>
+            <li class="list-group-item"><strong>Email:</strong> @Model.Email</li>
+            <li class="list-group-item"><strong>Selected Course:</strong> @Model.SlectedCourse</li>
+            <li class="list-group-item"><strong>Skills:</strong> @string.Join(", ", Model.SlectedCourse)</li>
+            <li class="list-group-item"><strong>Gender:</strong> @Model.Gender</li>
+            <li class="list-group-item"><strong>Address:</strong> @Model.Address</li>
+        </ul>
+        <hr />
+        <p class="mb-0">We have sent a confirmation to your email at <strong>@Model.Email</strong>. Please check your inbox.</p>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+
+# What are the View Components in ASP.NET Core MVC?
+View Components in ASP.NET Core MVC are used to create reusable 
+components that can encapsulate rendering logic and data fetching 
+logic independently from views, and they can be called from different 
+places like from Controller action methods, from views, and from Razor 
+Pages. They are similar to partial views, but they can have their own 
+logic, making them suitable for creating dynamic content that requires 
+processing.
+
+# What Are All Files Available in a View Component in ASP.NET Core MVC?
+* Server-Side File (.cs file): Contains the logic to retrieve or 
+  prepare data.
+* Client Side File (.cshtml file): Renders the output, similar to how 
+  a partial view works.
