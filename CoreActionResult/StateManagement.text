@@ -1,0 +1,7 @@
+What is a Cookie?
+A cookie is a small piece of data that a server sends to the client (usually a web browser), which is then stored on the client’s machine
+
+There are two types of Cookies.
+Persistent Cookies: Stored across sessions, these cookies retain info like login details for a personalized experience on return visits.
+
+Non-Persistent Cookies: Temporary cookies that maintain session state and are deleted when the browser is closed or the page is left.

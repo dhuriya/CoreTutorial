@@ -25,6 +25,6 @@ namespace CoreActionResult.Controllers
         {
             var studentDetails = listStudents.FirstOrDefault(std => std.StudentId == Id);
             return View(studentDetails);
-        }
+        } 
     }
 }
