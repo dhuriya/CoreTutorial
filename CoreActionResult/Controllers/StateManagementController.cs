@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreActionResult.Namespace
@@ -53,5 +54,23 @@ namespace CoreActionResult.Namespace
             return "Cookies are Deleted";
         }
 
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace CoreActionResult.Controllers
+{
+    public class StateManagementController : Controller
+    {
+        const string CookieUserId = "UserId";
+        const string CookieName = "Deepu";
+        public IActionResult Index()
+        {
+            CookieOptions options = new CookieOptions()
+            {
+
+            };
+            return View();
+        }
+>>>>>>> ed1ee414be419488ba2fd0a886294145f594cf28
     }
 }
