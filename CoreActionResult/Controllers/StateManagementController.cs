@@ -75,6 +75,46 @@ namespace CoreActionResult.Namespace
             // };
             // Response.Cookies.Append(CookieUserId, "123456", options);
             // Response.Cookies.Append(CookieUserName, "deepu@rrfcl.com", options);
+            try
+            {
+                // Encrypt the Cookie Value for UserId
+                string encryptedUserId = _myCookieService.Protect("1234567");
+                
+                // Store the Encrypted value in the Cookies Response Header
+                Response.Cookies.Append(CookieUserId, encryptedUserId);
+                // Encrypt the Cookie Value for UserName
+                string encryptedUserName = _myCookieService.Protect("pranaya@dotnettutotials.net");
+                
+                // Store the Encrypted value in the Cookies Response Header
+                Response.Cookies.Append(CookieUserName, encryptedUserName);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log the error)
+                // For simplicity, we'll just display the error message in ViewBag
+                ViewBag.Error = $"Error encrypting cookies: {ex.Message}";
+            }
+            try
+            {
+                // Fetch and decrypt UserName from cookies if it exists
+                string? encryptedUserNameValue = Request.Cookies[CookieUserName];
+                if (encryptedUserNameValue != null)
+                {
+                    ViewBag.UserName = _myCookieService.Unprotect(encryptedUserNameValue);
+                }
+                // Fetch and decrypt UserId from cookies if it exists
+                string? encryptedUserIdValue = Request.Cookies[CookieUserId];
+                if (encryptedUserIdValue != null)
+                {
+                    ViewBag.UserId = Convert.ToInt32(_myCookieService.Unprotect(encryptedUserIdValue));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (e.g., log the error)
+                // For simplicity, we'll just display the error message in ViewBag
+                ViewBag.Error = $"Error decrypting cookies: {ex.Message}";
+            }
             return View();
         }
         public string About()
