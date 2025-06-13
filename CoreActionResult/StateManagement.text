@@ -18,3 +18,22 @@ What is Data Protection API in ASP.NET Core?
 Data Protection API (DPAPI) encrypts sensitive data such as cookies, authentication tokens, and other sensitive information that needs to be securely stored on the client side or transmitted over the network.
 
 Explanation of Key Concepts:
+
+
+
+Filters: Filters are primarily applied to individual controller actions or controllers. They are used to add specific behaviors or concerns to processing a single action or a group of actions within a controller.
+
+Middlewares: Middlewares are applied to the entire application’s request processing pipeline. They can handle requests and responses globally, regardless of the specific controller or action being invoked.
+
+Execution Point (When they Execute):
+
+Filters: Filters execute within the ASP.NET Core Framework’s pipeline and are part of the controller/action execution process. They are triggered before or after the execution of a specific action method.
+
+Middlewares: Middlewares execute earlier in the Request Processing Pipeline, typically before the request reaches the ASP.NET Core MVC Controller action method. They can intercept requests and responses and perform tasks at various stages of the request processing pipeline, such as Routing, Authentication, Response Formatting, etc.
+
+Purpose and Concerns (Why they are Used):
+Filters: Filters are designed to handle concerns specific to the ASP.NET Core MVC framework, such as Logging, Authentication, Authorization, Exception Handling, Caching, Custom Logic, etc.
+Middlewares: Middlewares are more general-purpose and can handle many concerns, including Routing, Authentication, Request/Response Logging, Compression, Security, etc.
+
+What is an Exception Filter in ASP.NET Core MVC?
+Exception Filter allows us to handle unhandled exceptions that occur while processing an HTTP request within our application.
