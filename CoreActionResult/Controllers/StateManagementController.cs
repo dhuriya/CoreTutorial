@@ -8,7 +8,7 @@ namespace CoreActionResult.Namespace
         const string CookieUserId = "UserId";
         const string CookieUserName = "Username";
         public IActionResult Index()
-        {
+        {       
             CookieOptions options = new CookieOptions()
             {
                 Domain = "localhost",
