@@ -1,0 +1,8 @@
+create class or model : dotnet new class -n MyCookieService -o Models --force
+
+✅ Example 1: Generate a plain controller (no model, no DbContext)
+dotnet aspnet-codegenerator controller -name CoreFilterController -outDir Controllers --useDefaultLayout
+
+✅ Example 2: Generate a controller with model and DbContext (CRUD)
+dotnet aspnet-codegenerator controller -name ProductController -outDir Controllers -m Product -dc MyDbContext --useDefaultLayout --relativeFolderPath Controllers --referenceScriptLibraries
+
