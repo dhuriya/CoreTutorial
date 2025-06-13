@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreActionResult.Namespace
@@ -53,8 +52,6 @@ namespace CoreActionResult.Namespace
             Response.Cookies.Delete(CookieUserName, options);
             return "Cookies are Deleted";
         }
-
-=======
 ﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CoreActionResult.Controllers
@@ -71,6 +68,5 @@ namespace CoreActionResult.Controllers
             };
             return View();
         }
->>>>>>> ed1ee414be419488ba2fd0a886294145f594cf28
     }
 }
