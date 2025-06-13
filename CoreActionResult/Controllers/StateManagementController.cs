@@ -10,59 +10,60 @@ namespace CoreActionResult.Namespace
         const string CookieUserName = "Username";
 
         //Declare a private field to hold MyCookieService instance
-        private readonly MyCookieService  _mycookieService;
+       private readonly MyCookieService _myCookieService;
+
         public StateManagementController(MyCookieService myCookieService)
         {
-            _mycookieService = myCookieService;
+            _myCookieService = myCookieService;
         }
         public IActionResult Index()
         {
             // Let us assume the User is logged in and we need to store the user information in the cookie
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true, // Set cookie as HttpOnly
-                Secure = true, // Set cookie as Secure
-                Expires = DateTime.Now.AddDays(7) // Set cookie expiration date
-            };
-            try
-            {
-                // Encrypt the Cookie Value for UserId
-                string encryptedUserId = _myCookieService.Protect("1234567");
-                 // Store the Encrypted value in the Cookies Response Header
-                Response.Cookies.Append(CookieUserId, encryptedUserId, cookieOptions);
-                // Encrypt the Cookie Value for UserName
-                string encryptedUserName = _myCookieService.Protect("pranaya@dotnettutotials.net");
+            // var cookieOptions = new CookieOptions
+            // {
+            //     HttpOnly = true, // Set cookie as HttpOnly
+            //     Secure = true, // Set cookie as Secure
+            //     Expires = DateTime.Now.AddDays(7) // Set cookie expiration date
+            // };
+            // try
+            // {
+            //     // Encrypt the Cookie Value for UserId
+            //     string encryptedUserId = _myCookieService.Protect("1234567");
+            //      // Store the Encrypted value in the Cookies Response Header
+            //     Response.Cookies.Append(CookieUserId, encryptedUserId, cookieOptions);
+            //     // Encrypt the Cookie Value for UserName
+            //     string encryptedUserName = _myCookieService.Protect("pranaya@dotnettutotials.net");
                 
-                // Store the Encrypted value in the Cookies Response Header
-                Response.Cookies.Append(CookieUserName, encryptedUserName, cookieOptions);
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception (e.g., log the error)
-                // For simplicity, we'll just display the error message in ViewBag
-                ViewBag.Error = $"Error encrypting cookies: {ex.Message}";
-            }
-            try
-            {
-                // Fetch and decrypt UserName from cookies if it exists
-                string? encryptedUserNameValue = Request.Cookies[CookieUserName];
-                if (encryptedUserNameValue != null)
-                {
-                    ViewBag.UserName = _myCookieService.Unprotect(encryptedUserNameValue);
-                }
-                // Fetch and decrypt UserId from cookies if it exists
-                string? encryptedUserIdValue = Request.Cookies[CookieUserId];
-                if (encryptedUserIdValue != null)
-                {
-                    ViewBag.UserId = Convert.ToInt32(_myCookieService.Unprotect(encryptedUserIdValue));
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception (e.g., log the error)
-                // For simplicity, we'll just display the error message in ViewBag
-                ViewBag.Error = $"Error decrypting cookies: {ex.Message}";
-            }
+            //     // Store the Encrypted value in the Cookies Response Header
+            //     Response.Cookies.Append(CookieUserName, encryptedUserName, cookieOptions);
+            // }
+            // catch (Exception ex)
+            // {
+            //     // Handle the exception (e.g., log the error)
+            //     // For simplicity, we'll just display the error message in ViewBag
+            //     ViewBag.Error = $"Error encrypting cookies: {ex.Message}";
+            // }
+            // try
+            // {
+            //     // Fetch and decrypt UserName from cookies if it exists
+            //     string? encryptedUserNameValue = Request.Cookies[CookieUserName];
+            //     if (encryptedUserNameValue != null)
+            //     {
+            //         ViewBag.UserName = _myCookieService.Unprotect(encryptedUserNameValue);
+            //     }
+            //     // Fetch and decrypt UserId from cookies if it exists
+            //     string? encryptedUserIdValue = Request.Cookies[CookieUserId];
+            //     if (encryptedUserIdValue != null)
+            //     {
+            //         ViewBag.UserId = Convert.ToInt32(_myCookieService.Unprotect(encryptedUserIdValue));
+            //     }
+            // }
+            // catch (Exception ex)
+            // {
+            //     // Handle the exception (e.g., log the error)
+            //     // For simplicity, we'll just display the error message in ViewBag
+            //     ViewBag.Error = $"Error decrypting cookies: {ex.Message}";
+            // }
             // CookieOptions options = new CookieOptions()
             // {
             //     Domain = "localhost",

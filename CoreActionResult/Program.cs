@@ -9,7 +9,13 @@ namespace CoreActionResult
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            builder.Services.AddScoped<MyCookieService>();
+            builder.Services.ConfigureApplicationCookie(options =>{
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.IsEssential = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(1);
+            });
 
             var app = builder.Build();
 
