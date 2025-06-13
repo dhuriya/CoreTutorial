@@ -4,8 +4,11 @@
     ViewData["Title"] = "Index";
 }
 <div class="text-left">
-    <b>User Name:</b> @HttpContextAccessor?.HttpContext?.Request.Cookies["UserName"]
+    @* <b>User Name:</b> @HttpContextAccessor?.HttpContext?.Request.Cookies["UserName"]
     <br />
-    <b>User Id:</b> @HttpContextAccessor?.HttpContext?.Request.Cookies["UserId"]
+    <b>User Id:</b> @HttpContextAccessor?.HttpContext?.Request.Cookies["UserId"] *@
+    <b>User Name:</b> @ViewBag.UserName
+    <br />
+    <b>User Id:</b> @ViewBag.UserId
 </div>
 

@@ -5,3 +5,16 @@ There are two types of Cookies.
 Persistent Cookies: Stored across sessions, these cookies retain info like login details for a personalized experience on return visits.
 
 Non-Persistent Cookies: Temporary cookies that maintain session state and are deleted when the browser is closed or the page is left.
+
+Use Cases of Cookies in ASP.NET Core MVC:
+The following are some of the situations where using cookies is appropriate:
+Authentication and Authorization:
+Remember Me Functionality:
+Shopping Carts:
+Form Data Persistence:
+Single Sign-On (SSO):
+
+What is Data Protection API in ASP.NET Core?
+Data Protection API (DPAPI) encrypts sensitive data such as cookies, authentication tokens, and other sensitive information that needs to be securely stored on the client side or transmitted over the network.
+
+Explanation of Key Concepts:
