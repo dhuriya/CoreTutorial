@@ -6,3 +6,5 @@ dotnet aspnet-codegenerator controller -name CoreFilterController -outDir Contro
 ✅ Example 2: Generate a controller with model and DbContext (CRUD)
 dotnet aspnet-codegenerator controller -name ProductController -outDir Controllers -m Product -dc MyDbContext --useDefaultLayout --relativeFolderPath Controllers --referenceScriptLibraries
 
+✔ Create New Project command
+--> dotnet new mvc -n 'project name'
