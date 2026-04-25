@@ -1,0 +1,17 @@
+--> What is hosting?
+Hosting refers to the service that allows our web application to be accessbile over the internet.
+
+# What is a Web Server?
+This is the physical or virtual machine that runs the server software, such as Apache, Nginx, or Microsoft's internet Information Services(IIS), Where we host our application.
+
+# What are Hosting Models in Asp.net Core?
+A hosting model degfines how your application is hosted, configured, and served to handle incoming HTTP requests. They determine the relationship between the ASP.NET Core application and the web server.
+Thre are two primary hosting models in ASP.NET Core:
+   -> In-Process Hosting
+   -> Out-of-Process Hosting
+
+# What is the Inproccess Hosting Model?
+The ASP.NET core application runs inside the IIS worker process. This is the default hosting model for ASP.NET Core application running or winodws OS and in IIS or IIS Express Web Server. InProcess hosting is better performance
+
+# What is the OurOfProcess Hosting Model?
+The ASP.NET core application runs in a separate worker process, mostly in the Kestrel Web Server Worker process, IIS acts as a reverse proxy that forwards incomming HTTP requests to an internal web sever, which is tpically kestrel. IIS acts as a revers prosy, forwarding HTTP requests to the Kestrel server.
