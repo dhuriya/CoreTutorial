@@ -1,0 +1,19 @@
+What is Controller?
+A Controller is a special class in the ASP.Net Core Application with.cs extension. the controller class must be inherited from the controller base class. In ASP.NET Core MVC, the Controller base class provides many properties, methods, and features that handle HTTP requests and produce responses in our Application. 
+It provides Action Result methods, Model State Management, Validation, TempData, ViewBag, ViewData, etc.
+
+How Controller Work in ASP.NET Core?
+When the client(browser) sends a request to the server, that request first goes through the request processing pipeline(Middleware Component Registered into the Pipeline), it will hit the controller, inside the controller, there are lots of methods(called action methods) that handle the incoming HTTP requests. The action method inside executes the business logic and prepares the response, which is send back to the client who initially requested it. 
+            request
+Client --------------------------> Controller
+       <-------------------------- |        |
+            response               |        |
+                                   |        |
+                                   |        |
+                                  View    Model
+
+Empty Controller command -> dotnet aspnet-codegenerator controller -name 'HomeController' -outDir Controllers
+Empty Controller command without view -> dotnet aspnet-codegenerator controller -name 'HomeController' -outDir Controllers -noViews
+
+how to go back a directory in terminal vscode?
+cd .. and press Enter.
