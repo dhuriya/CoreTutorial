@@ -8,3 +8,7 @@ dotnet aspnet-codegenerator controller -name ProductController -outDir Controlle
 
 ✔ Create New Project command
 --> dotnet new mvc -n 'project name'
+
+-->Run Project
+1 dotnet watch run
+2 dotnet run
