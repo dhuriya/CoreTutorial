@@ -17,3 +17,11 @@ Empty Controller command without view -> dotnet aspnet-codegenerator controller 
 
 how to go back a directory in terminal vscode?
 cd .. and press Enter.
+
+--------------Rules for Controller
+--> 1 Naming Convention: controller are typically named with the suffix Controller. like HomeController or ProductController
+--> 2 Inheriting from ControllerBase: Controller usually inhrit from the ControllerBase or Controller class. which provides many methods and properties for handling request and response.
+
+
+-> What are Action Methods?
+-> All the public methods of a controller class are known as Action Methods. They are created for a specific action or operation in the application.
