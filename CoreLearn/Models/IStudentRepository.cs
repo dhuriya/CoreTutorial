@@ -1,0 +1,1 @@
+Student GetStudentById(int StudentId);
