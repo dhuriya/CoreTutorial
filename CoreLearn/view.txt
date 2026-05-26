@@ -1,0 +1,15 @@
+--> View
+the view is the component that contains logic to represent the model data as a user interface with which the end use can interact. 
+that means View is used to render the user interface.
+
+Type of Views
+Razor Views : They use the Razor syntax(.cshtml), which is a combination of HTML and C#.
+
+Partial Views: These are reusable view component that  can be embedded within other views. They are useful for rendering common elements like  headers,footers or navigation menus.
+
+View Components : These are similar to Partial views but more powerful. They can encapsulate both the view and the logic needed to generate it.
+
+Layout Views : Theses provide a consistent look and feel across multiple views in your application. They define a common template for your pages. including headers, footers and navigation bars.
+
+--> View Create Command
+-- New-Item Views/Home/Index.cshtml

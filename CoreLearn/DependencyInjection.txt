@@ -1,0 +1,60 @@
+/***********************************************************************************************
+----------> Dependency Injection
+/***********************************************************************************************
+Dependency Injection is the process of injecting the dependency object into a class that depends on it. it is the most commonly used design pattern nowdays to remove the dependencies between object, allowing us to develop loosely coupled software components.
+
+/***********************************************************************************************
+//******************** Type of Sevices in Asp.Net Core:*******************
+/***********************************************************************************************
+1. Framework Sevices : Sevices that are a part of the ASP.NET Core Framework, such as IApplicationBuilder, IHostingEnvironment, ILoggerFactory, etc.
+
+2. Application Sevices : The services (custom type or classes) you create as a programmer for your Application/.
+
+/***********************************************************************************************
+/ ****** How do you Register a Sevices with ASP.NET Core Dependency Injection Container? ******
+/***********************************************************************************************
+We need to register a services with the ASP.NET Core Dependency Injection Container within the Main method of the Program class.
+
+/****************************************************************************************************************************
+   What are the Different Method ASP.NET Core Provides to Register a Service with the Dependency Injection Container?
+/****************************************************************************************************************************
+ASP.NET Core Provides 3 methods for registering a service with the ASP.NET Core Dependency Injection container.
+
+1. Singleton : Service register as Singleton are instantiated once per application and shared throughout its lifetime. it is Ideal for configuration services,logging,  or other service where a single instance is sufficient and expensive to  create. All requests for the service within the application recevie the same instance. The container ensures thread safety when accessing the singleton instance. Exists for the entire duration of the application. This can be achieved by adding the service as a singleton through the AddSingleton method of the IServiceCollection.
+Note -> A single instance is created for the entire Application
+* Created once
+* Shared everywhere
+* Same object reused
+********************* When to use singleton Service **********************
+# This is for service that need to maintain state across the entire application. for service that are expensive to create and can be reused. suhc as configuration settings, caching, loggin, and database connections.
+
+2. Transient : Service registered as Transient are crated each time they are requested. This method is suitable for lighweight, stateless services with short-lived and transient behaviour. A new instance is crated every time the service is requested, and instances are not shared among different consumers. This can be achieved by adding the service through the AddTransient method of the IServiceCollection.
+Not -> A new instance is created every time requested
+* Always new object
+* No reuse
+
+3. Scoped : Service registered as Scoped are crated once per request(in a web application, this typically means per HTTP request). it is used for services that should be reused within a single request. maintaining state across different components of the request, but should not be shared across different requests, instances are disposed of at the end of the request. Common example include data access operations within a single transaction. This can be achieved by adding the service through the AddScoped method of the IServiceCollection.
+Not -> A new instance is created once per HTTP request
+* Same object during one request
+* New object for next request
+
+/*********************************************************************************************
+    What is the ServiceDescriptor Class in .NET Core ?
+/*********************************************************************************************
+The ServiceDescriptor Class is part of the Dependency Injection(DI) framework provide by Microsoft in the ASP.NET Core framework. it describes how a service (an interface or a concrete type) should be registered with the DI container. it encapsulates information about the service's type, implementation. and lifetime (singleton, transient,scoped). Essentially, it defines the configuration that the DI container uses to resolve dependencies.
+
+//**********************************************************************************************
+// What is the FromServices in ASP.NET Coe Dependency Injection ?
+//**********************************************************************************************
+The [FromServices] attribute in ASP.NET Core explicity indicates that a parameter of an action method should be resolved from the Dependency Injection container. This is attribute is useful when we need to inject services directly into action methods insted of through the container. when you decorate a parameter in an action method with the [FromServices] attribute, ASP.NET Core's dependency Injection system will resolve and inject the specified service directly into the action method.
+
+//*************************************************************************************************
+// What are the Advantages of using ASP.NET Core Dependency Injection
+//*************************************************************************************************
+1. Loose Couplig : Using dependency injection, we can separate our classes from their dependencies. resultingin simple code to maintain and test.
+
+2. Testability : By using dependency injection. we can increase the testability of our code by easily replacing dependencies with mock objects during unit testing.
+
+3. Extensibility : Using Dependency injection enhances the extensility of our code by offering the flexibility to switch out dependencies conveniently.
+
+4. Resuability : Using dependency injection makes our code more resuable since we can conveniently share dependencies among various classes.

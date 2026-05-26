@@ -1,23 +1,129 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CoreLearn.Models;
+using System.Text.Json.Nodes;
 
 namespace CoreLearn.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    //private readonly ILogger<HomeController> _logger;
+    // Create a reference variable of IStudentRepository
+    private readonly IStudentRepository? _repository = null;
+    private readonly SomeOtherService? _someOtherService = null;    
 
-    public HomeController(ILogger<HomeController> logger)
+    // public HomeController(ILogger<HomeController> logger)
+    // {
+    //     _logger = logger;
+    // }
+
+    
+
+    // public IActionResult Index()
+    // {
+    //     return View();
+    // }
+    // public ViewResult Index()
+    // {
+    //     return View();
+    // }
+
+    // public ViewResult Index()
+    // {
+    //     return View("Test");
+    // }
+
+    //************** How do you specify the Absolute View File Path ***************
+    // public ViewResult Index()
+    // {
+    //     return View("Views/Home/Test.cshtml");
+    // }
+    //********************** Without Dependency Injection ******************
+    // public JsonResult Index()
+    // {
+    //     StudentRepository repository = new StudentRepository();
+    //     List<Student> students = repository.GetAllStudents();
+    //     return Json(students);
+    // }
+    // public JsonResult GetStudentDetails(int id)
+    // {
+    //     StudentRepository repository = new StudentRepository();
+    //     Student student = repository.GetStudentById(id);
+    //     return Json(student);
+    // }
+    //****************************************************
+    // Constructor Injection in ASP.NET Core MVC Application
+    //*******************************************************
+    // Initialize the variable through constructor
+    // public HomeController(IStudentRepository repository)
+    // {
+    //     _repository = repository;
+    // }   
+    // public JsonResult Index()
+    // {
+    //     List<Student> students = _repository?.GetAllStudents();
+    //     return Json(students);
+    // }
+    //--------------------------------------
+    // Action Method Injection Start
+    //--------------------------------------
+    // public JsonResult Index([FromServices] IStudentRepository repository)
+    // {
+    //     List<Student> allStudents = _repository?.GetAllStudents();
+    //     return Json(allStudents);
+    // }
+    //--------------------------------------
+    // Action Method Injection end
+    //--------------------------------------
+    // public JsonResult GetStudentDetails(int id)
+    // {
+    //     Student? studentDetails = _repository?.GetStudentById(id);
+    //     return Json(studentDetails);
+    // }
+    //*********************************************************
+    // Get Services Manually in ASP.NET Core Start
+    //*********************************************************
+    // public JsonResult Index()
+    // {
+    //     var services = this.HttpContext.RequestServices;
+    //     IStudentRepository? _repository = (IStudentRepository?)services.GetService(typeof(IStudentRepository));
+    //     List<Student> allStudents = _repository?.GetAllStudents();
+    //     return Json(allStudents);
+    // }
+    // public JsonResult GetStudentDetails(int id)
+    // {
+    //     var services = this.HttpContext.RequestServices;
+    //     IStudentRepository? _repository = (IStudentRepository?)services.GetService(typeof(IStudentRepository));
+    //     Student student = _repository?.GetStudentById(id);
+    //     return Json(student);
+    // }
+    //*********************************************************
+    // Get Services Manually in ASP.NET Core End
+    //*********************************************************
+
+    //*********************************************************
+    // Singleton Start
+    //*********************************************************
+    public HomeController(IStudentRepository? repository,SomeOtherService someOtherService)
     {
-        _logger = logger;
+        _repository = repository;
+        _someOtherService = someOtherService;
     }
-
-    public IActionResult Index()
+    public JsonResult Index()
     {
-        return View();
+        List<Student> allStudents = _repository?.GetAllStudents();
+        _someOtherService?.SomeMethod();
+        return Json(allStudents);
     }
-
+    public JsonResult GetStudentDetails(int id)
+    {
+        Student? studentDetails = _repository?.GetStudentById(id);
+        _someOtherService?.SomeMethod();
+        return Json(studentDetails);
+    }
+    //*********************************************************
+    // Singleton End
+    //*********************************************************
     public IActionResult Privacy()
     {
         return View();
