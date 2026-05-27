@@ -1,0 +1,33 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h1>@ViewBag.Header</h1>
+    @{
+        var student = ViewBag.Student as CoreLearn.Models.Student;
+
+    }
+    <div>
+        StudentId : @student?.StudentId
+    </div>
+    <div>
+        Name : @student?.Name
+    </div>
+    <div>
+        Branch : @student?.Branch
+    </div>
+    <div>
+        Section : @student?.Section
+    </div>
+    <div>
+        Gender : @student?.Gender
+    </div>
+</body>
+</html>

@@ -13,3 +13,40 @@ Layout Views : Theses provide a consistent look and feel across multiple views i
 
 --> View Create Command
 -- New-Item Views/Home/Index.cshtml
+
+*******************************************************************************************
+            Different Ways to Pass Data to Views in ASP.NET Core MVC
+*******************************************************************************************
+1 ViewData : A dictionary object that stores data as key-value pairs.
+2 ViewBag : A dynamic wrapper around ViewData. allowing property-like syntax.
+3 TempData : used to pass data between two consecutive requests. such as during redirects.
+4 Strongly Type Models/View Models : Passing a model object directly to the view.
+5 Session : Storing data in server-side session to be accessed in Views.
+
+***************************************************
+   What is ViewData in ASP.NET Core MVC ?
+***************************************************
+ViewData is a dictionary object of type ViewDataDictionary that allows us to pass data from a Controller to View using key-value pairs. ViewData is request-scoped, meaning the data it contains is only available during the current HTTP request. it is useful for passing small, non-complex pieces of infromation.
+-> It stores data as string keys and object values.
+-> it is accessible within both the Controller and the View.
+-> The data in ViewData only lasts for the duration of the current HTTP request.
+
+*********************************************************************
+   When to Use ViewData in ASP.NET Core MVC?
+*********************************************************************
+-> When you need to pass small pieces of data from the Controller to the view that don't belong to your main model, such as status message,page title, or other metadata
+-> When you want to quickly share data between a Controller and its View without creating a Strongly typed model.
+-> When the data is temporary and relevant only for the current request. it won't persist across multiple request.
+-> When type safety is not a major concern, since data stored in ViewData must be explicitly cast to the correct type when accessed in the view
+-> When you want to pass data to View of Partial Views without the overhead of defining a dedicated model class.
+
+*********************************************************************
+   What is ViewBag in ASP.NET Core MVC?
+*********************************************************************
+ViewBag is a dynamic property of the Controller base class in ASP.NET Core MVC that allows you to pass data from a Controller to its corresponding View in a flexible and easy-to-use way.
+
+Dynamic property -> you don't need to define types or keys as strings. instead. you can add new property on the fly, like  
+            ViewBag.Message = "Hello World"
+
+
+

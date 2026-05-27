@@ -1,8 +1,4 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using CoreLearn.Models;
-using System.Text.Json.Nodes;
-
 namespace CoreLearn.Controllers;
 
 public class HomeController : Controller
@@ -123,6 +119,72 @@ public class HomeController : Controller
     }
     //*********************************************************
     // Singleton End
+    //*********************************************************
+    //*********************************************************
+    // ViewData Start
+    //*********************************************************
+    public ViewResult Details()
+    {
+        ViewData["Title"]="Student Details Page";
+        ViewData["Header"]="Student Details";
+
+        Student student = new Student()
+        {
+            StudentId = 101,
+            Name = "James",
+            Branch ="CSE",
+            Section = "A",
+            Gender = "Male"
+        };
+        ViewData["Student"] = student;
+        return View();
+    }
+    //*********************************************************
+    // ViewData End
+    //*********************************************************
+
+     //*********************************************************
+    // ViewBag Start
+    //*********************************************************
+    public ViewResult Details2()
+    {
+        ViewBag.Title="Student Details Page";
+        ViewBag.Header="Student Details";
+
+        Student student = new Student()
+        {
+            StudentId = 101,
+            Name = "James",
+            Branch ="CSE",
+            Section = "A",
+            Gender = "Male"
+        };
+        ViewBag.Student = student;
+        return View();
+    }
+    //*********************************************************
+    // ViewBag End
+    //*********************************************************
+
+    //*********************************************************
+    // Strongly Typed Start
+    //*********************************************************
+    public ViewResult StronglyType()
+    {
+        ViewBag.Title = "Student Details Page";
+        ViewData["Header"] = "Student Details";
+        Student student = new Student()
+        {
+            StudentId = 103,
+            Name = "James",
+            Branch ="CSE",
+            Section = "A",
+            Gender = "Male"
+        };
+        return View(student);
+    }
+    //*********************************************************
+    // Strongly Typed End
     //*********************************************************
     public IActionResult Privacy()
     {
