@@ -1,0 +1,25 @@
+1. Create React App with Vite
+-> npm create vite@latest my-react-app -- --template react
+
+2. Install Dependencies
+Navigate into your project directory and install required packages:
+-> cd my-react-app
+-> npm install
+
+3. Start the Development Server
+-> npm run dev
+
+[Step 5]: Create the React App Using CRA Command (Deprecated)
+-> npx create-react-app reactfirst
+
+[Step 6]: Create Directory for React Projects
+
+1. Create a New Folder -> mkdir newfolder
+2. Move inside the folder -> cd newfolder (your folder name)
+
+[Step 7]: Open the Project in a Code Editor
+-> cd reactapp (your app name)
+
+[Step 8]: Run the React App
+Start the development server by running: -> npm run dev 
+or if you are using CRA then run the folloiwng command -> npm start

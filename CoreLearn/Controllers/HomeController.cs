@@ -1,6 +1,7 @@
 using System.Diagnostics;
+using CoreLearn.Models;
+using Microsoft.AspNetCore.Mvc;
 namespace CoreLearn.Controllers;
-
 public class HomeController : Controller
 {
     //private readonly ILogger<HomeController> _logger;
@@ -14,7 +15,7 @@ public class HomeController : Controller
     // }
 
     
-
+ 
     // public IActionResult Index()
     // {
     //     return View();
@@ -185,6 +186,40 @@ public class HomeController : Controller
     }
     //*********************************************************
     // Strongly Typed End
+    //*********************************************************
+
+    //*********************************************************
+    // ViewModel Start
+    //*********************************************************
+    public ViewResult StudentDetailsViewModel()
+    {
+        Student student = new Student()
+        {
+            StudentId = 101,
+            Name = "Dillip",
+            Branch = "CSE",
+            Section ="A",
+            Gender = "Male"
+        };
+        Address address = new Address()
+        {
+            StudentId = 101,
+            City = "Delhi",
+            State="new Delhi",
+            Country = "India",
+            Pin = "110044"
+        };
+        StudentDetailsViewModel studentDetailsViewModel = new StudentDetailsViewModel()
+        {
+            student = student,
+            Address = address,
+            Title = "Student Details Page",
+            Header = "Student Details"
+        };
+        return View(studentDetailsViewModel);
+    }
+    //*********************************************************
+    // ViewModel End
     //*********************************************************
     public IActionResult Privacy()
     {

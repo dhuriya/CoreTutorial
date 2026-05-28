@@ -48,5 +48,23 @@ ViewBag is a dynamic property of the Controller base class in ASP.NET Core MVC t
 Dynamic property -> you don't need to define types or keys as strings. instead. you can add new property on the fly, like  
             ViewBag.Message = "Hello World"
 
+****************************************************************************************
+    What is a ViewModel in ASP.NET Core MVC
+****************************************************************************************
+A ViewModel is a special class explicitly created to hold the data and UI state required by a particular View. It differs from the Entity or Domain Model(Which represents your business logic or database structure)
+-> A ViewModel is designed exclusively for the pressentation layer view.
+-> It can combine properties from multiple domain madels.
+-> It can include calculated fields. UI state flags, and any additional infromation the View needs.
+-> It acts as a Data Transfer Object between the Controller and View, containing exactly the data needed, no more, no less.
+-> ViewModel do not represent database tables but are designed to suit the View's requirements.
 
+****************************************************************************************
+    What is a TempData in ASP.NET Core MVC
+****************************************************************************************
+TempData is a dictionary object provide by ASP.NET Core MVC that stores data temporary until it is read. It allows data  to persist from one HTTP request to the next, making it ideal for passing data during redirects.
+-> It stores data in key-value pairs, where the key is a string and the value is of object type. This allows us to store any type of data including null values.
+
+-> Data in TempData persist only until it is read or until a subsequent HTTP request is made. Once read, it is automatically removed.
+
+-> it is specifically useful when you need to Transfer small amounts of data between actions or views for example, after form submission with redirects.
 
