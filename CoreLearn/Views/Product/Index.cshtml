@@ -1,0 +1,40 @@
+@model List<CoreLearn.Models.Product>
+    @{
+        ViewData["Title"]="Product List";
+    }
+    <div class="container mt-4"">
+        <h2 class="mb-4">Product List</h2>
+        @if(!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+        {
+            <div class="alert alert-success dismissible fade show" role="alert">
+                <strong>Success!</strong>@ViewBag.SuccessMessage
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <table class="table table-stripe bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 5%;">ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th style="width: 10%;">Price</th>
+                    <th style="width: 10%;">Stock</th>
+                    <th style="width: 15%;">Created Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var product in Model)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price</td>
+                        <td>@product.Stock</td>
+                        <td>@product.CreatedDate.ToString("dd MM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="@Url.Action("Create")">Create New Product</a>
+    </div>
