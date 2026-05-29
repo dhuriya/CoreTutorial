@@ -1,0 +1,6 @@
+**********************************************************************
+    What is the Post-Redirect-Get(PRG) Pattern?
+**********************************************************************
+When a use submis a form, the HTTP POST method is typically used. After processing the form submission on  the server, if the server responds with a regular HTML page, a refresh or reload of the resulting page can cause the browser to re-submit the form data(known as a "form resubmission problem").
+
+* It prevents duplicate form submission and enhances the user experience by avoiding form re-submitting when users refresh the page. TempData can be used to pass information, such as success messages, between the POST and GET requests.
