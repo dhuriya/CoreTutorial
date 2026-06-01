@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        /* 1. Adding a Border to an HTML Table */
+        table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse; /*2. Adding Collapsed Borders in an HTML Table*/
+        }
+        /*3. Adding Cell Padding in an HTML Table*/
+        th, td{
+            padding: 20px;
+        }
+        /*4. Adding Left Align Headings in an HTML Table*/
+        th{
+            text-align: left;
+        }
+        /*5. Adding Border Spacing in an HTML Table*/
+        table{
+            border-spacing: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table style="width: 100%;">
+        <caption> Details</caption>
+        <tr>
+            <th>Firstname</th>
+            <th colspan="2">Lastname and age</th>
+            <!-- <th>age</th> -->
+        </tr>
+        <tr>
+            <td>Luca</td>
+            <td>Rossi</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>Sphie</td>
+            <td>Dubois</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>Sam</td>
+            <td>Watson</td>
+            <td>41</td>
+        </tr>
+    </table>
+</body>
+</html>

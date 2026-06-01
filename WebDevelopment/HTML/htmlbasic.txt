@@ -1,0 +1,40 @@
+*****************************************
+     HTML Elements
+*****************************************
+HTML elements are the basic building blocks of a webpage, defining its structure and content using start tags, content, and end tags.
+*****************************************
+     1. Block-Level Elements
+*****************************************
+Block-level elements start on a new line, occupy the full available width, stack vertically, and can contain both block-level and inline elements.
+Examples : 
+<div>,
+<p>,
+<h1>, <h2>, ..., <h6>,
+<ol>, <ul>
+<table>
+<form>
+<section>, <article>, <nav>, <aside>, <header>, <footer>: Semantic elements that define areas of a webpage.
+
+*****************************************
+     1. Inline Elements
+*****************************************
+Inline elements do not start on a new line, take only the width of their content, and are used within block-level elements to add or style content.
+<span>: A general-purpose inline container for phrasing content.
+<a>: Creates hyperlinks.
+<img>: Embeds an image.
+<strong>, <b>: Used for strong emphasis and bold text, respectively.
+<em>, <i>: Used for emphasis and italic text, respectively.
+<br>: Inserts a line break within text.
+<input>: Creates interactive controls for forms. 
+
+*****************************************
+     HTML Attributes
+*****************************************
+HTML Attributes are special words used within the opening tag of an HTML element. They provide additional information about HTML elements. 
+
+<tagname attribute_name = "attribute_value"> content... </tagname>
+
+*****************************************
+    HTML Tables
+*****************************************
+HTML tables help organize data into rows and columns, making information easy to read and compare. They are useful for displaying schedules, price lists, product details, and more.
