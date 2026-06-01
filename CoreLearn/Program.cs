@@ -45,7 +45,24 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+//-----------------------------------
+//Convention-Based Rounting start
+//-----------------------------------
+app.MapControllerRoute(
+    name:"StudentAll",
+    pattern:"Student/GetAllStudents",
+    defaults: new{controller ="Student",action="Index"}
+);
 
+app.MapControllerRoute(
+    name:"StudentIndex",
+    pattern:"StudentDetails/{ID}",
+    defaults: new{controller ="Student",action="GetStudentsByName"}
+);
+
+//-----------------------------------
+//Convention-Based Rounting end
+//-----------------------------------
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
