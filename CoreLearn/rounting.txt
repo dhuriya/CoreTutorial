@@ -1,0 +1,27 @@
+******************************************************************************
+       What is Rounting in ASP.NET Core MVC?
+******************************************************************************
+Rounting in ASP.NET Core MVC is a mechanism that inspects the incoming HTTP request and the maps those HTTP request to the appropriate controller actions. it enables the framework to determine what code to execute based on the URL of the request. Rounting is an important component of ASP.NET Core MVC applications, providing the ability to define URL patterns and manage how URLs are processed and handled by the application.
+
+******************************************************************************
+       How Does Rounting Work in ASP.NET Core?
+******************************************************************************
+Rounting is pattern-matching system that manitors an incoming HTTP request and decides what to do with that incoming HTTP request. when the client makes a request an HTTP request, the routing engine first recevies it. Once the routing engine recevies an HTTP request, the Rounting engine tries to find the route pattern that matches the requested URL with already registered routes. Routes contain information about the controller name, action name, method type, method parameters, route data, etc.
+
+******************************************************************************
+       What are the Diffeerent Types of Rounting Supported by ASP.NET Core MVC?
+******************************************************************************
+1 Convention-Based Rounting.
+2 Attribute-Based Rounting.
+
+******************************************************************************
+       Convention-Based Rounting.
+******************************************************************************
+Conventional-based routing in ASP.NET Core MVC defines URL patterns and maps them to controller actions based on conventions rather than explicitly specifying routes on each action or controller. Conventional-based routing follows a set of conventions to map incoming requests to specific controller actions. it is configured globally in the Program.cs file using the MapControllerRout middleware. This method allows for centralized route configuration, making it easy to manage and understand how URLs map to controllers and actions.
+
+******************************************************************************
+       Attribute-Based Rounting.
+******************************************************************************
+Attribute-based routing in ASP.NET Core MVC allows developers to define routing directly on controller actions or at the controller level using attributes (decorators). this approach provides more control and flexibility over how URLs are mapped to actions compared to Conventional routing, where routes are configured globally in the Program.cs file this approach is useful for APIs and scenarios where URLs need to be explicitly defined and customized.
+
+
