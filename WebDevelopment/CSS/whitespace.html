@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Space</title>
+    <style>
+        p{
+            white-space: nowrap;
+            border: 1px solid black;
+            width: 200px;
+        }
+        div{
+            width: 300px;
+            height: 50px;
+            /*white-space: normal;*/
+            /*white-space: nowrap;*/
+            white-space: pre;
+            background-color: limegreen;
+            color: wheat;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+   <p>
+        This is a long line of text that will not wrap to the next line because of the white-space: nowrap; property.
+    </p>
+    <div> GeeksforGeeks:
+        <br> A Computer Science Portal For Geeks.
+    </div>
+</body>
+</html>
