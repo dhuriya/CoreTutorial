@@ -1,0 +1,2 @@
+CSS white-space Property
+-> The CSS white-space property is used to control how text and spaces are displayed within an element. It helps manage text wrapping, spacing, and line breaks for better content layout.

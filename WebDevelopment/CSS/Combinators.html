@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinators</title>
+    <style>
+        /*-------------------------------*/
+        /*1. General Sibling selector(~)*/
+        /*-------------------------------*/
+        /*div ~ p{
+            color: #009900;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+        }
+        div{
+            text-align:  center;
+        }*/
+        /*-------------------------------*/
+        /*2. Adjacent Sibling selector(+)*/
+        /*-------------------------------*/
+        /*div + p{
+            color: #009900;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+        }
+        div{
+            text-align:  center;
+        }
+        p{
+            text-align: center;
+        }*/
+        /*-------------------------------*/
+        /*3. Child Selector(>)*/
+        /*-------------------------------*/
+        /*div > p{
+            color: #009900;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+        }
+        div{
+            text-align: center;
+        }
+        p{
+            text-align:  center;
+        }*/
+        /*-------------------------------*/
+        /*4. Descendant selector(space)*/
+        /*-------------------------------*/
+        div p{
+            color: #009900;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+        }
+        div{
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Combinators</h2>
+    <p>CSS combinators define the relationship between two selectors</p>
+    <h2>Types of CSS Combinators</h2>
+    
+    <h3>1. General Sibling selector(~)</h3>
+    <p>The general sibling selector selects elements that follow a specified element and share the same parent. </p>
+    
+    <h3>2. Adjacent Sibling selector(+)</h3>
+    <p>The adjacent sibling selector selects an element that is immediately next to a specified element. This selector selects only the next sibling.</p>
+
+    <h3>3. Child Selector(>)</h3>
+    <p>The child selector selects elements that are direct children of a specified element. This combinator is stricter than the descendant selector, as it selects only the direct children.</p>
+
+    <h3>4. Descendant selector(space)</h3>
+    <p>The descendant selector selects all elements that are descendants of a specified element. These elements can be any level deep within the specified element.</p>
+
+    <div>General sibling selector property</div>
+    <p>GeeksforGeeks</p>
+    <div>
+        <div>Child div content</div>
+        <p>G4G</p>
+    </div>
+    <p>Geeks</p>
+    <p>Hello</p>
+</body>
+</html>

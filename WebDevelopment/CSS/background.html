@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <style>
+        body{
+            /*background: lightblue url("https://media.istockphoto.com/id/2166282428/photo/a-beautiful-and-lush-green-forest-canopy-illuminated-by-warm-sunlight-streaming-through.jpg?s=1024x1024&w=is&k=20&c=qITYAeDOloxytWkjXvdsJ7xnTwOCfo9shjwuc-ZKgmc=") no-repeat center fixed;*/
+            background-image: url("https://media.istockphoto.com/id/2166282428/photo/a-beautiful-and-lush-green-forest-canopy-illuminated-by-warm-sunlight-streaming-through.jpg?s=1024x1024&w=is&k=20&c=qITYAeDOloxytWkjXvdsJ7xnTwOCfo9shjwuc-ZKgmc=");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-origin: padding-box;
+        }
+        h1{
+            background-color: blue;
+        }
+        div{
+            width: 250px;
+            height: 150px;
+            padding: 20px;
+            border: 10px solid black;
+            background-color: orange;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. background-origin</h1>
+    <p>The background-origin property sets the starting position of a background image relative to the element’s box.</p>
+
+    <h2>2. background-clip</h2>
+    <p>The background-clip property defines how far the background (color or image) extends within an element.</p>
+    <h1>GeekforGeeks</h1>
+
+    <div>Background Clip Example</div>
+</body>
+</html>
