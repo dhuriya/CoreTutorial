@@ -20,8 +20,44 @@ Rounting is pattern-matching system that manitors an incoming HTTP request and d
 Conventional-based routing in ASP.NET Core MVC defines URL patterns and maps them to controller actions based on conventions rather than explicitly specifying routes on each action or controller. Conventional-based routing follows a set of conventions to map incoming requests to specific controller actions. it is configured globally in the Program.cs file using the MapControllerRout middleware. This method allows for centralized route configuration, making it easy to manage and understand how URLs map to controllers and actions.
 
 ******************************************************************************
-       Attribute-Based Rounting.
+       Attribute-Based Routing.
 ******************************************************************************
 Attribute-based routing in ASP.NET Core MVC allows developers to define routing directly on controller actions or at the controller level using attributes (decorators). this approach provides more control and flexibility over how URLs are mapped to actions compared to Conventional routing, where routes are configured globally in the Program.cs file this approach is useful for APIs and scenarios where URLs need to be explicitly defined and customized.
+
+******************************************************************************
+       Custom Route Constraints.
+******************************************************************************
+Custom route constraints allow us to enforce specific rules when matching route parameters. this is useful when we need to enforce certain conditions for route to be selected during the request processing. These constraints, like the built-in constraints, are used to validate parameters in the URL before the request even reaches the controller action.
+
+******************************************************************************
+       When to use Custom Route Constraints?
+******************************************************************************
+* When Built-in Constraints are Insufficient : If the built-in constraints(int, datetime, etc.) don't cover your validation needs.
+* When Business Logic Demands : For scenarios like verifying product IDs against a database, ensuring valid user IDs, or any other business-specific logic.
+* When Reusability is Needed : if you have a validation logic that needs to be applied to multiple routes, a custom route constraint can encapsulate this logic for reuse.
+
+******************************************************************************
+       What is Attribute Routing ?
+******************************************************************************
+Attribute Rounting gives us more control over the URIs by defining routes directly at action methods or controller in out ASP.NET Core MVC Web Application. with Attribute Rounting, you can now define routes directly on actions and controllers by decorating them with attributes like [Route],[HttpGet],[HttpPost], etc.
+
+******************************************************************************************
+Q  How Do we Ignore the Route Attribute Placed at the Controller leve in Asp.Net Core ?
+******************************************************************************************
+To ignore the Route Template placed at the controller level, you must use / or ~/ at the action method level. if the action method route template starts with / or ~/, then the controller Route Attribute will not be combined with the action method route attribute.
+
+******************************************************************************************
+Q  What is the Difference Between [Route] and [HttpGet], [HttpPost], etc. Attribute?
+******************************************************************************************
+The [Route] attribute specifies a route template for a controller or action method but does not apply any specific HTTP method. On the other hand HTTP method attribute like [HttpGet], [HttpPost], [HttpPut], and [HttpDelete] not only define the route template but also restrict the action method to be invoked only with the specified HTTP method.
+
+*********************************************************
+     Tokens in Attribute Rounting 
+*********************************************************
+
+
+
+
+
 
 

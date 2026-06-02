@@ -20,6 +20,21 @@ builder.Services.AddMvc();
 //**************************
 // Singleton
 //**************************
+//*************************************************************************************
+// Configuring the Custom Route Constraint Service Using AddRouting Method Start
+//*************************************************************************************
+// builder.Services.AddRouting(options =>
+// {
+//     options.ConstraintMap.Add("alphanumeric",typeof(AlphaNumericConstraint));
+// });
+//Configuring the Custom Route Constraint service using Configure Method
+// builder.Services.Configure<RouteOptions> (routeOtions =>
+// {
+//     routeOtions.ConstraintMap.Add("alphanumeric",typeof(AlphaNumericConstraint));
+// });
+//*************************************************************************************
+// Configuring the Custom Route Constraint Service Using AddRouting Method End
+//*************************************************************************************
 builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
 builder.Services.AddSingleton<SomeOtherService>();
 // builder.Services.AddSingleton(typeof(IStudentRepository),typeof(StudentRepository));

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using CoreLearn.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace CoreLearn.Controllers;
+//[Route("Home")] // Controller leve attribute route
 public class HomeController : Controller
 {
     //private readonly ILogger<HomeController> _logger;
