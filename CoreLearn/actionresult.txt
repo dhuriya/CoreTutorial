@@ -1,0 +1,19 @@
+*****************************************************************
+   What are Action Methods?
+*****************************************************************
+Action Methods in ASP.NET Core MVC are the public Methods defined within a Controller class that responds to incoming HTTP requests. Each action method typically handles a particular HTTP request type like(GET or POST). They are responsible for executing the logic needed to process the request and generate a respons.
+* The action method be public.
+* It cannot be overladed.
+* It cannot be a static method.
+* IActionResult is the base class of all the result types an action method returns.
+* They can accept parameters from the request(e.g.. query,strings,route dat, form data.)
+
+***********************************************
+  Some Common derived classes of ActionResult
+***********************************************
+* ViewResult : Represents a view.
+* JsonResult : Represents JSOn data.
+* FileResult : Represents a file.
+* RedirectResult : Represents a redirection to a URL.
+* ContentResult : Represents plain text content.
+* StatusCodeResult : Represents an HTTP status code.

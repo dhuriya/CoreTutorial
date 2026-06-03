@@ -7,8 +7,12 @@
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div> *@
 
-@{
+@* @{
     Layout = null;
+} *@
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +22,7 @@
     <title>Index</title>
 </head>
 <body>
+    <h1>Home Page</h1>
     <h1>Index View belongs to View/Home folder</h1>
 </body>
 </html>
