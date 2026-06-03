@@ -17,10 +17,10 @@ public class HomeController : Controller
 
     
  
-    // public IActionResult Index()
-    // {
-    //     return View();
-    // }
+    public IActionResult Index()
+    {
+        return View();
+    }
     // public ViewResult Index()
     // {
     //     return View();
@@ -107,12 +107,12 @@ public class HomeController : Controller
         _repository = repository;
         _someOtherService = someOtherService;
     }
-    public JsonResult Index()
-    {
-        List<Student> allStudents = _repository?.GetAllStudents();
-        _someOtherService?.SomeMethod();
-        return Json(allStudents);
-    }
+    // public JsonResult Index()
+    // {
+    //     List<Student> allStudents = _repository?.GetAllStudents();
+    //     _someOtherService?.SomeMethod();
+    //     return Json(allStudents);
+    // }
     public JsonResult GetStudentDetails(int id)
     {
         Student? studentDetails = _repository?.GetStudentById(id);

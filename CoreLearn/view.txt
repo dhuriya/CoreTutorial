@@ -68,3 +68,11 @@ TempData is a dictionary object provide by ASP.NET Core MVC that stores data tem
 
 -> it is specifically useful when you need to Transfer small amounts of data between actions or views for example, after form submission with redirects.
 
+****************************************************************
+   What is Layout View in ASP.NET Core MVC?
+****************************************************************
+Layout View is a shared template or master page that can be used across different views within your application to maintain consistent looks and feels.
+
+Layout Views include the following section :
+@RenderBody() : This a placeholder where the content of the views that use layout will be rendered.
+@RenderSection("SectionName",required: false) : This method is used to render optional sections that views might provide. if required is set to ture, the section must be defined in the views.
