@@ -1,0 +1,33 @@
+@model ViewResultProduct
+
+<div class="text-left">
+    <h1>This is Partial View</h1>
+    <p>Proudct ID : @Model.Id</p>
+    <p>Proudct Name : @Model.Name</p>
+</div>
+<h1>This is from ajax</h1>
+<div id="someDiv" class="text-left">
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    debugger;
+    $(document).ready(function(){
+        var rawdata ={'ProductId':'10'};
+        $.ajax({
+            type: "GET",
+            url: "/ViewResultC/Index2",
+            data: rawdata,
+            success: function(viewHTML){
+                $("#someDiv").html(viewHTML);
+            },
+            error: function(errorData){
+                onError(errorData);
+            }
+        });
+    });
+    function onError(errorData){
+        alert("An error occurred : " + errorData.responseText);
+    }
+</script>

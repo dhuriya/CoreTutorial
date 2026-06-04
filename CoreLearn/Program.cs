@@ -60,6 +60,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 //-----------------------------------
 //Convention-Based Rounting start
 //-----------------------------------
@@ -78,8 +81,6 @@ app.MapControllerRoute(
 //-----------------------------------
 //Convention-Based Rounting end
 //-----------------------------------
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
