@@ -9,24 +9,21 @@
     <link rel="stylesheet" href="~/CoreLearn.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <table border="1" style="width: 800px; font-family: Arial">
-        <tr>
-            <td colspan="2" style="text-align: center;">
-                <h3>Website Header</h3>
-            </td>
-            <tr>
-                <td style="width: 200px;">
-                    <h3>Left Navigation</h3>
-                </td>
-                <td style="width:600px;">
-                    @RenderBody()
-                </td>
-            </tr>
-            <td colspan="2" style="text-align: center; font-size:x-small">
-                <h3>Website Footer</h3>
-            </td>
-        </tr>
-    </table>
+    <header>
+        <h3>Website Header</h3>
+    </header>
+    <nav>
+        navbar
+    </nav>
+    <aside>
+        <h3>Left Navigation</h3>
+    </aside>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        <h3>Website Footer</h3>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

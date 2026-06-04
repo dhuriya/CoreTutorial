@@ -22,7 +22,65 @@
     <title>Index</title>
 </head>
 <body>
-    <h1>Home Page</h1>
-    <h1>Index View belongs to View/Home folder</h1>
+    <div class="container">
+        <h1>Home Page</h1>
+        <h1>Index View belongs to View/Home folder</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form id="downloadForm" method="get" action="/Home/DownloadFile">
+                    <button type="submit" class="btn btn-primary">Download File</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h1>Calling JsonResult Action Method using jQuery in AJAX</h1>
+                <div>
+                    <table id="tblProducts" class="tblProducts">
+                        <thead>
+                            <tr>
+                                <th align="left" class="productth">ProductID</th>
+                                <th align="left" class="productth">ProductName</th>
+                                <th align="left" class="productth">Descrtption</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        //remove all rows from the table body
+        $("#tblProducts tbody tr").remove();
+        var rawdata = {'Category' : 'Electronics'};
+        $.ajax({
+            type:"GET",
+            url: "/Home/JsonResultUsingAjax/",
+            data: rawdata,
+            dataType: 'json',
+            success: function(data){
+                var items = '';
+                $.each(data, function(i,item){
+                    var rows = "<tr>" 
+                            + "<td class='prtoductttd'>" + item.Id + "</td>"
+                            + "<td class='prtoductttd'>" + item.Name + "</td>"
+                            + "<td class='prtoductttd'>" + item.Description + "</td>"
+                            + "</tr>";
+                    $('#tblProducts tbody').append(rows);
+                });
+            },
+            error: function(errorData){
+                alert(errorData);
+                var ErrorResponse = jQuery.parseJSON(errorData.responseText);
+                alert("Message: " + ErrorResponse.Message);
+                alert("StactTrace: " + ErrorResponse.StactTrace);
+                alert("ExceptionType: " + ErrorResponse.ExceptionType);
+            }
+        });
+    });
+</script>
 </html>
