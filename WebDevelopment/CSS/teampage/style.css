@@ -1,0 +1,53 @@
+html{
+    box-sizing: border-box;
+}
+body{
+    max-width: 100%;
+}
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+.column{
+    float: left;
+    width: 33%;
+    margin-bottom: 16px;
+    padding: 2px 10px;
+}
+.card{
+    background-color: gray;
+    border: 1px solid black;
+}
+.container{
+    padding: 0 16px;
+}
+.container::after,
+.row::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+#gfg{
+    float: none;
+    margin: auto;
+}
+.button{
+    border: none;
+    padding: 8px;
+    color: white;
+    background-color: #44D944;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.button:hover{
+    background-color: green;
+}
+@media screen and (max-width:670px) {
+    .column{
+        width: 100%;
+        text-align: none;
+    }
+}
