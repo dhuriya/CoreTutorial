@@ -1,88 +1,59 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <style type="text/css">
-        .Mailer {
-            margin: auto;
-            border: 1px solid #eee;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-            font-family: "Poppins", sans-serif;
-            border-radius: 0.5rem;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geeks for Geeks Logo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wrapper{
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle{
+            height: 100px;
+            width: 100px;
+            border: 20px solid green;
+            border-radius: 100px;
+            position: relative;
+        }
+        .circle:after{
+            content: "";
+            position: absolute;
+            border-top: 100px solid transparent;
+            top: -35px;
+        }
+        #circle1:after{
+            border-left: 140px solid #EFEFEF;
+            left: -50px;
+            top: -35px;
+        }
+        #circle2:after{
+            border-right: 140px solid #EFEFEF;
+            right: -50px;
+        }
+        #circle1:before{
+            content: "";
+            height: 20px;
+            width: 276px;
+            position: absolute;
+            background: green;
+            left: -18px;
+            top: 45px;
+            z-index: 1;
         }
     </style>
 </head>
-
 <body>
-    <table class="Mailer" align="center" cellpadding="10" width="600" style="background: #f0f0f0">
-        <tr>
-            <td align="center" style="padding: 20pt 0 0">
-                <table>
-                    <tr>
-                        <td width="45%"></td>
-                        <td width="10%"> <img src="http://mybond.in/images/mybond.png" style="width: 150pt"
-                                alt="mybond Logo" /> </td>
-                        <td width="45%"></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <table style="background: #fff; overflow: hidden; border-radius: 10pt" width="575">
-                    <tr>
-                        <td style="padding: 20pt">
-                            <div>
-                                <div
-                                    style="                        font-size: 0.9rem;                        font-weight: 500;                        line-height: 1.5;                      ">
-                                    <span style="font-weight: 700">Dear {Name},</span> <br /> <br /> Greetings from
-                                    mybonD <br /> <br /> We are delighted to inform you that your bond purchase
-                                    transaction has been successfully completed. <br /> </div> <br />
-                                <hr /> <br />
-                                <div
-                                    style="                        font-size: 0.9rem;                        font-weight: 500;                        line-height: 1.5;                      ">
-                                    <span style="font-weight: 700; font-size: 1rem">Deal Details:</span> <br />
-                                    <ul>
-                                        <li> Security Name: <span style="font-weight: 700; font-size: 0.98rem">
-                                                {Security Name}</span> </li>
-                                        <li> ISIN: <span style="font-weight: 700; font-size: 0.98rem">{Reference
-                                                Number}</span> </li>
-                                        <li> Settlement Amount: <span style="font-weight: 700; font-size: 0.98rem">₹
-                                                {Amount}</span> </li>
-                                        <li> Settlement Date: <span
-                                                style="font-weight: 700; font-size: 0.98rem">{Date}</span> </li>
-                                    </ul>
-                                </div> <br />
-                                <hr /> <br />
-                                <div
-                                    style="                        font-size: 0.8rem;                        font-weight: 500;                        line-height: 1.5;                      ">
-                                    <p style="font-size: 0.9rem"> The above-mentioned securities have been successfully
-                                        credited to your registered Demat account. Please note that in some cases, it
-                                        may take up to 24 hours for the holdings to reflect in your account. </p>
-                                    <p style="font-size: 0.9rem"> Kindly find the deal note attached for your reference.
-                                    </p>
-                                    <p style="font-size: 0.9rem"> Should you have any queries or notice any discrepancy,
-                                        please feel free to reach out to us at <span
-                                            style="font-weight: 700">9350316010</span> or write to us at <span
-                                            style="font-weight: 700">info_mybond@rrfcl.com</span>. </p>
-                                    <p style="font-size: 0.9rem"> Thank you for your continued trust in us. We look
-                                        forward to serving you again. </p>
-                                    <p style="margin: 0; font-weight: 700">Team mybonD</p> <br />
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <hr style="margin-top: 15pt" />
-                <div
-                    style="                font-size: 0.72rem;                color: #666;                line-height: 1.5;                padding-top: 10pt;              ">
-                    <strong>Disclaimer:</strong><br /> mybonD is a registered platform with NSE – Debt Segment and all
-                    the rules & regulations of NSE apply to it. For more details, please visit <a
-                        href="https://www.nseindia.com" target="_blank" style="color: #0066cc; text-decoration: none">
-                        www.nseindia.com </a>. </div>
-            </td>
-        </tr>
-    </table>
+    <div class="wrapper">
+        <div id="circle1" class="circle"></div>
+        <div id="circle2" class="circle"></div>
+    </div>
 </body>
-
 </html>
