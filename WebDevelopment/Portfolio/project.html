@@ -31,7 +31,7 @@
             <div class="nav-links" id="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="./about.html">About</a>
-                <a href="project.html">Project</a>
+                <a href="#">Project</a>
                 <a href="#">Resume</a>
                 <a href="#">Contact</a>
             </div>
@@ -53,55 +53,81 @@
     </nav>
     <main class="page-main">
         <div class="page-container">
-            <h1 class="page-title">About Me.</h1>
-            <div class="about-grid">
-                <div class="about-image-col">
-                    <div class="image-stack">
-                        <img src="./images/profile.jpg" alt="Deepu Dhuriya" class="stack-img main-img">
+            <h1 class="page-title">Selected Works.</h1>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="./images/project-ecommerce.jpg" alt="E-cammerce" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="overlay-btn">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h2 class="project-title">E-Commerce Platform Redesign</h2>
+                        <p class="project-desc">
+                            Led a full UX audit and front-end rebuild of an e-commerce platform. improved checkout conversion by 30% through streamlined user flows and a modernixed component library.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">UX Design</span>
+                            <span class="tag">React</span>
+                        </div>
                     </div>
                 </div>
-                <div class="about-text-col">
-                    <h2 class="section-heading">My Journey</h2>
-                    <p class="section-text">I'm a full-stack developer and UX designer with a passion for building products that are  both technically solid and genuinely enjoyable to use. I'm currently open to full-time roles and freelance collaborations in software engineering, front-end development, and product design.</p>
-                    <p class="section-text">I grew up in a multicultureal household and spent several years living and studying abroad, which gave me an appreication for diverse perspectives and human-centered design. Outside of work, I enjoy hiking, photography, and contributing to open-souce projects on GitHub.</p>
-                    <h2 class="section-heading mt-2">Experience &amp; Education</h2>
-                    <p class="section-text">
-                        I hold a Master's in Human-Computer Interaction from State University (2024) and a Bachelor's in Computer Science with a concentration in Software Engineering (2022). My academic and professional background spans frontend development, UX research, API design, and agile project management. I hold the AWS Certified Developer certification.
-                    </p>
-                    <div class="carousel" id="carousel">
-                        <div class="carousel-slides" id="carousel-slides">
-                            <img src="./images/workspace.jpg" alt="Modern tech office workspace" class="carousel-slide" loading="lazy">
-                            <img src="./images/team-collaboration.jpg" alt="Team collaboration and brainstorming" class="carousel-slide" loading="lazy">
-                            <img src="./images/tech-conference.jpg" alt="Tech conference and professional development" class="carousel-slide" loading="lazy">
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn" id="prev" aria-label="Previous Slide">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-left" aria-hidden="true" style="width: 18px; height: 18px" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"></path></svg>
-                            </button>
-                            <button class="carousel-btn" id="next" aria-label="Next Slide">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" aria-hidden="true" style="width: 18px; height: 18px" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"></path></svg>
-                            </button>
+                <!-- project 2 -->
+                 <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="./images/project-task-app.jpg" alt="Task Management Mobile App" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="overlay-btn">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            View Project
+                            </a>
                         </div>
                     </div>
-                    <div class="experience-list">
-                        <div class="exp-item">
-                            <span class="exp-year">2022-2024</span>
-                            <div class="exp-details">
-                                <h3>Master's in Human-Computer Interaction</h3>
-                                <p>State University</p>
-                            </div>
-                        </div>
-                        <div class="exp-item">
-                            <span class="exp-year">2018-2022</span>
-                            <div class="exp-details">
-                                <h3>Bachelor's in Computer Science</h3>
-                                <p>Software Engineering Concentration - State University</p>
-                            </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Task Management</h2>
+                        <p class="project-desc">
+                            Designed and built a cross-platform task management app with real-time sync, drag-and-drop kanban boards, and team collaboration features using React Native and Firebase.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Firebase</span>
                         </div>
                     </div>
-                    <h2 class="section-heading mt-2">Community &amp; Leadership</h2>
-                    <p class="section-text">I'm an active contributor to open-source communities and local tech meetups focused on making technology more accessible. I've served as a mentor for early-career developers through a regional coding bootcamp program.</p>
-                    <p class="section-text">I also volunteer a workshop facilitator at community coding evens, helping students from underrepresented backgrounds get started with web development and design fundamentals.</p>
+                </div>
+                <!-- project 3 -->
+                 <div class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="./images/project-dashboard.jpg" alt="Analytics Dashboard" class="project-img" loading="lazy">
+                        <div class="project-overlay">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="overlay-btn">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Analytics Dashboard</h2>
+                        <p class="project-desc">
+                            Built an interactive data analytics dashboard for a Saas product, feacturing live charts, filterable KPI cards, and CSV export - reducing manual reporting time by 60%.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Data Viz</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
