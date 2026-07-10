@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Box Project</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://plus.unsplash.com/premium_photo-1664304423623-4f9d5ed90b4f?q=80&w=868&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+           
+        }
+        .loginpage{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 50%;
+            height: 70%;
+            background-color: #86868652;
+            border-radius: 30px;
+            backdrop-filter: blur(1px);
+        }
+        .input-box{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .password{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        h1{
+            font-size: 80px;
+        }
+        input[type="email"],input[type="password"]{
+            padding: 17px 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+        button{
+            padding: 15px 39px;
+            border: none;
+            background: linear-gradient(#ebf31152,#cd24ef52);
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        p{
+            cursor: pointer;
+        }
+        input[type="checkbox"],label{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loginpage">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="email" placeholder="Enter your email">
+                <input type="password" placeholder="Type your Password">
+            </div>
+            <div class="password">
+                <div>
+                    <input type="checkbox" id="checkbox">
+                    <label for="checkbox">Remember Me</label>
+                </div>
+                <p>Forgot Password</p>
+            </div>
+            <button>Log in</button>
+        </div>
+    </div>
+</body>
+</html>
