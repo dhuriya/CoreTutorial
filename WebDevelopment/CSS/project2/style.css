@@ -25,6 +25,7 @@ h1{
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    padding-bottom: 20px;
 }
 .shoes-item{
         width: 40%;
@@ -36,6 +37,7 @@ h1{
     box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
     border-radius: 10px;
     height: 376px;
+    flex: 1 1 250px;
 }
 .shoes-img{
     width: 100%;
@@ -82,3 +84,6 @@ p{
     scale: 1.1;
     transition: 0.4s all ease-in;
 }
+/* .shoes-item:last-child {
+    flex: 0 0 262px;
+} */

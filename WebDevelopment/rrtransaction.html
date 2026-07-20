@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Investor Onboarding Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --indigo:        #0d0f1e;
+  --indigo-deep:   #35356f;
+  --indigo-light:  #6b6baf;
+  --indigo-pale:   #eeeef8;
+  --gold:          #a17c3b;
+  --gold-mid:      #b8a255;
+  --gold-light:    #d8c48a;
+  --gold-pale:     #faf6ed;
+  --gold-ultra:    #f5eed6;
+  --green:         #059669;
+  --green-light:   #ecfdf5;
+  --green-border:  #6ee7b7;
+  --red:           #dc2626;
+  --red-light:     #fff1f2;
+  --red-border:    #fca5a5;
+  --bg:            #f4f4f9;
+  --bg2:           #eeeef5;
+  --card:          #ffffff;
+  --border:        #e0e0ee;
+  --border-gold:   #d8c48a;
+  --text:          #1a1a2e;
+  --text-2:        #35356f;
+  --muted:         #6b7280;
+  --muted-2:       #9ca3af;
+  --shadow-xs:     0 1px 3px rgba(75,75,140,.06);
+  --shadow-sm:     0 2px 8px rgba(75,75,140,.09);
+  --shadow-md:     0 6px 24px rgba(75,75,140,.12);
+  --shadow-lg:     0 16px 48px rgba(75,75,140,.16);
+  --shadow-gold:   0 4px 20px rgba(155,144,69,.25);
+  --radius-sm:     10px;
+  --radius:        16px;
+  --radius-lg:     24px;
+  --radius-xl:     32px;
+  --font-display:  'Cormorant Garamond', serif;
+  --font-body:     'DM Sans', sans-serif;
+  --transition:    all .28s cubic-bezier(.4,0,.2,1);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1100px 500px at 100% -10%, var(--gold-ultra) 0%, transparent 55%),
+    var(--bg);
+  font-family:var(--font-body);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:110px;
+}
+
+::selection{background:var(--gold-light);color:var(--indigo);}
+
+/* ---------- scaffolding ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+/* ---------- top bar ---------- */
+.topbar{
+  background:linear-gradient(180deg, var(--indigo) 0%, #14172c 100%);
+  color:#fff;
+  border-bottom:3px solid var(--gold);
+  position:relative;
+}
+.topbar::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-3px; height:3px;
+  background:linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  opacity:.7;
+}
+.topbar-inner{
+  max-width:1180px;margin:0 auto;padding:22px 28px 26px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.brandmark{display:flex;align-items:center;gap:10px;}
+.brandmark .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--gold-light);
+  box-shadow:0 0 0 4px rgba(216,196,138,.18);
+}
+.brandmark span{
+  letter-spacing:.22em;font-size:11.5px;text-transform:uppercase;
+  color:var(--gold-light);font-weight:600;
+}
+.topbar h1{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(28px,4vw,40px);
+  margin:6px 0 0;
+  letter-spacing:.01em;
+  line-height:1.05;
+}
+.topbar .sub{
+  font-size:13.5px;color:rgba(255,255,255,.55);margin-top:6px;font-style:italic;
+  font-family:var(--font-display); font-size:16px;
+}
+.session-chip{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(216,196,138,.35);
+  border-radius:999px;
+  padding:9px 16px;
+  font-size:12.5px;color:rgba(255,255,255,.85);
+  white-space:nowrap;
+}
+.session-chip b{color:var(--gold-light);font-weight:600;}
+
+/* ---------- step rail ---------- */
+.steps{
+  display:flex;gap:6px;margin:22px 0 8px;flex-wrap:wrap;
+}
+.step-pill{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px 7px 8px;
+  border-radius:999px;
+  background:var(--card);
+  border:1px solid var(--border);
+  font-size:12.5px;color:var(--muted);
+  box-shadow:var(--shadow-xs);
+}
+.step-pill .n{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--indigo-pale);color:var(--indigo-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:700;font-size:12px;
+}
+.step-pill.active{border-color:var(--gold-light);color:var(--indigo);background:var(--gold-pale);}
+.step-pill.active .n{background:var(--gold);color:#fff;}
+
+/* ---------- section card ---------- */
+.section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);
+  margin:20px 0;
+  overflow:hidden;
+  position:relative;
+}
+.section-head{
+  display:flex;align-items:center;gap:14px;
+  padding:20px 26px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg,#fff, var(--bg2) 180%);
+}
+.section-num{
+  font-family:var(--font-display);
+  font-weight:700;font-size:22px;color:var(--gold);
+  width:38px;height:38px;border-radius:50%;
+  border:1.5px solid var(--gold-light);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;background:var(--gold-pale);
+}
+.section-titles h2{
+  font-family:var(--font-display);font-size:22px;font-weight:600;margin:0;color:var(--indigo);
+}
+.section-titles p{margin:2px 0 0;font-size:12.8px;color:var(--muted);}
+.section-body{padding:24px 26px 28px;}
+
+/* ---------- grid form ---------- */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 26px;}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.field{display:flex;flex-direction:column;gap:6px;position:relative;}
+.field.full{grid-column:1/-1;}
+label{
+  font-size:12.3px;font-weight:600;color:var(--text-2);
+  letter-spacing:.02em;display:flex;align-items:center;gap:5px;
+}
+label .req{color:var(--gold);font-size:14px;}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+  font-family:var(--font-body);
+  font-size:14px;
+  padding:10px 13px;
+  border:1.4px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:#fff;
+  color:var(--text);
+  transition:var(--transition);
+  width:100%;
+}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%236b6baf' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(161,124,59,.12);
+}
+input.invalid,select.invalid{border-color:var(--red-border);background:var(--red-light);}
+input.valid{border-color:var(--green-border);background:var(--green-light);}
+.hint{font-size:11.2px;color:var(--muted-2);}
+.err-msg{font-size:11.3px;color:var(--red);display:none;margin-top:2px;}
+.err-msg.show{display:block;}
+.name-combo{display:flex;gap:8px;}
+.name-combo select{max-width:92px;flex:0 0 auto;}
+
+/* ---------- top relationship card ---------- */
+.rel-card{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
+.rel-avatar{
+  width:64px;height:64px;border-radius:16px;flex-shrink:0;
+  background:linear-gradient(150deg,var(--indigo-deep),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-gold);
+}
+.rel-avatar svg{width:30px;height:30px;stroke:var(--gold-light);}
+.rel-info{flex:1;min-width:220px;}
+.rel-info .branch-name{
+  font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--indigo);
+}
+.rel-info .branch-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;}
+.rel-rm{min-width:260px;}
+
+/* ---------- segmented control ---------- */
+.segment{
+  display:inline-flex;background:var(--bg2);border-radius:999px;padding:4px;border:1px solid var(--border);
+}
+.segment button{
+  border:none;background:transparent;padding:9px 18px;border-radius:999px;
+  font-family:var(--font-body);font-size:12.8px;font-weight:600;color:var(--muted);
+  cursor:pointer;transition:var(--transition);
+}
+.segment button.active{background:var(--indigo);color:#fff;box-shadow:var(--shadow-sm);}
+
+.search-row{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-top:18px;}
+.search-row .field{flex:1;min-width:240px;}
+.icon-btn{
+  width:44px;height:44px;border-radius:12px;border:1.4px solid var(--border-gold);
+  background:var(--gold-pale);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:var(--transition);color:var(--gold);flex-shrink:0;
+}
+.icon-btn:hover{background:var(--gold);color:#fff;box-shadow:var(--shadow-gold);transform:translateY(-1px);}
+.icon-btn svg{width:19px;height:19px;}
+.new-actions{display:flex;gap:10px;}
+.new-actions .icon-btn.new{background:var(--indigo-pale);border-color:var(--indigo-light);color:var(--indigo-deep);}
+.new-actions .icon-btn.new:hover{background:var(--indigo);color:#fff;}
+
+.results{margin-top:20px;border-top:1px dashed var(--border);padding-top:16px;display:none;}
+.results.show{display:block;}
+.results-title{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;}
+.result-row{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:13px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  margin-bottom:9px;cursor:pointer;transition:var(--transition);background:#fff;
+}
+.result-row:hover{border-color:var(--gold-light);box-shadow:var(--shadow-sm);transform:translateX(2px);}
+.result-row .rname{font-weight:600;color:var(--indigo);font-size:14px;}
+.result-row .rmeta{font-size:11.5px;color:var(--muted);margin-top:2px;}
+.result-row .rcode{
+  font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:15px;
+  background:var(--gold-pale);padding:4px 12px;border-radius:8px;
+}
+
+/* ---------- toggle rows ---------- */
+.toggle-row{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 18px;
+}
+.toggle-row .tlabel{font-size:13.5px;font-weight:600;color:var(--text-2);}
+.toggle-row .tsub{font-size:11.5px;color:var(--muted);margin-top:2px;}
+.yesno{display:flex;gap:8px;}
+.yesno label{
+  border:1.4px solid var(--border);border-radius:999px;padding:7px 16px;font-size:12.5px;
+  cursor:pointer;color:var(--muted);font-weight:600;display:flex;gap:6px;align-items:center;
+}
+.yesno input{accent-color:var(--gold);}
+.yesno label.sel{border-color:var(--gold);background:var(--gold-pale);color:var(--indigo);}
+
+.switch{position:relative;width:46px;height:26px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.slider{position:absolute;inset:0;background:#d7d7e5;border-radius:999px;cursor:pointer;transition:var(--transition);}
+.slider::before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:var(--transition);box-shadow:var(--shadow-xs);}
+.switch input:checked + .slider{background:var(--indigo-deep);}
+.switch input:checked + .slider::before{transform:translateX(20px);background:var(--gold-light);}
+
+.upload-zone{margin-top:12px;}
+.file-pill{
+  display:flex;align-items:center;gap:10px;border:1.4px dashed var(--border-gold);
+  border-radius:var(--radius-sm);padding:11px 14px;background:var(--gold-pale);font-size:12.6px;color:var(--indigo-deep);
+}
+.file-pill input[type=file]{font-size:12px;max-width:100%;}
+.reason-box{display:none;}
+.reason-box.show{display:block;}
+
+/* ---------- doc grid (e-insurance) ---------- */
+.docs-panel{
+  max-height:0;overflow:hidden;transition:max-height .4s ease, opacity .3s ease, margin .3s ease;
+  opacity:0;margin-top:0;
+}
+.docs-panel.open{max-height:900px;opacity:1;margin-top:20px;}
+.doc-inner{
+  border:1px solid var(--border-gold);border-radius:var(--radius);
+  background:var(--gold-ultra);overflow:hidden;
+}
+.doc-head{
+  background:var(--indigo);color:#fff;padding:13px 20px;font-size:13.5px;font-weight:600;
+  display:flex;align-items:center;gap:8px;letter-spacing:.03em;border-bottom:3px solid var(--gold);
+}
+.doc-body{padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.doc-field{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;}
+.doc-field label{margin-bottom:8px;}
+.doc-field input[type=file]{
+  font-size:11.8px;width:100%;
+}
+.doc-repo{grid-column:1/-1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.doc-repo select{max-width:220px;}
+
+/* ---------- footer ---------- */
+.footer-bar{
+  position:fixed;left:0;right:0;bottom:0;
+  background:rgba(13,15,30,.97);backdrop-filter:blur(6px);
+  border-top:3px solid var(--gold);
+  padding:14px 0;z-index:50;
+}
+.footer-inner{
+  max-width:1180px;margin:0 auto;padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+}
+.status-msg{font-size:13px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:8px;}
+.status-msg.ok{color:var(--green-border);}
+.status-msg.bad{color:var(--red-border);}
+.btn{
+  font-family:var(--font-body);font-weight:600;font-size:13.5px;
+  border-radius:999px;padding:13px 28px;border:none;cursor:pointer;
+  transition:var(--transition);display:inline-flex;align-items:center;gap:8px;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold-mid),var(--gold));color:#fff;
+  box-shadow:var(--shadow-gold);
+}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(155,144,69,.35);}
+.btn-gold:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);}
+.btn-ghost:hover{border-color:var(--gold-light);color:var(--gold-light);}
+
+/* ---------- modal ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(13,15,30,.55);backdrop-filter:blur(2px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px;
+}
+.modal-overlay.show{display:flex;}
+.modal{
+  background:#fff;border-radius:var(--radius-lg);max-width:420px;width:100%;
+  box-shadow:var(--shadow-lg);border-top:5px solid var(--gold);overflow:hidden;
+}
+.modal-body{padding:28px 26px 10px;text-align:center;}
+.modal-body svg{width:40px;height:40px;stroke:var(--gold);margin-bottom:12px;}
+.modal-body p{font-size:14.5px;color:var(--text-2);line-height:1.55;margin:0;}
+.modal-actions{display:flex;gap:12px;padding:22px 26px 26px;}
+.modal-actions .btn{flex:1;justify-content:center;}
+.btn-outline{background:#fff;border:1.4px solid var(--border);color:var(--text-2);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;top:22px;right:22px;z-index:200;
+  background:var(--indigo);color:#fff;padding:14px 20px;border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-lg);border-left:4px solid var(--gold);
+  font-size:13px;display:flex;align-items:center;gap:10px;
+  transform:translateX(140%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.toast.show{transform:translateX(0);}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .grid,.grid.cols-3{grid-template-columns:1fr;}
+  .doc-body{grid-template-columns:1fr 1fr;}
+  .rel-card{flex-direction:column;align-items:flex-start;}
+}
+@media (max-width:520px){
+  .doc-body{grid-template-columns:1fr;}
+  .name-combo{flex-direction:column;}
+  .name-combo select{max-width:100%;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div>
+      <div class="brandmark"><span class="dot"></span><span>RR Wealth &amp; Advisory</span></div>
+      <h1>Investor Onboarding Ledger</h1>
+      <div class="sub">Life &amp; General — Client &amp; Investor Master</div>
+    </div>
+    <div class="session-chip">Signed in as <b id="sessionUser">RM Desk · Priya Verma</b></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="steps">
+    <div class="step-pill active" data-step="1"><span class="n">1</span> Relationship</div>
+    <div class="step-pill" data-step="2"><span class="n">2</span> Locate record</div>
+    <div class="step-pill" data-step="3"><span class="n">3</span> Investor details</div>
+    <div class="step-pill" data-step="4"><span class="n">4</span> Compliance docs</div>
+  </div>
+
+  <!-- SECTION 1 — RELATIONSHIP -->
+  <div class="section" id="sec1">
+    <div class="section-head">
+      <div class="section-num">I</div>
+      <div class="section-titles">
+        <h2>Relationship</h2>
+        <p>Branch and relationship manager attached to this transaction</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="rel-card">
+        <div class="rel-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="rel-info">
+          <div class="branch-label">Branch</div>
+          <div class="branch-name" id="branchName">Nariman Point, Mumbai</div>
+        </div>
+        <div class="field rel-rm">
+          <label>Relationship Manager <span class="req">*</span></label>
+          <select id="ddlRM">
+            <option value="">Please select RM</option>
+            <option value="RM001">Amit Sharma # RM001</option>
+            <option value="RM002" selected>Priya Verma # RM002</option>
+            <option value="RM003">Rahul Mehta # RM003</option>
+            <option value="RM004">Sana Iyer # RM004</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — SEARCH -->
+  <div class="section" id="sec2">
+    <div class="section-head">
+      <div class="section-num">II</div>
+      <div class="section-titles">
+        <h2>Locate an existing record</h2>
+        <p>Search under a Business Associate or Client, or start a fresh entry</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div class="segment" id="sourceSegment">
+          <button data-mode="associate" class="active">Business Associate</button>
+          <button data-mode="client">Client</button>
+        </div>
+        <div class="new-actions">
+          <div class="icon-btn new" title="New client" id="btnNewClient">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+          </div>
+          <div class="icon-btn new" title="New investor" id="btnNewInvestor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <div class="field">
+          <label id="sourceLabel">Business Associate</label>
+          <select id="ddlSource">
+            <option value="">Please select</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Investor</label>
+          <select id="ddlInvestor">
+            <option value="">Please select investors</option>
+          </select>
+        </div>
+        <div class="icon-btn" id="btnSearch" title="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+      </div>
+
+      <div class="results" id="resultsBox">
+        <div class="results-title">Matching investors</div>
+        <div id="resultsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 — INVESTOR DETAILS -->
+  <div class="section" id="sec3">
+    <div class="section-head">
+      <div class="section-num">III</div>
+      <div class="section-titles">
+        <h2 id="detailsTitle">Investor details</h2>
+        <p id="detailsSub">Personal, contact and banking information</p>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="grid">
+        <div class="field full">
+          <label>Investor name <span class="req">*</span></label>
+          <div class="name-combo">
+            <select id="ddlTitle">
+              <option>Title</option>
+              <option>Mr.</option>
+              <option selected>Mrs.</option>
+              <option>Miss.</option>
+              <option>M/s.</option>
+            </select>
+            <input type="text" id="txtInvestorName" placeholder="Full legal name" value="Anjali Deshpande" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Address</label>
+          <input type="text" id="txtInvAdd" placeholder="Flat / building / street" value="14B, Silver Oak Residency, Marine Drive" />
+        </div>
+        <div class="field">
+          <label>PIN code</label>
+          <input type="text" id="txtPin" maxlength="6" placeholder="6-digit PIN" value="400020" />
+        </div>
+
+        <div class="field">
+          <label>City</label>
+          <select id="ddlCity">
+            <option value="">Select city</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>State</label>
+          <select id="ddlState"><option value="">Select state</option></select>
+        </div>
+
+        <div class="field">
+          <label>Country</label>
+          <select id="ddlCountry"><option value="">Select country</option></select>
+        </div>
+        <div class="field">
+          <label>Date of birth</label>
+          <input type="date" id="txtDob" value="1985-06-12" />
+        </div>
+
+        <div class="field">
+          <label>Phone</label>
+          <input type="tel" id="txtPhone" placeholder="Landline" value="022-40012233" />
+        </div>
+        <div class="field">
+          <label>Mobile</label>
+          <input type="tel" id="txtMobile" placeholder="10-digit mobile" value="9821004455" />
+        </div>
+
+        <div class="field">
+          <label>Fax</label>
+          <input type="text" id="txtFax" placeholder="Optional" />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="txtEmail" placeholder="name@example.com" value="anjali.deshpande@example.com" />
+        </div>
+
+        <div class="field">
+          <label>PAN number</label>
+          <input type="text" id="txtPanNo" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase" value="AZPDD5678F" />
+          <span class="err-msg" id="panErr">Enter a valid PAN — 5 letters, 4 digits, 1 letter.</span>
+        </div>
+        <div class="field"></div>
+
+        <div class="field">
+          <label>Bank name</label>
+          <input type="text" id="txtBankName" value="HDFC Bank" />
+        </div>
+        <div class="field">
+          <label>Account number</label>
+          <input type="text" id="txtBankAcc" value="50100234567890" />
+        </div>
+
+        <div class="field">
+          <label>IFSC code</label>
+          <input type="text" id="txtIfsc" style="text-transform:uppercase" value="HDFC0000123" />
+        </div>
+        <div class="field">
+          <label>Beneficiary name</label>
+          <input type="text" id="txtBeneficiary" value="Anjali Deshpande" />
+        </div>
+      </div>
+
+      <div style="margin-top:22px;display:flex;flex-direction:column;gap:16px;">
+
+        <div class="toggle-row" id="scanRow">
+          <div>
+            <div class="tlabel">Scan copy of the investment form (FD / MF / IPO) available?</div>
+            <div class="tsub">Attach the signed form, or record the reason it isn't available</div>
+          </div>
+          <div class="yesno" id="scanYesNo">
+            <label class="sel"><input type="radio" name="scanChoice" value="1" checked> Yes</label>
+            <label><input type="radio" name="scanChoice" value="0"> No</label>
+          </div>
+        </div>
+        <div class="upload-zone">
+          <div class="file-pill" id="scanFileWrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a17c3b" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <input type="file" id="fuScan" />
+          </div>
+          <div class="field reason-box" id="reasonBox">
+            <textarea id="txtReason" rows="2" placeholder="e.g. Form to follow via courier by Friday"></textarea>
+            <span class="err-msg" id="reasonErr">Please state the reason.</span>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div>
+            <div class="tlabel">e-Insurance repository documents</div>
+            <div class="tsub">Enable to attach KYC documents for the insurance repository</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="chkInsDoc" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="docs-panel open" id="docsPanel">
+          <div class="doc-inner">
+            <div class="doc-head">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              e-Insurance documents
+            </div>
+            <div class="doc-body">
+              <div class="doc-repo">
+                <div class="field" style="flex:0 0 auto;">
+                  <label>Repository name <span class="req">*</span></label>
+                  <select id="ddlRepository">
+                    <option value="">Select</option>
+                    <option value="CAMS">CAMS</option>
+                    <option value="KARVY">Karvy</option>
+                    <option value="CDSL">CDSL</option>
+                    <option value="NONE">None</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="doc-field"><label>Address proof</label><input type="file" /></div>
+              <div class="doc-field"><label>Cancelled cheque</label><input type="file" id="fuCheque" /></div>
+              <div class="doc-field"><label>Other document 1</label><input type="file" /></div>
+
+              <div class="doc-field"><label>PAN card</label><input type="file" /></div>
+              <div class="doc-field"><label>Bank statement</label><input type="file" id="fuBankStmt" /></div>
+              <div class="doc-field"><label>Other document 2</label><input type="file" /></div>
+
+              <div class="doc-field"><label>ID proof <span class="req">*</span></label><input type="file" id="fuId" /></div>
+              <div class="doc-field"><label>e-INS account form <span class="req">*</span></label><input type="file" id="fuEins" /></div>
+              <div class="doc-field"><label>Other document 3</label><input type="file" /></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-bar">
+  <div class="footer-inner">
+    <div class="status-msg" id="statusMsg">Ledger draft — nothing saved yet</div>
+    <div style="display:flex;gap:12px;">
+      <button class="btn btn-ghost" id="btnReset">Clear form</button>
+      <button class="btn btn-gold" id="btnSave">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+        Save investor details
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-body">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <p>This PAN number already exists for another investor on file. Do you want to continue and save this record anyway?</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="modalCancel">Cancel</button>
+      <button class="btn btn-gold" id="modalOk">Yes, continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- dummy data ---------------- */
+const CITY_DATA = [
+  {city:"Mumbai", state:"Maharashtra", country:"India"},
+  {city:"Pune", state:"Maharashtra", country:"India"},
+  {city:"Delhi", state:"Delhi", country:"India"},
+  {city:"Bengaluru", state:"Karnataka", country:"India"},
+  {city:"Chennai", state:"Tamil Nadu", country:"India"},
+  {city:"Kolkata", state:"West Bengal", country:"India"},
+  {city:"Ahmedabad", state:"Gujarat", country:"India"},
+  {city:"Jaipur", state:"Rajasthan", country:"India"},
+  {city:"New York", state:"New York", country:"USA"},
+  {city:"Dubai", state:"Dubai", country:"UAE"},
+];
+
+const ASSOCIATES = [
+  {code:"AG1001", name:"Sunrise Capital Partners"},
+  {code:"AG1002", name:"Horizon Financial Advisors"},
+  {code:"AG1003", name:"Sterling Wealth Associates"},
+];
+
+const CLIENTS = [
+  {code:"CC2001", name:"Kavita Enterprises Pvt Ltd"},
+  {code:"CC2002", name:"Blue Ridge Traders"},
+  {code:"CC2003", name:"Meridian Family Office"},
+];
+
+const INVESTORS = {
+  AG1001: [
+    {code:"71001234", name:"Anjali Deshpande", pan:"AZPDD5678F", city:"Mumbai", phone:"022-40012233", mobile:"9821004455", email:"anjali.deshpande@example.com", address:"14B, Silver Oak Residency, Marine Drive", pin:"400020", dob:"1985-06-12", bank:"HDFC Bank", acc:"50100234567890", ifsc:"HDFC0000123", benef:"Anjali Deshpande"},
+    {code:"71001235", name:"Rohan Kulkarni", pan:"BXPRK1122K", city:"Pune", phone:"020-25567788", mobile:"9822011223", email:"rohan.kulkarni@example.com", address:"22, Lakeview Society, Kothrud", pin:"411038", dob:"1979-11-02", bank:"ICICI Bank", acc:"00450012345678", ifsc:"ICIC0000452", benef:"Rohan Kulkarni"},
+  ],
+  AG1002: [
+    {code:"71002011", name:"Farhan Sheikh", pan:"CTPFS3344H", city:"Delhi", phone:"011-49881122", mobile:"9899112233", email:"farhan.sheikh@example.com", address:"B-14, Vasant Vihar", pin:"110057", dob:"1990-02-18", bank:"Axis Bank", acc:"91802001234567", ifsc:"UTIB0001199", benef:"Farhan Sheikh"},
+  ],
+  AG1003: [],
+  CC2001: [
+    {code:"81002090", name:"Kavita Enterprises (Self)", pan:"DDPKE9988L", city:"Ahmedabad", phone:"079-40556677", mobile:"9825066778", email:"finance@kavitaent.example", address:"Plot 8, GIDC Estate", pin:"380015", dob:"1975-04-25", bank:"State Bank of India", acc:"31245600981234", ifsc:"SBIN0002233", benef:"Kavita Enterprises"},
+    {code:"71003501", name:"Meera Rao", pan:"EPPMR4455Q", city:"Bengaluru", phone:"080-42233445", mobile:"9880123344", email:"meera.rao@example.com", address:"304, Palm Meadows, Whitefield", pin:"560066", dob:"1988-09-09", bank:"Kotak Mahindra Bank", acc:"7712340098765", ifsc:"KKBK0000771", benef:"Meera Rao"},
+  ],
+  CC2002: [
+    {code:"71003890", name:"Blue Ridge Traders (Self)", pan:"FRPBT2211J", city:"Chennai", phone:"044-28991122", mobile:"9840099887", email:"accounts@blueridge.example", address:"12, Anna Salai", pin:"600002", dob:"1982-01-30", bank:"Yes Bank", acc:"005812300456781", ifsc:"YESB0000058", benef:"Blue Ridge Traders"},
+  ],
+  CC2003: [],
+};
+
+/* ---------------- element refs ---------------- */
+const $ = id => document.getElementById(id);
+const ddlSource = $("ddlSource"), ddlInvestor = $("ddlInvestor"), sourceLabel = $("sourceLabel");
+let mode = "associate";
+
+function populateSource(){
+  const list = mode === "associate" ? ASSOCIATES : CLIENTS;
+  sourceLabel.textContent = mode === "associate" ? "Business Associate" : "Client";
+  ddlSource.innerHTML = '<option value="">Please select</option>' +
+    list.map(a => `<option value="${a.code}">${a.name} # ${a.code}</option>`).join("");
+  ddlInvestor.innerHTML = '<option value="">Please select investors</option>';
+  $("resultsBox").classList.remove("show");
+}
+populateSource();
+
+document.querySelectorAll("#sourceSegment button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll("#sourceSegment button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    mode = btn.dataset.mode;
+    populateSource();
+  });
+});
+
+ddlSource.addEventListener("change", ()=>{
+  const list = INVESTORS[ddlSource.value] || [];
+  ddlInvestor.innerHTML = '<option value="">Please select investors</option>' +
+    (mode==="client" ? '<option value="__self">Self</option>' : '') +
+    list.map(i=>`<option value="${i.code}">${i.name}</option>`).join("");
+});
+
+/* ---------------- city/state/country cascade ---------------- */
+const ddlCity = $("ddlCity"), ddlState = $("ddlState"), ddlCountry = $("ddlCountry");
+ddlCity.innerHTML = '<option value="">Select city</option>' + CITY_DATA.map(c=>`<option value="${c.city}">${c.city}</option>`).join("");
+
+function cascadeFromCity(cityName){
+  const rec = CITY_DATA.find(c=>c.city===cityName);
+  ddlState.innerHTML = '<option value="">Select state</option>' + (rec ? `<option value="${rec.state}" selected>${rec.state}</option>` : "");
+  ddlCountry.innerHTML = '<option value="">Select country</option>' + (rec ? `<option value="${rec.country}" selected>${rec.country}</option>` : "");
+}
+ddlCity.addEventListener("change", ()=> cascadeFromCity(ddlCity.value));
+ddlCity.value = "Mumbai"; cascadeFromCity("Mumbai");
+
+/* ---------------- search results ---------------- */
+$("btnSearch").addEventListener("click", ()=>{
+  const list = INVESTORS[ddlSource.value] || [];
+  const box = $("resultsBox"), listEl = $("resultsList");
+  if(!ddlSource.value){
+    toast("Select a Business Associate or Client first", true);
+    return;
+  }
+  if(list.length === 0){
+    listEl.innerHTML = `<div style="font-size:13px;color:var(--muted);padding:10px 2px;">No investors found under this record.</div>`;
+  } else {
+    listEl.innerHTML = list.map(i=>`
+      <div class="result-row" data-code="${i.code}">
+        <div>
+          <div class="rname">${i.name}</div>
+          <div class="rmeta">${i.city} · PAN ${i.pan}</div>
+        </div>
+        <div class="rcode">${i.code}</div>
+      </div>`).join("");
+  }
+  box.classList.add("show");
+  setActiveStep(2);
+
+  listEl.querySelectorAll(".result-row").forEach(row=>{
+    row.addEventListener("click", ()=>{
+      const rec = list.find(x=>x.code === row.dataset.code);
+      loadInvestor(rec);
+      ddlInvestor.value = rec.code;
+      setActiveStep(3);
+      toast(`Loaded record for ${rec.name}`);
+    });
+  });
+});
+
+ddlInvestor.addEventListener("change", ()=>{
+  if(ddlInvestor.value === "__self"){
+    const client = CLIENTS.find(c=>c.code===ddlSource.value);
+    const rec = (INVESTORS[ddlSource.value]||[]).find(i=>i.name.includes("Self"));
+    if(rec) loadInvestor(rec); else toast("No self-record on file yet", true);
+    return;
+  }
+  const list = INVESTORS[ddlSource.value] || [];
+  const rec = list.find(i=>i.code === ddlInvestor.value);
+  if(rec){ loadInvestor(rec); setActiveStep(3); }
+});
+
+function loadInvestor(rec){
+  $("txtInvestorName").value = rec.name.replace(" (Self)","");
+  $("txtInvAdd").value = rec.address;
+  $("txtPin").value = rec.pin;
+  $("txtPhone").value = rec.phone;
+  $("txtMobile").value = rec.mobile;
+  $("txtEmail").value = rec.email;
+  $("txtPanNo").value = rec.pan;
+  $("txtDob").value = rec.dob;
+  $("txtBankName").value = rec.bank;
+  $("txtBankAcc").value = rec.acc;
+  $("txtIfsc").value = rec.ifsc;
+  $("txtBeneficiary").value = rec.benef;
+  ddlCity.value = rec.city;
+  cascadeFromCity(rec.city);
+  validatePAN();
+  $("detailsTitle").textContent = "Investor details";
+  $("detailsSub").textContent = `Editing existing record · ${rec.code}`;
+}
+
+/* ---------------- new client / new investor ---------------- */
+function clearForm(){
+  ["txtInvestorName","txtInvAdd","txtPin","txtPhone","txtMobile","txtFax","txtEmail","txtPanNo","txtBankName","txtBankAcc","txtIfsc","txtBeneficiary"]
+    .forEach(id=>$(id).value="");
+  $("txtDob").value = "";
+  ddlCity.value = ""; cascadeFromCity("");
+  $("txtPanNo").classList.remove("valid","invalid");
+  $("panErr").classList.remove("show");
+}
+$("btnNewClient").addEventListener("click", ()=>{
+  clearForm();
+  $("detailsTitle").textContent = "New client details";
+  $("detailsSub").textContent = "Create a fresh client record";
+  setActiveStep(3);
+  toast("Blank client form ready");
+});
+$("btnNewInvestor").addEventListener("click", ()=>{
+  clearForm();
+  $("detailsTitle").textContent = "New investor details";
+  $("detailsSub").textContent = "Create a fresh investor record";
+  setActiveStep(3);
+  toast("Blank investor form ready");
+});
+
+/* ---------------- PAN validation ---------------- */
+const panInput = $("txtPanNo");
+function validatePAN(){
+  const v = panInput.value.trim().toUpperCase();
+  panInput.value = v;
+  const re = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
+  const errEl = $("panErr");
+  if(v === ""){
+    panInput.classList.remove("valid","invalid"); errEl.classList.remove("show");
+    return null;
+  }
+  if(re.test(v)){
+    panInput.classList.add("valid"); panInput.classList.remove("invalid");
+    errEl.classList.remove("show");
+    return true;
+  } else {
+    panInput.classList.add("invalid"); panInput.classList.remove("valid");
+    errEl.classList.add("show");
+    return false;
+  }
+}
+panInput.addEventListener("blur", validatePAN);
+panInput.addEventListener("input", ()=>{ if(panInput.classList.contains("invalid")) validatePAN(); });
+
+/* ---------------- scan copy yes/no ---------------- */
+document.querySelectorAll('input[name="scanChoice"]').forEach(r=>{
+  r.addEventListener("change", ()=>{
+    document.querySelectorAll("#scanYesNo label").forEach(l=>l.classList.remove("sel"));
+    r.closest("label").classList.add("sel");
+    const yes = r.value === "1";
+    $("scanFileWrap").style.display = yes ? "flex" : "none";
+    $("reasonBox").classList.toggle("show", !yes);
+  });
+});
+
+/* ---------------- e-insurance docs toggle ---------------- */
+const chkIns = $("chkInsDoc"), docsPanel = $("docsPanel");
+function syncDocsPanel(){ docsPanel.classList.toggle("open", chkIns.checked); }
+chkIns.addEventListener("change", syncDocsPanel);
+syncDocsPanel();
+
+/* ---------------- steps ---------------- */
+function setActiveStep(n){
+  document.querySelectorAll(".step-pill").forEach(p=>{
+    p.classList.toggle("active", Number(p.dataset.step) <= n);
+  });
+}
+
+/* ---------------- toast ---------------- */
+let toastTimer;
+function toast(msg, isBad){
+  const t = $("toast");
+  t.textContent = msg;
+  t.style.borderLeftColor = isBad ? "var(--red)" : "var(--gold)";
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"), 3200);
+}
+
+/* ---------------- validation + save ---------------- */
+function fieldInvalid(el){
+  el.classList.add("invalid");
+  el.addEventListener("input", function clear(){ el.classList.remove("invalid"); el.removeEventListener("input", clear); }, {once:true});
+}
+
+function runValidation(){
+  let ok = true;
+  const problems = [];
+
+  if(!$("ddlRM").value){ problems.push("Select a Relationship Manager"); fieldInvalid($("ddlRM")); ok=false; }
+  if(!$("txtInvestorName").value.trim()){ problems.push("Investor name is required"); fieldInvalid($("txtInvestorName")); ok=false; }
+
+  const panState = validatePAN();
+  if(panState === false){ problems.push("PAN number is invalid"); ok=false; }
+
+  const scanYes = document.querySelector('input[name="scanChoice"]:checked').value === "1";
+  if(scanYes && !$("fuScan").value){ problems.push("Upload the scan copy of the investment form, or switch to No and give a reason"); fieldInvalid($("fuScan").parentElement); ok=false; }
+  if(!scanYes && !$("txtReason").value.trim()){ problems.push("Please mention the reason the scan copy isn't available"); $("reasonErr").classList.add("show"); ok=false; }
+  else { $("reasonErr").classList.remove("show"); }
+
+  if(chkIns.checked){
+    if(!$("ddlRepository").value){ problems.push("Select the e-Insurance repository name"); fieldInvalid($("ddlRepository")); ok=false; }
+    if(!$("fuId").value){ problems.push("Upload the ID proof"); fieldInvalid($("fuId").parentElement); ok=false; }
+    if(!$("fuEins").value){ problems.push("Upload the e-INS account form"); fieldInvalid($("fuEins").parentElement); ok=false; }
+    if(!$("fuBankStmt").value && !$("fuCheque").value){ problems.push("Upload either a Bank Statement or a Cancelled Cheque"); ok=false; }
+  }
+
+  return {ok, problems};
+}
+
+$("btnSave").addEventListener("click", ()=>{
+  const {ok, problems} = runValidation();
+  const status = $("statusMsg");
+
+  if(!ok){
+    status.textContent = problems[0] + (problems.length>1 ? ` (+${problems.length-1} more)` : "");
+    status.className = "status-msg bad";
+    toast(problems[0], true);
+    return;
+  }
+
+  // simulate duplicate PAN check against dummy records
+  const pan = $("txtPanNo").value;
+  const duplicate = Object.values(INVESTORS).flat().some(i => i.pan === pan);
+  if(duplicate){
+    $("modalOverlay").classList.add("show");
+    return;
+  }
+  doSave();
+});
+
+function doSave(){
+  const btn = $("btnSave");
+  const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = "Saving transaction, please wait…";
+  setTimeout(()=>{
+    btn.disabled = false;
+    btn.innerHTML = original;
+    $("statusMsg").textContent = "Saved successfully to the investor ledger";
+    $("statusMsg").className = "status-msg ok";
+    toast("Investor record saved");
+    setActiveStep(4);
+  }, 950);
+}
+
+$("modalCancel").addEventListener("click", ()=>{
+  $("modalOverlay").classList.remove("show");
+  $("statusMsg").textContent = "Save cancelled — PAN already exists for another investor";
+  $("statusMsg").className = "status-msg bad";
+});
+$("modalOk").addEventListener("click", ()=>{
+  $("modalOverlay").classList.remove("show");
+  doSave();
+});
+
+$("btnReset").addEventListener("click", ()=>{
+  clearForm();
+  document.querySelector('input[name="scanChoice"][value="1"]').checked = true;
+  document.querySelectorAll("#scanYesNo label").forEach(l=>l.classList.remove("sel"));
+  document.querySelector('#scanYesNo label').classList.add("sel");
+  $("scanFileWrap").style.display = "flex";
+  $("reasonBox").classList.remove("show");
+  $("statusMsg").textContent = "Ledger draft — nothing saved yet";
+  $("statusMsg").className = "status-msg";
+  setActiveStep(1);
+  toast("Form cleared");
+});
+
+/* click-through step pills scroll to section */
+document.querySelectorAll(".step-pill").forEach((p,idx)=>{
+  p.addEventListener("click", ()=>{
+    const targets = ["sec1","sec2","sec3","sec3"];
+    document.getElementById(targets[idx]).scrollIntoView({behavior:"smooth", block:"start"});
+  });
+});
+</script>
+</body>
+</html>
