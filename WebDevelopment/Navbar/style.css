@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: #f4f4f4;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e1e2f;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo{
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.logo span{
+  color: #00d4ff;
+}
+.nav-links{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+.nav-links li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    transition: color 0.3s;
+}
+.nav-links li a::after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #00d4ff;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s;
+}
+.nav-links li a:hover{
+    color: #00d4ff;
+}
+.nav-links li a:hover::after{
+    width: 100%;
+}
+.humbarger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+.humbarger span{
+    width: 25px;
+    height: 3px;
+    display: block;
+    background: #fff;
+    border-radius: 3px;
+    transition: 0.3s;
+    /* margin: 4px 0; */
+}
+ @media (max-width: 768px) {
+    .humbarger {
+      display: flex;
+    }
+    .nav-links{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #1e1e2f;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    .nav-links.active{
+        max-height: 300px;
+    }
+    .nav-links li{
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links li a{
+        display: block;
+        padding: 15px 0;
+        border-bottom: 1px solid #333;
+    }
+    /* Hamburger animation */
+    .humbarger.active span:nth-child(1){
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .humbarger.active span:nth-child(2){
+        opacity: 0;
+    }
+    .humbarger.active span:nth-child(3){
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
