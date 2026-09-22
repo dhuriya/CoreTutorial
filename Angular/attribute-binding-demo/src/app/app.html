@@ -1,0 +1,40 @@
+<h2>School Timetable</h2>
+<p>
+  This example shows how some classes take more than one period and some activities take more than one time slot.
+</p>
+<hr>
+<h3>Attribute Binding Example</h3>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Time</th>
+    <th>Period 1</th>
+    <th>Period 2</th>
+    <th>Period 3</th>
+  </tr>
+  <tr>
+    <td>09:00 - 10:00</td>
+    <td>Math</td>
+    <td>English</td>
+    <td>Science</td>
+  </tr>
+  <tr>
+    <td>10:00 - 11:00</td>
+    <td [attr.colspan]="periodsInMorning">
+      Computer Lab (Double Period)
+    </td>
+    <td>Sports</td>
+  </tr>
+  <tr>
+    <td>11:00 - 12:00</td>
+    <td [attr.rowspan]="assemblyRowSpan">
+      Assemble
+    </td>
+    <td>Hindi</td>
+    <td>Art</td>
+  </tr>
+  <tr>
+    <td>12:00 - 01:00</td>
+    <td>Geography</td>
+    <td>History</td>
+  </tr>
+</table>

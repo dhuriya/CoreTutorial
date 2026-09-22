@@ -16,7 +16,7 @@ let isPremiumUser: boolean = false;
 if(isLoggedIn){
     console.log("User is Logged in ");
 }
-console.log("Premium user?",isPremiumUser);
+console.log("Premium user?",isPremiumUser);~
 
 let cartItemsPrices: number[]=[199.99,299.4,149];
 let tags:string[]=["Angualr","TypeScript","WebAPI"];

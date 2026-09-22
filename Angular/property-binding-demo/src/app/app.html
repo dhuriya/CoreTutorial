@@ -1,0 +1,45 @@
+<div style="padding:20px; font-family:Arial">
+  <h2>Order Summay</h2>
+  <p><b>Customer:</b>{{customerName}}</p>
+  <p><b>Order Id:</b>{{OrderId}}</p>
+  <div style="margin:12px 0">
+    <img [src]="productImageUrl" [alt]="productName" style="border: 1px solid #ccc; border-radius: 6px">
+  </div>
+  <p [title]="getOrderTooltip()">
+    <b>Product:</b>{{productName}}
+    <span style="font-size: 12px; color:gray">
+      (Hover to see tooltip)
+    </span>
+  </p>
+  <p>
+    <b>Quantity:</b>
+    <input type="text" [value]="quantity" style="width:60px; padding:4px;">
+    <span style="font-size: 12px; color: gray;">
+      (value is coming from the component)
+    </span>
+  </p>
+  <p>
+    <b>Invoice:</b>
+    <button [disabled]="!isPaymentDone" style="padding: 6px 10px;">
+      Download Invoice
+    </button>
+    <span style="font-size:12px; color:gray">
+      (Disabled until payment is successful)
+    </span>
+  </p>
+  <p>
+    <a [href]="isPaymentDone ? invoiceUrl : null" [style.opacity]="isPaymentDone ? '1' : '0.5'" target="_blank">Open Invoice Link</a>
+    <span style="font-size:12px; color: gray;">
+      (Link becomes usable after payment)
+    </span>
+  </p>
+
+  <p>
+    <b>Payment Status:</b>
+    <span [style.color]="getStatusColor()" [style.fontWeight]="isPaymentDone ? 'bold' : 'normal'" [class] ="isPaymentDone ? 'paid-status' : 'pending-status'">
+      {{getPaymentLabel()}}
+    </span>
+  </p>
+  <p><b>Total Amount: </b>{{price * quantity}}</p>
+  <p><b>Final Payable: </b> {{getFinalAmount()}}</p>
+</div>

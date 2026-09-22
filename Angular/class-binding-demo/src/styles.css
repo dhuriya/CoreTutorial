@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+.page{
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 16px;
+}
+.card{
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 14px;
+  max-width: 650px;
+  margin-top: 12px;
+}
+.priority-border{
+  border: 2px solid #d10000;
+}
+.title{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.badge{
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  margin-left: 6px;
+}
+.paid{
+  background: #1c7c1c;
+  color: white;
+}
+.pending{
+  background: #ffcc00;
+  color: #222;
+}
+.premium{
+  background: #0057d8;
+  color: white;
+}
+.regular{
+  background: #6c757d;
+  color: white;
+}
+.low-stock{
+  color: #d10000;
+  font-weight: bold;
+}
+.stock-warning{
+  margin-left: 10px;
+  color: #d10000;
+  font-weight: bold;
+}
+.hidden{
+  display: none;
+}
+.note{
+  margin-top: 10px;
+}
+.muted-note{
+  color: #777;
+  font-style: italic;
+}
+.tip{
+  margin-top: 14px;
+  color: #666;
+  font-size: 13px;
+}

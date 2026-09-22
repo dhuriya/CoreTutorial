@@ -1,0 +1,35 @@
+<div class="page">
+  <h2>Order Summay (Class Binding Demo)</h2>
+  <div class="card" [class.priority-border]="isHighPriorityOrder">
+    <h3 class="title">{{productName}}</h3>
+    <p>
+      <b>Customer:</b> {{customerName}}
+    </p>
+    <p>
+      <b>Order Id:</b> {{orderId}}
+    </p>
+    <hr>
+    <p>
+      <b>Payment Status:</b>
+      <span class="badge" [class.paid]="isPaymentDone" [class.pending]="!isPaymentDone">
+        {{getPaymentLabel()}}
+      </span>
+    </p>
+    <p>
+      <b>Stock Left:</b>
+      <span [class.low-stock]="stockLeft <= 5">
+        {{stockLeft}}
+      </span>
+      <span class="stock-warning" [class.hidden]="stockLeft > 5">
+        Low Stock
+      </span>
+    </p>
+    <p  class="note" [class.muted]="!isPaymentDone">
+        Note: Invoice will be available after payment is confirmed.
+    </p>
+    <p class="tip">
+      Tip: Change values like <b>isPaymentDone</b> or <b>stockLeft</b> inside <code>app.ts</code>
+      and save. You will see styles update automatically.
+    </p>
+  </div>
+</div>

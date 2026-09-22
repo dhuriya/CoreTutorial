@@ -1,0 +1,34 @@
+------------------------------------------
+How Doew an angular Application start?
+-----------------------------------------
+Step 1: Browser Loads index.html
+
+What is <app-root></app-root>?
+The <app-root></app-root> is not HTML, not JavaScript, and not executed by the browser. It is simply a Custom HTML Element Placeholder where Angular will later render our application UI.
+
+Why Does Angular Need <app-root>?
+Angular needs one fixed DOM location where it can:
+Attach the Root Component
+Render the Application UI
+Control all further UI Updates
+That location is <app-root> inside the index.html file. Angular will later say: Find <app-root> and replace it with my application UI.
+
+Step 2: Browser Executes Compiled JavaScript (Angular Starts from main.ts)
+
+What is the use of the import keyword in TypeScript?
+The import keyword is a TypeScript/JavaScript feature that imports code from another file or package into the current file.
+
+Step 3: Angular Bootstraps the Root Application
+Bootstrapping is the process by which Angular prepares the Application Environment, not the UI. During this phase, Angular reads Global Configuration (app.config.ts), and then Registers all Global Providers and initializes the Router. This step ensures that all required services and features are ready before any component is created. This step is about preparation, not rendering
+Similarly, Angular bootstraps the application by reading app.config.ts.
+
+Step 4: Root Component Is Created
+Once bootstrapping is complete (application environment is set up), Angular finally creates the Root Component (app.ts). This component represents the Entire Application and acts as the Starting Point of the component tree. Angular instantiates this component Exactly Once and links it to the <app-root> element found in index.html.
+
+Step 5: UI Is Rendered Inside <app-root>
+
+-------------------------------------------
+How to create a Component in Angular?
+--------------------------------------------
+ng g c Name
+ng generate component Name

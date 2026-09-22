@@ -1,0 +1,17 @@
+<div style="padding: 20px; font-family: Arial">
+  <h2>{{'Order Summay for' + customerName}}</h2>
+  <p><b>Customer Name:</b>{{customerName}} </p>
+  <p><b>Order Id:</b>{{orderId}} </p>
+  <p><b>Message:</b>{{'This for shopping with us, ' + customerName + '!'}} </p>
+  <p><b>Product:</b>{{productName}} </p>
+  <p><b>Price:</b>{{price}} </p>
+  <p><b>Quantity:</b>{{quantity}} </p>
+  <p><b>Total Amount:</b>{{price * quantity}} </p>
+  <p><b>Membership:</b>{{isPremiumCustomer ?
+    'Premium customer (20% Discount Applied)'
+    :'Regualer Customer (No Discount)'}} </p>
+  <p><b>Payment Status:</b>{{isPaymentDone ?
+  'Payment Successful' :' Payment Pending'}} </p>
+  <p><b>Final Payable Amount:</b>{{getFinalAmount()}} </p>
+  <p><b>Order Status Message:</b>{{getOrderStatusMessage()}} </p>
+</div>
