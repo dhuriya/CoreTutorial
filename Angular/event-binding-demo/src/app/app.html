@@ -1,0 +1,116 @@
+<div class="page">
+  <h2>Order Summay (Event Binding Demo)</h2>
+  <div class="card">
+    <div class="row">
+      <b>Customer:</b> {{customerName}}
+    </div>
+    <div class="row">
+      <b>Order Id:</b>{{orderId}}
+    </div>
+    <div class="row">
+      <b>Product:</b> {{productName}}
+    </div>
+    <hr>
+    <div class="row">
+      <b>Payment Statu:</b>
+      <span class="badge" [class.paid]="isPaymentDone"
+        [class.pending]="!isPaymentDone">
+        {{getPaymentLabel()}}
+      </span>
+    </div>
+    <div class="row">
+      <b>MemberShip:</b>
+      <span class="badge" [class.premium]="isPremiumCustomer"
+      [class.regular]="!isPremiumCustomer">
+        {{getMemberShipLabel()}}
+      </span>
+      <button type="button" (click)="toggleMembership()"
+      style="margin-left: 10px;">
+        Toggle Membership
+      </button>
+    </div>
+    <div class="row">
+      <b>Stock Left:</b>
+      <span [class.low-stock]="stockLeft <= 5">
+        {{stockLeft}}
+      </span>
+    </div>
+    <hr>
+    <div class="row">
+      <b>Quantity:</b>
+      <button type="button" (click)="decreaseQuantity()"
+      [disabled]="quantity<=1">
+        -
+      </button>
+      <input type="text" [value]="quantity"
+      (input)="onQuantityInput($event)"
+      style="width: 60px; margin:0 6px;"/>
+
+      <button type="button" (click)="increeaseQuantity()"
+      [disabled]="quantity>10">
+        +
+      </button>
+      <span style="margin-left: 10px;">
+        <b>Total:</b>  ₹{{price * quantity}}
+      </span>
+    </div>
+    <div class="row">
+      <b>Coupon:</b>
+      <input type="text" [value]="couponCode"
+      (input)="onCouponInput($event)"
+      (keyup.enter)="applyCoupon()"
+      style="margin-left: 6px; width: 150px;">
+      <button type="button" (click)="applyCoupon()"
+      style="margin-left: 6px;">
+        Apply
+      </button>
+    </div>
+    <div class="row">
+      <b>Shippig:</b>
+      <select [value]="shippingOption"
+      (change)="onShippingChange($event)"
+      style="margin-left: 6px;">
+        <option value="Standard">Standard</option>
+        <option value="Express">Express</option>
+        <option value="NextDay">Next Day</option>
+      </select>
+    </div>
+    <hr>
+    <div class="row">
+      <b>Delivery Progress:</b>
+      <span>{{deliveryProgressPercent}}%</span>
+      <span class="progress-box">
+        <span class="progresss-fill"
+        [style.width.%]="deliveryProgressPercent"></span>
+      </span>
+    </div>
+    <div class="row">
+      <b>Final Payable:</b> ₹{{getFinalPayable()}}
+    </div>
+    <hr>
+    <div class="row">
+      <button type="button"
+      (click)="payNow()"
+      [disabled]="isPaymentDone">
+        Pay Now
+      </button>
+      <span [style.marginLeft.px]="10"
+      [style.opacity]="isPaymentDone ? 1: 0.7">
+        (After payment, you can place the order)
+      </span>
+    </div>
+    <form (submit)="placeOrder($event)"
+     class="row">
+      <button type="submit"
+      [disabled]="!isPaymentDone">
+        Place Order
+      </button>
+      <span [style.marginLeft.px]="10"
+      [style.opacity]="isPaymentDone ? 1: 0.5"
+      [style.pointerEvents]="isPaymentDone ? 'done': 'none'">
+        (Order submission enabled after payment)
+      </span>
+    </form>
+    <div class="message">{{uiMessage}}</div>
+  </div>
+</div>
