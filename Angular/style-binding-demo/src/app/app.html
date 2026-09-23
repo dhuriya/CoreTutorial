@@ -1,0 +1,61 @@
+<div class="page">
+  <h2>Order Summary (Class + Style Binding Demo)</h2>
+  <div class="card" [class.priority-border]="isHighPriorityOrder">
+    <h3 class="title">{{[productName]}}</h3>
+    <p>
+      <b>Customer:</b> {{customerName}}
+    </p>
+    <p>
+      <b>Order Id:</b> {{orderId}}
+    </p>
+    <hr class="hr-gap"/>
+    <p>
+      <b>Payment Statux:</b>
+      <span class="badge" [class.paid] ="isPaymentDone" [class.pending]="!isPaymentDone">
+        {{getPaymentLable()}}
+      </span>
+    </p>
+    <p>
+      <b>Membership:</b>
+      <span class="badge" [class.paid] ="isPremiumCustomer" [class.pending]="!isPremiumCustomer">
+        {{getMemberShipLabel()}}
+      </span>
+    </p>
+    <p>
+      <b>Stock Left</b>
+      <span [class.low-stock]="isLowStock()">
+        {{stockLeft}}
+      </span>
+      <span class="stock-warning" [class.hidden]="!isLowStock()">
+        Low Stock
+      </span>
+    </p>
+    <p><b>Delivery Progress:</b></p>
+    <div class="progress-track">
+      <div class="progress-fill" [style.width.%]="getProgressWidth()"></div>
+    </div>
+    <p style="margin-top: 6px">
+      {{getProgressWidth()}}% completed
+    </p>
+    <hr class="hr-gap">
+    <p>
+      <b>Invoice:</b>
+      <a [href]="isPaymentDone ? invoiceUrl : null" target="_blank"
+      [class.invoice-enabled]="isPaymentDone"
+      [class.invoice-disabled]="!isPaymentDone"
+      [style.opacity]="getInvoiceOpacity()">
+        Open Invoice
+      </a>
+    </p>
+    <span style="margin-left: 8px; colo:gray;">
+      (Enabled after payment)
+    </span>
+  </div>
+  <p class="tip">
+    Tip: Change values like <b>isPaymentdone</b>,
+    <b>stockLeft</b>,
+    <b>isPremiumCustomer</b>, or
+    <b>deliveryProgressPercent</b> inside
+    <code>app.ts</code> and save to see UI update
+  </p>
+</div>
