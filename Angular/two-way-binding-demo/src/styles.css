@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+.page{
+    font-family:Arial, sans-serif;
+    padding: 16px;
+}
+.card{
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    padding: 14px;
+    max-width: 720px;
+}
+.row{
+    margin: 10px 0;
+}
+.badge{
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-left: 6px;
+}
+.paid{
+    background: #1c7c1c;
+    color: #fff;
+}
+.pending{
+    background: #ffcc00;
+    color:#222;
+}
+.premium{
+    background: #0057d8;
+    color:#fff;
+}
+.regular{
+    background: #6c757d;
+    color: #fff;
+}
+.low-stock{
+    color: #d10000;
+    font-weight: bold;
+}
+button{
+    padding: 6px 10px;
+    cursor: pointer;
+}
+input,
+select{
+    padding: 6px;
+}
+.progress-box{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 14px;
+    width: hidden;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.progress-fill{
+    display: block;
+    height: 100%;
+    background: #0057d8;
+}
+.message{
+    margin-top: 12px;
+    font-weight: bold;
+}

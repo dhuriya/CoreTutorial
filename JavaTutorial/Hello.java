@@ -35,5 +35,8 @@ class Hello
         //num1 = num1 + 2;
         num1 += 2;
         System.out.println(num1);
+        //-----------------------
+        // Logical Opreators
+        //-----------------------
     }
 }
