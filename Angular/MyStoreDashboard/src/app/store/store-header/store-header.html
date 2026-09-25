@@ -1,0 +1,14 @@
+<header class="header">
+    <div class="brand">
+        <div class="logo">MSD</div>
+        <div>
+            <div class="name">Mini Store Dashboard</div>
+        </div>
+    </div>
+    <div class="cart">
+        <div class="badge">🛒 {{cartCount}}</div>
+    </div>
+    <button class="btn" (click)="onClear()" [disabled]="cartCount === 0">
+        Clear Cart
+    </button>
+</header>

@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="top">
+        <div class="name"> {{ product.name }}</div>
+        <div class="rating"> ⭐ {{ product.rating }}</div>
+    </div>
+    <div class="meta">
+        <span class="tag"> {{product.category}} </span>
+        <span class="tag" [class.out]="!product.inStock"> {{ product.inStock ? 'In Stock' : ' Out of Stock'}} </span>
+    </div>
+    <div class="bottom">
+        <div class="price">₹ {{product.price}} </div>
+        <div class="actions">
+            <button class="btn light" (click)="viewNow()" >View</button>
+            <button class="btn" (click)="addToCart()"  [disabled]="!product.inStock" >Add</button>
+        </div>
+    </div>
+</div>
