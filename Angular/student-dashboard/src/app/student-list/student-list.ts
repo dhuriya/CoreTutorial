@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
-import { Student, StudentFilter } from '../models/student';
+import { CommonModule } from '@angular/common';   // 👈 saare pipes isme
+import { FormsModule } from '@angular/forms';
+import { Student } from '../models/student';
 import { StudentCount } from '../student-count/student-count';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [StudentCount],
+  imports: [
+    CommonModule,      // DatePipe, UpperCasePipe, CurrencyPipe sab isme
+    FormsModule,
+    StudentCount
+  ],
   templateUrl: './student-list.html',
-  styleUrls: ['./student-list.css'],
+  styleUrls: ['./student-list.css']
 })
 export class StudentList {
+  selectedStudentCountRadioButton: string = 'All';
+
   students: Student[] = [
     { ID: 'std101', FisrtName: 'Pranaya',  LastName: 'Rout',      DOB: new Date(1988, 11, 8), Gender: 'Male',   CourseFee: 1234.56 },
     { ID: 'std102', FisrtName: 'Anurag',   LastName: 'Mohanty',   DOB: new Date(1989,  9,14), Gender: 'Male',   CourseFee: 6666.00 },
@@ -18,33 +26,24 @@ export class StudentList {
     { ID: 'std105', FisrtName: 'Sambit',   LastName: 'Satapathy', DOB: new Date(1991,  3,12), Gender: 'Male',   CourseFee: 9876.54 },
   ];
 
-  selectedFilter: StudentFilter = 'All';
-
-  get totalCount(): number {
+  getTotalStudentCount(): number {
     return this.students.length;
   }
 
-  get maleCount(): number {
+  getMaleStudentCount(): number {
     return this.students.filter(s => s.Gender === 'Male').length;
   }
 
-  get femaleCount(): number {
+  getFemaleStudentCount(): number {
     return this.students.filter(s => s.Gender === 'Female').length;
   }
 
-  get filteredStudents(): Student[] {
-    if (this.selectedFilter === 'All') return this.students;
-    return this.students.filter(s => s.Gender === this.selectedFilter);
-  }
-
-  onFilterChanged(filter: StudentFilter): void {
-    this.selectedFilter = filter;
+  onStudentCountRadioButtonChange(selectedRadioButtonValue: string): void {
+    this.selectedStudentCountRadioButton = selectedRadioButtonValue;
   }
 
   trackById = (_: number, s: Student) => s.ID;
 
-  // Since you haven't covered pipes, we format date as a simple string method.
-  // This keeps the output readable without introducing DatePipe.
   formatDob(dob: Date): string {
     const day = String(dob.getDate()).padStart(2, '0');
     const month = String(dob.getMonth() + 1).padStart(2, '0');

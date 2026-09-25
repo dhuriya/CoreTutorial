@@ -1,10 +1,9 @@
 <app-student-count
-  [all]="totalCount"
-  [male]="maleCount"
-  [female]="femaleCount"
-  [selected]="selectedFilter"
-  (selectionChanged)="onFilterChanged($event)"
-></app-student-count>
+  [all]="getTotalStudentCount()"
+  [male]="getMaleStudentCount()"
+  [female]="getFemaleStudentCount()"
+  (countRadioButtonSelectionChanged)="onStudentCountRadioButtonChange($event)">
+</app-student-count>
 
 <br /><br />
 
@@ -18,22 +17,19 @@
       <th>Course Fee</th>
     </tr>
   </thead>
-
   <tbody>
-    @if (filteredStudents.length > 0) {
-      @for (student of filteredStudents; track trackById($index, student)) {
-        <tr>
-          <td>{{ student.ID }}</td>
-          <td>{{ student.FisrtName }} {{ student.LastName }}</td>
-          <td>{{ student.Gender }}</td>
-          <td>{{ formatDob(student.DOB) }}</td>
-          <td>{{ student.CourseFee }} </td>
-        </tr>
-      }
-    } @else {
-      <tr>
-        <td colspan="5">No Students to display</td>
+    <ng-container *ngFor="let student of students;">
+      <tr *ngIf="selectedStudentCountRadioButton == 'All' || 
+                 selectedStudentCountRadioButton == student.Gender">
+        <td>{{ student.ID | uppercase }}</td>
+        <td>{{ student.FisrtName | uppercase }}</td>   <!-- 👈 FisrtName, FirstName nahi -->
+        <td>{{ student.Gender }}</td>
+        <td>{{ student.DOB | date:'dd/MM/y' }}</td>
+        <td>{{ student.CourseFee | currency:'USD':'symbol':'1.2-2' }}</td>
       </tr>
-    }
+    </ng-container>
+    <tr *ngIf="!students || students.length == 0">
+      <td colspan="10">No Students to display</td>
+    </tr>
   </tbody>
 </table>

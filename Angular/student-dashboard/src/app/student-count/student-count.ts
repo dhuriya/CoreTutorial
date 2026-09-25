@@ -1,21 +1,23 @@
-import { Component, EventEmitter, Input, input, Output, output } from '@angular/core';
-import { StudentFilter } from '../models/student';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [],
   selector: 'app-student-count',
-  styleUrl: './student-count.css',
+  standalone: true,
+  imports: [FormsModule],   // 👈 ngModel ke liye zaroori
   templateUrl: './student-count.html',
+  styleUrls: ['./student-count.css']
 })
 export class StudentCount {
-  @Input() all = 0;
-  @Input() male = 0;
-  @Input() female = 0;
+  @Input() all: number = 0;      // 👈 default value
+  @Input() male: number = 0;     // 👈 default value
+  @Input() female: number = 0;   // 👈 default value
 
-  @Input() selected: StudentFilter = 'All';
+  selectedRadioButtonValue: string = 'All';
 
-  @Output() selectionChanged = new EventEmitter<StudentFilter>();
-  onSelectionChange(value: StudentFilter): void{
-    this.selectionChanged.emit(value);
+  @Output() countRadioButtonSelectionChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  onRadioButtonSelectionChanges() {
+    this.countRadioButtonSelectionChanged.emit(this.selectedRadioButtonValue);
   }
 }
