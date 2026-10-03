@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Product Cards</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f5f9;
+        }
+        .products{
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .products h1{
+            font-size: 40px;
+            color: #222;
+        }
+        .subtitle{
+            color: #777;
+            margin: 10px 0 35px;
+        }
+        .card-conatiner{
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .card{
+            width: 300px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .card:hover{
+            transform: translateY(-8px);
+        }
+        .icon{
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+        .card h2{
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .card p{
+            color: #777;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .card h3{
+            color: #2563eb;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .card button{
+            border: none;
+            color: white;
+            background: #2563eb;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .card button:hover{
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+    <section class="products">
+        <h1>My Products</h1>
+        <p class="subtitle">Expore our latest products</p>
+        <div class="card-conatiner">
+            <div class="card">
+                <div class="icon">💻</div>
+                <h2>Laptop</h2>
+                <p>Powerful laptop for work and study.</p>
+                <h3>₹65,000</h3>
+                <button>Buy Now</button>
+            </div>
+            <div class="card">
+                <div class="icon">📱</div>
+                <h2>Smartphone</h2>
+                <p>Modern smartphone with amazing features</p>
+                <h3>₹₹35,000</h3>
+                <button>Buy Now</button>
+            </div>
+            <div class="card">
+                <div class="icon">🎧</div>
+                <h2>Headphone</h2>
+                <p>Enjoy clear and powerful sound.</p>
+                <h3>₹4,999</h3>
+                <button>Buy Now</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

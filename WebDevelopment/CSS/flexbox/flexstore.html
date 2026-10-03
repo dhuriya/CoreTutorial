@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Store</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e7f8fc;
+            color: #222;
+        }
+        /* ===========================
+        NAVBAR
+        =========================== */
+        .navbar{
+            height: 75px;
+            padding: 0 8%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+        .logo{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .logo span{
+            color: #6c63ff;
+        }
+        .nav-links{
+            display: flex;
+            gap: 35px;
+        }
+        .nav-links a{
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+        }
+        .nav-links a:hover{
+            color: #6c63ff;
+        }
+        .cart-btn{
+            border: none;
+            background: #6c63ff;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        /* ====================
+        HERO
+        ==================== */
+        .hero{
+            min-height: 450px;
+            padding: 60px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg,#eeeeff,#f8f7ff);
+        }
+        .hero-content{
+            max-width: 550px;
+        }
+        .tag{
+            color: #6c63ff;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        .hero h1{
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span{
+            color: #6c63ff;
+        }
+        .hero-content > p:not(.tag){
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .hero-btn{
+            border: none;
+            background: #6c63ff;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hero-btn:hover{
+            background: #5148df;
+        }
+        .hero-image{
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#6c63ff,#9b95ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            box-shadow: 0 20px 50px rgba(108, 99, 255, 0.3);
+        }
+        .products{
+            padding: 80px 8%;
+        }
+        .section-heading{
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        .section-heading p{
+            color: #6c63ff;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .section-heading h2{
+            font-size: 35px;
+        }
+        /* =====================
+        CARD CONTAINER
+        ===================== */
+        .card-container{
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        /* ===========================
+        CARD
+        =========================== */
+        .card{
+            background: white;
+            width: 320px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        .card:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        .product-image{
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+        }
+        .laptop{
+            background: #e836ff;
+        }
+        .phone{
+            background: #e5f5ff;
+        }
+        .headphone{
+            background: #fff0e5;
+        }
+        /* Card Content */
+        .card-content{
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .category{
+            color: #6c63ff;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .card h3{
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+        .description{
+            color: #777;
+            line-height: 1.5;
+            font-size: 14px;
+            flex-grow: 1;
+        }
+        /* Card Bottom */
+        .card-bottom{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        .price{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .old-price{
+            color: #aaa;
+            font-size: 13px;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+        .buy-btn{
+            border: none;
+            background: #6c63ff;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+        /* ===================
+        MOBIlE
+        =================== */
+        @media (max-width: 768px) {
+            .navbar{
+                padding: 0 20px;
+            }
+            .nav-links{
+                display: none;
+            }
+            .hero{
+                padding: 50px 25px;
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero h1{
+                font-size: 40px;
+            }
+            .hero-image{
+                width: 220px;
+                height: 220px;
+                font-size: 80px;
+            }
+            .products{
+                padding: 60px 20px;
+            }
+            .card{
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+     <nav class="navbar">
+        <div class="logo">
+            Flex <span>Store</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="#">Contact </a>
+        </div>
+        <button class="cart-btn">
+            🛒 Cart
+        </button>
+     </nav>
+
+     <!-- Hero section -->
+      <section class="hero">
+        <div class="hero-content">
+            <p class="tag">NEW COLLECTION</p>
+            <h1>Find Your <span>Perfect Product</span></h1>
+            <p>
+                Discover amazing products with modern design great quality and affordable prices.
+            </p>
+            <button class="hero-btn">
+                Explore Products →
+            </button>
+        </div>
+        <div class="hero-image">
+            🛍️
+        </div>
+      </section>
+
+      <!-- Products -->
+       <section class="products">
+        <div class="section-heading">
+            <p>OUR PRODUCTS</p>
+            <h2>Popular Products</h2>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <div class="product-image laptop">
+                    💻
+                </div>
+                <div class="card-content">
+                    <p class="category">
+                        Electronics
+                    </p>
+                    <h3>Premium Laptop</h3>
+                    <p class="description">
+                        Powerful laptop for work, coding and entertainment.
+                    </p>
+                    <div class="card-bottom">
+                        <div>
+                            <span class="price">
+                                ₹65,000
+                            </span>
+                            <span class="old-price">
+                                ₹75,000
+                            </span>
+                        </div>
+                        <button class="buy-btn">
+                            Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="product-image phone">
+                    📱
+                </div>
+                <div class="card-content">
+                    <p class="category">
+                        Electronics
+                    </p>
+                    <h3>Smartphone Pro</h3>
+                    <p class="description">
+                        Powerful camera and smooth performance for everyday use.
+                    </p>
+                    <div class="card-bottom">
+                        <div>
+                            <span class="price">
+                                ₹35,000
+                            </span>
+                            <span class="old-price">
+                                ₹42,000
+                            </span>
+                        </div>
+                        <button class="buy-btn">
+                            Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="product-image headphone">
+                    🎧
+                </div>
+                <div class="card-content">
+                    <p class="category">
+                        Accessories
+                    </p>
+                    <h3>Wireless Headphone</h3>
+                    <p class="description">
+                       Enjoy immersive sound with comfortable wireless design.
+                    </p>
+                    <div class="card-bottom">
+                        <div>
+                            <span class="price">
+                                ₹4,999
+                            </span>
+                            <span class="old-price">
+                                ₹6,999
+                            </span>
+                        </div>
+                        <button class="buy-btn">
+                            Buy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </section>
+</body>
+</html>

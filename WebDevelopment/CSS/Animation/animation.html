@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+
+    </div>
+
+    <script>
+        let lastX=0;
+        let lastY = 0;
+        const main = document.getElementById('main');
+        main.addEventListener('mousemove', (e)=>{
+            // let X = e.clientX;
+            // let Y = e.clientY;
+
+            // const dx = X - lastX;
+            // const dy = Y - lastY;
+
+            // console.log("X:", X, "Y:", Y);
+            // console.log("Move X:", dx, "Move Y:", dy);
+
+            // if (dx > 0){
+            //     console.log("Right");
+            //     id.style.background='red';
+            // } 
+            // if (dx < 0) {
+            //     console.log("Left");
+            //     id.style.background='';
+            // }
+            // if (dy > 0) console.log("Down");
+            // if (dy < 0) console.log("Up");
+
+            // lastX = X;
+            // lastY = Y;
+            const rect = main.getBoundingClientRect();
+
+            const Xposition =((e.clientX - rect.left) / rect.width) * 100;
+            if (Xposition <= 25) {
+                // Step 1: Red
+                main.style.background = `linear-gradient(to right,red 0%,
+                        red ${Xposition}%,white ${Xposition}%,white 100%)`;
+
+            } else if (Xposition <= 50) {
+                // Step 2: Blue
+                main.style.background = `linear-gradient(to right,red 0%,red 25%,
+                        blue 25%,blue ${Xposition}%,white ${Xposition}%,white 100%)`;
+
+            } else if (Xposition <= 75) {
+                // Step 3: Green
+                main.style.background = `linear-gradient(to right,red 0%,red 25%,blue 25%,
+                blue 50%,green 50%,green ${Xposition}%,white ${Xposition}%,white 100%)`;
+
+            } else {
+                // Step 4: Yellow
+                main.style.background = `linear-gradient(to right,red 0%,red 25%,
+                        blue 25%,blue 50%,green 50%,green 75%,yellow 75%,
+                        yellow ${Xposition}%,white ${Xposition}%,white 100%)`;
+            }
+        })
+    </script>
+</body>
+</html>
