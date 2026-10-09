@@ -16,6 +16,28 @@ class Computer {
         }
     }
 }
+class Student {
+    int rollno;
+    String name;
+    int marks ;
+}
+class Human{
+    private int age = 26;
+    private String name = "Deepu";
+
+    public int getAge(){
+        return  age;
+    }
+    public void setAge(int a){
+        age = a;
+    }
+    public String getName(){
+        return  name;
+    }
+    public void setName(String s){
+        name = s;
+    }
+}
 public class Demo {
     public static void main(String[] args) {
         //--------------------------------------------------
@@ -36,6 +58,49 @@ public class Demo {
         //int multiDimArray[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         //int multiDimArray2[][] = new int[3][4];
         //--------------------------------------------------
+        // Student s1 = new Student();
+        // s1.rollno = 101;
+        // s1.name = "Navin";
+        // s1.marks = 67;
+
+        // Student s2 = new Student();
+        // s2.rollno = 102;
+        // s2.name = "Harsh";
+        // s2.marks = 88;
+
+        // Student s3 = new Student();
+        // s3.rollno = 103;
+        // s3.name ="Kiran";
+        // s3.marks = 97;
+
+        // Student students[] = new Student[3];
+        // students[0] = s1;
+        // students[1] = s2;
+        // students[2] = s3;
+
+        // for(int i =0; i< students.length; i++){
+        //     System.out.println(students[i].name +" : "+ students[i].marks);
+        // }
+        // for(Student stud: students){
+        //     System.out.println(stud.name +" : "+ stud.marks);
+        // }
+        //----------------------------------------------------------------------
+        // String name = new String("Navim");
+        // //System.out.println(name);
+        // //System.out.println(name.hashCode());
+        // System.out.println("Hello "+ name);
+        // System.out.println(name.concat(" ready"));
+        //====================================================
+        // Stirng Buffer
+        // StringBuffer sb = new StringBuffer("Navin");
+        // System.out.println(sb.length());
+        //----------------------------------------
+        Human obj = new  Human();
+        //obj.age = 26;
+        //obj.name = "Deepu";
+        obj.setAge(30);
+        obj.setName("Rahul");
+        System.out.println(obj.getName() + " " + obj.getAge());
 
     }
     // Q what is Primitive data types in Java?
@@ -60,5 +125,19 @@ public class Demo {
     // This can lead to wasted memory if the array is not fully utilized, or to errors if the array is too 
     // small to hold all the required data.
     // B: Searching
+
+    // Q Why are we need foreach loop?
+    // Q Encapsulation
+    // Q Method Overloading
+    // Q Method Overriding
+    // Q Inheritaince
+    // Q super();
+    // Q packages
+    // Q Access Modifiers
+    // Q Polymorphism
+    // Q Dynamic Method Dispatch
+    // Q final keyword - > variable,method,class
+    // Q object class
+
     
 }

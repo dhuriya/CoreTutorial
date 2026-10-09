@@ -1,0 +1,43 @@
+<aside class="sidebar" [class.mobile-open]="mobileOpen" aria-label="Student management">
+    <a class="brand" href="#" aria-label="Campus home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-name">campus<span class="brand-period">.</span></span>
+    </a>
+
+    <div class="nav-heading">WORKSPACE</div>
+    <nav id="main-navigation" aria-label="Main navigation">
+        <ul class="nav-list">
+            <li>
+                <button class="nav-item" [class.active]="activeSection() === 'Dashboard'" [attr.aria-pressed]="activeSection() === 'Dashboard'" (click)="selectSection('Dashboard'); navigate.emit()">
+                    <span class="nav-icon dashboard-icon" aria-hidden="true"></span>
+                    <span>Dashboard</span>
+                </button>
+            </li>
+            <li>
+                <a class="nav-item" routerLink="/students" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="navigate.emit()">
+                    <span class="nav-icon students-icon" aria-hidden="true"></span>
+                    <span>Students</span>
+                    <span class="item-count">248</span>
+                </a>
+            </li>
+            <li>
+                <button class="nav-item" [class.active]="activeSection() === 'Courses'" [attr.aria-pressed]="activeSection() === 'Courses'" (click)="selectSection('Courses'); navigate.emit()">
+                    <span class="nav-icon courses-icon" aria-hidden="true"></span>
+                    <span>Courses</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="term-note">
+            <span class="term-dot" aria-hidden="true"></span>
+            <span><strong>Fall semester</strong><small>2025 / 2026</small></span>
+        </div>
+        <div class="profile">
+            <span class="avatar" aria-hidden="true">JD</span>
+            <span class="profile-name"><strong>Jordan Davis</strong><small>Administrator</small></span>
+            <span class="profile-menu" aria-hidden="true">···</span>
+        </div>
+    </div>
+</aside>

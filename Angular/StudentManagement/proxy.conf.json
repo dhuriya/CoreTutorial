@@ -1,0 +1,7 @@
+{
+  "/api/**": {
+    "target": "https://ominous-train-45p7pgq6552gpq-5065.app.github.dev",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

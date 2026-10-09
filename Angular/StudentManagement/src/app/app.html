@@ -1,0 +1,10 @@
+<div class="app-shell">
+	@if (mobileNavOpen()) {
+		<button class="mobile-nav-backdrop" type="button" aria-label="Close navigation menu" (click)="closeMobileNav()"></button>
+	}
+	<app-student-component-sidebar [mobileOpen]="mobileNavOpen()" (navigate)="closeMobileNav()"></app-student-component-sidebar>
+	<main class="main-panel">
+		<app-student-component-navbar [mobileMenuOpen]="mobileNavOpen()" (mobileMenuToggle)="toggleMobileNav()"></app-student-component-navbar>
+		<router-outlet></router-outlet>
+	</main>
+</div>

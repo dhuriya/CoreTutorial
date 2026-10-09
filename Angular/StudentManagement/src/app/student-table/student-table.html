@@ -1,0 +1,145 @@
+<section class="students-page" aria-labelledby="students-title">
+    <div class="section-heading">
+        <div>
+            <h2 id="students-title">All students</h2>
+            <p>View and manage student enrollment across your campus.</p>
+        </div>
+        <span class="record-count">{{ filteredStudents().length }} records</span>
+    </div>
+
+    <div class="table-toolbar">
+        <label class="table-search">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input
+                type="search"
+                placeholder="Search students..."
+                aria-label="Search students"
+                [value]="searchTerm()"
+                (input)="searchTerm.set($any($event.target).value)"
+            >
+        </label>
+        <label class="status-filter">
+            <span>Status</span>
+            <select
+                aria-label="Filter students by enrollment status"
+                [value]="statusFilter()"
+                (change)="statusFilter.set($any($event.target).value)"
+            >
+                @for (status of statusOptions(); track status) {
+                    <option [value]="status">{{ status === 'All' ? 'All statuses' : status }}</option>
+                }
+            </select>
+        </label>
+    </div>
+
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Student</th>
+                    <th scope="col">Admission no.</th>
+                    <th scope="col">Class / section</th>
+                    <th scope="col">Roll no.</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="action-header">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (loading()) {
+                    <tr>
+                        <td class="empty-state" colspan="6">Loading students...</td>
+                    </tr>
+                } @else if (errorMessage()) {
+                    <tr>
+                        <td class="empty-state error-state" colspan="6" role="alert">
+                            <span>{{ errorMessage() }}</span>
+                            <button type="button" class="retry-button" (click)="getStudents()" [disabled]="loading()">Retry</button>
+                        </td>
+                    </tr>
+                } @else {
+                    @for (student of filteredStudents(); track student.id) {
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <span class="student-avatar" aria-hidden="true">{{ studentInitials(student) }}</span>
+                                <span class="student-details">
+                                    <strong>{{ studentFullName(student) }}</strong>
+                                    <small>{{ student.email }}</small>
+                                </span>
+                            </div>
+                        </td>
+                        <td class="student-id">{{ student.admissionNumber }}</td>
+                        <td>{{ student.classId }} / {{ student.sectionId }}</td>
+                        <td>{{ student.rollNo }}</td>
+                        <td>
+                            <span class="status" [class.on-leave]="student.status.toLowerCase().includes('leave')">
+                                <span class="status-dot" aria-hidden="true"></span>
+                                {{ student.status }}
+                            </span>
+                        </td>
+                        <td class="action-cell">
+                            <button
+                                type="button"
+                                class="view-button"
+                                [attr.aria-label]="'View details for ' + studentFullName(student)"
+                                aria-haspopup="dialog"
+                                (click)="openDetails(student)"
+                            >View details</button>
+                        </td>
+                    </tr>
+                    } @empty {
+                        <tr>
+                            <td class="empty-state" colspan="6">No students match your search.</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<dialog
+    #studentDetailsDialog
+    class="student-dialog"
+    aria-modal="true"
+    aria-labelledby="student-dialog-title"
+    (close)="clearSelectedStudent()"
+    (click)="closeOnBackdrop($event)"
+>
+    @if (selectedStudent(); as student) {
+        <div class="dialog-content">
+            <header class="dialog-header">
+                <div>
+                    <span class="dialog-eyebrow">STUDENT RECORD</span>
+                    <h2 id="student-dialog-title">{{ studentFullName(student) }}</h2>
+                    <p>{{ student.admissionNumber }}</p>
+                </div>
+                <button type="button" class="dialog-close" aria-label="Close student details" title="Close" (click)="closeDetails()">
+                    <span aria-hidden="true"></span>
+                </button>
+            </header>
+
+            <dl class="detail-grid">
+                <div class="detail-item"><dt>Student ID</dt><dd>{{ student.id }}</dd></div>
+                <div class="detail-item"><dt>Admission number</dt><dd>{{ displayValue(student.admissionNumber) }}</dd></div>
+                <div class="detail-item"><dt>First name</dt><dd>{{ displayValue(student.name) }}</dd></div>
+                <div class="detail-item"><dt>Last name</dt><dd>{{ displayValue(student.lastName) }}</dd></div>
+                <div class="detail-item"><dt>Father's name</dt><dd>{{ displayValue(student.fatherName) }}</dd></div>
+                <div class="detail-item"><dt>Mother's name</dt><dd>{{ displayValue(student.motherName) }}</dd></div>
+                <div class="detail-item"><dt>Parent phone</dt><dd>{{ displayValue(student.parentPhone) }}</dd></div>
+                <div class="detail-item"><dt>Date of birth</dt><dd>{{ displayValue(student.dob) }}</dd></div>
+                <div class="detail-item"><dt>Gender</dt><dd>{{ displayValue(student.gender) }}</dd></div>
+                <div class="detail-item"><dt>Email</dt><dd>{{ displayValue(student.email) }}</dd></div>
+                <div class="detail-item"><dt>Mobile</dt><dd>{{ displayValue(student.mobile) }}</dd></div>
+                <div class="detail-item"><dt>Class ID</dt><dd>{{ displayValue(student.classId) }}</dd></div>
+                <div class="detail-item"><dt>Section ID</dt><dd>{{ displayValue(student.sectionId) }}</dd></div>
+                <div class="detail-item"><dt>Roll number</dt><dd>{{ displayValue(student.rollNo) }}</dd></div>
+                <div class="detail-item"><dt>Admission date</dt><dd>{{ displayValue(student.admissionDate) }}</dd></div>
+                <div class="detail-item"><dt>Status</dt><dd>{{ displayValue(student.status) }}</dd></div>
+                <div class="detail-item"><dt>Created</dt><dd>{{ displayValue(student.createdDate) }}</dd></div>
+                <div class="detail-item"><dt>Last updated</dt><dd>{{ displayValue(student.updatedDate) }}</dd></div>
+                <div class="detail-item detail-address"><dt>Address</dt><dd>{{ displayValue(student.address) }}</dd></div>
+            </dl>
+        </div>
+    }
+</dialog>

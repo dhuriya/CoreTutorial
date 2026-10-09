@@ -1,0 +1,29 @@
+.app-shell {
+	display: flex;
+	min-height: 100vh;
+}
+
+.main-panel {
+	flex: 1;
+	min-width: 0;
+	background: #f7f8f6;
+}
+
+.mobile-nav-backdrop {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	.app-shell {
+		flex-direction: column;
+	}
+
+	.mobile-nav-backdrop {
+		position: fixed;
+		z-index: 20;
+		inset: 0;
+		display: block;
+		border: 0;
+		background: rgb(20 33 27 / 48%);
+	}
+}
