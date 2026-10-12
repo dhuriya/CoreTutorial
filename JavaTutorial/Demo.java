@@ -138,6 +138,6 @@ public class Demo {
     // Q Dynamic Method Dispatch
     // Q final keyword - > variable,method,class
     // Q object class
+    // Q Downcasting and Upcasting
 
-    
 }

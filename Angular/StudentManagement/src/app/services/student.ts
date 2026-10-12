@@ -30,6 +30,7 @@ interface ApiStudent {
 export class StudentService {
 	private readonly http = inject(HttpClient);
 	private readonly apiUrl = '/api/Student/GetAll';
+	private readonly apiUrlCreate = '/api/Student/create';
 
 	getAllStudents(): Observable<Student[]> {
 		return this.http.get<ApiStudent[]>(this.apiUrl).pipe(
@@ -56,4 +57,7 @@ export class StudentService {
 			}))),
 		);
 	}
+	addStudent(studentData: any): Observable<any> {
+    return this.http.post<any>(this.apiUrlCreate, studentData);
+  }
 }

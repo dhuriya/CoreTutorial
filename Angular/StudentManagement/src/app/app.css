@@ -1,11 +1,17 @@
 .app-shell {
 	display: flex;
-	min-height: 100vh;
+	height: 100vh;
+	height: 100dvh;
+	overflow: hidden;
 }
 
 .main-panel {
+	display: flex;
+	flex-direction: column;
 	flex: 1;
 	min-width: 0;
+	min-height: 0;
+	overflow-y: auto;
 	background: #f7f8f6;
 }
 

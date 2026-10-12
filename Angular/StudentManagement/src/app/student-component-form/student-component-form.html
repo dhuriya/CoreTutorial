@@ -1,0 +1,131 @@
+<section class="students-page" aria-labelledby="students-title">
+    <div class="section-heading">
+        <div>
+            <span class="section-kicker">ENROLLMENT / NEW RECORD</span>
+            <h2 id="students-title">Add student</h2>
+            <p>Enter the student and family details below.</p>
+        </div>
+    </div>
+    <form class="form-section" #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+        <section class="form-group" aria-labelledby="student-details-title">
+            <h3 id="student-details-title">Student Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" [(ngModel)]="student.name" #name="ngModel" required minlength="3">
+                    @if (name.touched && name.errors?.['required']) {
+                        <small class="error-message">Name is required.</small>
+                    } @else if (name.touched && name.errors?.['minlength']) {
+                        <small class="error-message">Name must be at least 3 characters.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="lastname">Last Name</label>
+                    <input id="lastname" name="lastname" type="text" [(ngModel)]="student.lastname" #lastname="ngModel" required minlength="3">
+                    @if (lastname.touched && lastname.errors?.['required']) {
+                        <small class="error-message">Last name is required.</small>
+                    } @else if (lastname.touched && lastname.errors?.['minlength']) {
+                        <small class="error-message">Last name must be at least 3 characters.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="dob">Date of Birth</label>
+                    <input id="dob" name="dob" type="date" [(ngModel)]="student.dob" #dob="ngModel" required>
+                    @if (dob.touched && dob.invalid) {
+                        <small class="error-message">Date of birth is required.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" [(ngModel)]="student.gender" #gender="ngModel" required>
+                        <option value="" selected disabled>Select gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                    @if (gender.touched && gender.invalid) {
+                        <small class="error-message">Select a gender.</small>
+                    }
+                </div>
+            </div>
+        </section>
+        <section class="form-group" aria-labelledby="parent-details-title">
+            <h3 id="parent-details-title">Parent / Guardian</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="fathername">Father Name</label>
+                    <input id="fathername" name="fatherName" type="text" [(ngModel)]="student.fatherName" #fathername="ngModel" required >
+                    @if (fathername.touched && fathername.invalid) {
+                        <small class="error-message">Father name is required.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="mothername">Mother Name</label>
+                    <input id="mothername" name="motherName" type="text" [(ngModel)]="student.motherName" #mothername="ngModel" required>
+                    @if (mothername.touched && mothername.invalid) {
+                        <small class="error-message">Mother name is required.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="parentphone">Parent Phone</label>
+                    <input id="parentphone" name="patentPhone" type="tel" [(ngModel)]="student.patentPhone" #parentphone="ngModel" required maxlength="10" pattern="[0-9]{10}"> 
+                    @if (parentphone.touched && parentphone.errors?.['required']) {
+                        <small class="error-message">Parent phone is required.</small>
+                    } @else if (parentphone.touched && parentphone.errors?.['pattern']) {
+                        <small class="error-message">Enter a 10-digit parent phone number.</small>
+                    }
+                </div>
+            </div>
+        </section>
+        <section class="form-group" aria-labelledby="contact-details-title">
+            <h3 id="contact-details-title">Contact Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" [(ngModel)]="student.email" #email="ngModel" required>
+                    @if (email.touched && email.errors?.['required']) {
+                        <small class="error-message">Email is required.</small>
+                    } @else if (email.touched && email.errors?.['email']) {
+                        <small class="error-message">Enter a valid email address.</small>
+                    }
+                </div>
+                <div class="form-field">
+                    <label for="mobile">Mobile</label>
+                    <input id="mobile" name="mobile" type="tel" [(ngModel)]="student.mobile" #mobile="ngModel" required maxlength="10"  pattern="[0-9]{10}">
+                    @if (mobile.touched && mobile.errors?.['required']) {
+                        <small class="error-message">Mobile number is required.</small>
+                    } @else if (mobile.touched && mobile.errors?.['pattern']) {
+                        <small class="error-message">Enter a 10-digit mobile number.</small>
+                    }
+                </div>
+                <div class="form-field full-width">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" rows="3" [(ngModel)]="student.address" #address="ngModel" required></textarea>
+                    @if (address.touched && address.invalid) {
+                        <small class="error-message">Address is required.</small>
+                    }
+                </div>
+            </div>
+        </section>
+        <section class="form-group" aria-labelledby="academic-details-title">
+            <h3 id="academic-details-title">Academic Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="course">Course</label>
+                    <select id="course" name="classId" [(ngModel)]="student.classId" #course="ngModel" required>
+                        <option value="" selected disabled>Select course</option>
+                        <option value="science">Science</option>
+                        <option value="commerce">Commerce</option>
+                        <option value="arts">Arts</option>
+                        <option value="computer-science">Computer Science</option>
+                    </select>
+                    @if (course.touched && course.invalid) {
+                        <small class="error-message">Select a course.</small>
+                    }
+                </div>
+            </div>
+        </section>
+        <div class="form-actions">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</section>
