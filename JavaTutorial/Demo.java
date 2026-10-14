@@ -38,6 +38,24 @@ class Human{
         name = s;
     }
 }
+interface A 
+{
+    int age = 44;
+    String area = "Delhi"; // final and static
+    void show();
+    void config();
+}
+class B implements  A
+{
+    
+    public void show() {
+        System.out.println("in Show");
+    }
+    public void config() {
+        System.out.println("in Config");
+    }
+
+}
 public class Demo {
     public static void main(String[] args) {
         //--------------------------------------------------
@@ -95,12 +113,19 @@ public class Demo {
         // StringBuffer sb = new StringBuffer("Navin");
         // System.out.println(sb.length());
         //----------------------------------------
-        Human obj = new  Human();
-        //obj.age = 26;
-        //obj.name = "Deepu";
-        obj.setAge(30);
-        obj.setName("Rahul");
-        System.out.println(obj.getName() + " " + obj.getAge());
+        // Human obj = new  Human();
+        // //obj.age = 26;
+        // //obj.name = "Deepu";
+        // obj.setAge(30);
+        // obj.setName("Rahul");
+        // System.out.println(obj.getName() + " " + obj.getAge());
+
+        // Interface
+        A obj;
+        obj = new B();
+        obj.config();
+        obj.show();
+        System.out.println(A.area);
 
     }
     // Q what is Primitive data types in Java?
@@ -139,5 +164,10 @@ public class Demo {
     // Q final keyword - > variable,method,class
     // Q object class
     // Q Downcasting and Upcasting
-
+    // Q inner class and anonomousclass
+    // Q Interface
+    // Q Enum
+    // Q Annotation
+    // Types of interface
+    // Functinal interface(Single Abstract Method Interface (SAM))
 }
