@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Flexbox | Ligth Theme</title>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div>
+                <h2 class="logo">NEXORA <span>.</span></h2>
+                <p class="menu-label">MAIN MENU</p>
+            </div>
+            <nav class="navigation">
+                <a href="#">Dashboard</a>
+                <a href="#">Orders</a>
+                <a href="#">Products</a>
+                <a href="#">Customers</a>
+                <a href="#">Analytics</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Store Status</p>
+                <span>● Store is online</span>
+            </div>
+        </aside>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h2>Dashboard Overview</h2>
+                    <p>Welcom Admin!</p>
+                </div>
+                <div class="topbar-right">
+                    <input type="text" class="search-box" placeholder="🔍 Search...">
+                    <button class="profile-btn">👤</button>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+                </div>
+            </header>
+            <section class="stat-row">
+                <article class="stat-card">
+                    <p>Total Revenue</p>
+                    <h2>₹8,42,000</h2>
+                    <span class="positive">↑ 12.8% this month</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Total Orders</p>
+                    <h2>1,284</h2>
+                    <span class="positive">↑ 8.4% this month</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>Total Customers</p>
+                    <h2>5,642</h2>
+                    <span class="positive">↑ 6.2% this month</span>
+                </article>
+            </section>
+            <section class="content-row">
+                <!-- Chart Panel -->
+                <div class="chart-panel">
+                    <h3>Revenue Analytics</h3>
+                    <p>Your sales performance will appear here.</p>
+                    <div class="chart-placeholder">
+                        <span>📊 Chart Area</span>
+                    </div>
+                </div>
+
+                <!-- Top Products Panel -->
+                <div class="products-panel">
+                    <h3>🔥 Top Products</h3>
+                    <ul class="product-list">
+                        <li><span>Product A</span><strong>₹1.2L</strong></li>
+                        <li><span>Product B</span><strong>₹98K</strong></li>
+                        <li><span>Product C</span><strong>₹76K</strong></li>
+                        <li><span>Product D</span><strong>₹54K</strong></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
