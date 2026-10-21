@@ -1,1 +1,4 @@
-{}
+{
+    "dotnet.defaultSolution": "StudentManagementFile.API.sln",
+    "debug.showInStatusBar": "never"
+}

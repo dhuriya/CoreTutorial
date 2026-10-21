@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacMan", "PacMan\PacMan.csproj", "{996A796F-2AD3-492D-A1FF-FF2CD85C7673}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagementFile.API", "..\StudentManagementFile.API\StudentManagementFile.API.csproj", "{96E490E2-1FF0-4BF9-8BC1-8A1026580B6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{996A796F-2AD3-492D-A1FF-FF2CD85C7673}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{996A796F-2AD3-492D-A1FF-FF2CD85C7673}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{996A796F-2AD3-492D-A1FF-FF2CD85C7673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E490E2-1FF0-4BF9-8BC1-8A1026580B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E490E2-1FF0-4BF9-8BC1-8A1026580B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E490E2-1FF0-4BF9-8BC1-8A1026580B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E490E2-1FF0-4BF9-8BC1-8A1026580B6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
