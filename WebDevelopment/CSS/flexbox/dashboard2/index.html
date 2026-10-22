@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Flexbox | Dashboard</title>
+</head>
+<body>
+    <div class="app">
+        <header class="navbar">
+            <div class="brand">NEXORA <span>.</span></div>
+            <nav class="nav-links" id="navLinks">
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Orders</a>
+                <a href="#">Products</a>
+                <a href="#">Customers</a>
+                <a href="#">Analytics</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="profile-btn">👤 Admin</div>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+            </div>
+        </header>
+        <main class="container">
+            <section class="welcome-banner">
+                <div>
+                    <h1>👋 Welcome back, Admin!</h1>
+                    <p>Here's what's happening with your store today.</p>
+                </div>
+                <button class="cta-btn">+ New Order</button>
+            </section>
+            <section class="stats-grid">
+                <article class="stat-card">
+                    <span class="stat-icon">💰</span>
+                    <p>Total Revenue</p>
+                    <h2>₹8,42,000</h2>
+                    <span class="positive">↑ 12.8%</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">📦</span>
+                    <p>Total Orders</p>
+                    <h2>1,284</h2>
+                    <span class="positive">↑ 8.4%</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">👥</span>
+                    <p>Total Customers</p>
+                    <h2>5,642</h2>
+                    <span class="positive">↑ 6.2%</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">⚠️</span>
+                    <p>Pending Orders</p>
+                    <h2>38</h2>
+                    <span class="warning">Needs attention</span>
+                </article>
+            </section>
+            <section class="panels-row">
+                <div class="panel">
+                    <h3>📊 Revenue Analytics</h3>
+                    <p>Your sales performance overview.</p>
+                    <div class="chart-area">
+                        <div class="bar" style="height: 40%"></div>
+                        <div class="bar" style="height: 65%"></div>
+                        <div class="bar" style="height: 50%"></div>
+                        <div class="bar" style="height: 80%"></div>
+                        <div class="bar" style="height: 55%"></div>
+                        <div class="bar" style="height: 90%"></div>
+                        <div class="bar" style="height: 70%"></div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <h3>🕒 Recent Activity</h3>
+                    <ul class="activity-list">
+                        <li><span class="dot green"></span> New order <strong>#1024</strong></li>
+                        <li><span class="dot green"></span> Payment received <strong>₹24,500</strong></li>
+                        <li><span class="dot purple"></span> Product restocked <strong>Nike Air</strong></li>
+                        <li><span class="dot amber"></span> Low stock alert <strong>iPhone 15</strong></li>
+                        <li><span class="dot green"></span> New customer registered</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
