@@ -1,0 +1,80 @@
+Phase 1 ->
+----------------------------------------------------------------------------
+Step 1:
+ng new task-manager --routing --style=scss --standalone
+
+task-manager	Project ka naam
+--routing	Multi-page navigation ke liye RouterModule auto-setup hoga
+--style=scss	SCSS use karenge (variables, nesting, mixins ke liye)
+--standalone	Angular 17+ ka modern approach — NgModule ki zaroorat nahi, direct components standalone honge
+
+SSR? → No (hum simple SPA banayenge)
+Server routing? → No
+-----------------------------------------------------------------------------
+Step 2: Project folder me jao aur dependencies install karo
+cd task-manager
+npm install
+
+-----------------------------------------------------------------------------
+Step 3: Angular Material install karo
+ng add @angular/material
+ng add @angular/material --skip-confirmation
+npm install --save @angular/material @angular/cdk 
+
+Kyu Angular Material?
+    Ready-made components: cards, forms, buttons, dialogs, snackbars, icons
+    Professional look bina extra CSS likhe
+    Task CRUD me Dialog (modal), Form fields, Snackbar directly use honge
+    Time bachega → logic pe focus kar sakte ho
+-----------------------------------------------------------------------------
+Step 4: Folder structure banao
+    mkdir -p src/app/core/guards
+    mkdir -p src/app/core/services
+    mkdir -p src/app/core/models
+    mkdir -p src/app/shared/components
+    mkdir -p src/app/features/auth
+    mkdir -p src/app/features/dashboard
+    mkdir -p src/app/features/tasks
+Folder	    Kaam
+core/	    Singleton services, guards, models — ek hi baar load hote hain
+shared/	    Reusable components (navbar, task-card) — multiple modules me use honge
+features/	Har feature apna module/component rakhega — lazy loading easy hoti hai
+
+=============================================================================================
+Phase 2: Auth Module me hum banayenge:
+            User model + AuthService (localStorage based)
+            Login component (Reactive Form + validation)
+            Register component
+            AuthGuard — dashboard ko protect karega
+            Routes setup
+=============================================================================================
+
+#	File	                                                      Kaam
+1	core/models/user.model.ts	                                  User ka structure (interface)
+2	core/services/auth.service.ts	                              Login/Register/Logout logic
+3	core/guards/auth.guard.ts	                                  Dashboard protect karna
+4	features/auth/login/login.component.ts	                      Login page
+5	features/auth/register/register.component.ts	              Register page
+6	app.routes.ts	                                              Routes setup
+
+Concept	                            Kyu Use Kar Rahe Hai
+Interface (User model)	            Type safety — kabhi bhi user.email galat spell nahi hoga
+Service (AuthService)	            Login logic ek jagah rahe, components me duplicate na ho. Angular ka DI (Dependency Injection) ise sab jagah inject 
+                                    kar dega
+localStorage	                    Backend nahi banayenge, isliye browser me data save karenge. Real project me ye JWT token hota hai
+Reactive Forms	                    Validation easy (Validators.required, Validators.email), aur dynamic form control
+AuthGuard	                        /dashboard route ko protect karega — bina login ke koi andar na ja sake
+Standalone Components	            Angular 17+ ka modern way — NgModule ki zaroorat nahi
+
+Step 1: Create User Model
+src/app/core/models/user.model.ts
+Step 2: Create AuthService
+src/app/core/services/auth.service.ts
+
+Part	                                     Kyu
+@Injectable({ providedIn: 'root' })	         Ye service pura app me ek hi instance hai (singleton)
+signal<User | null>(...)	                 Angular 17 ka reactive state — jab user login hoga, navbar auto-update ho jayega
+crypto.randomUUID()	                         Unique ID generate karne ka modern way
+localStorage	                             Page refresh ke baad bhi login rahe
+private getAllUsers()	                     Baar-baar localStorage se read na karna pade — helper method
+Router inject	                             Logout ke baad login page pe redirect karne ke liye
