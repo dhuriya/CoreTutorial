@@ -68,6 +68,7 @@ Standalone Components	            Angular 17+ ka modern way — NgModule ki zaro
 
 Step 1: Create User Model
 src/app/core/models/user.model.ts
+-----------------------------------------------------------------------------------------------------------------
 Step 2: Create AuthService
 src/app/core/services/auth.service.ts
 
@@ -78,3 +79,22 @@ crypto.randomUUID()	                         Unique ID generate karne ka modern 
 localStorage	                             Page refresh ke baad bhi login rahe
 private getAllUsers()	                     Baar-baar localStorage se read na karna pade — helper method
 Router inject	                             Logout ke baad login page pe redirect karne ke liye
+
+--------------------------------------------------------------------------------------------------------------------
+Step 3: Create AuthGuard Server -> auth.guard.ts File
+
+--------------------------------------------------------------------------------------------------------------------
+Step 4: create Login Components 
+ng g c features/auth/login --standalone --type=component
+
+--------------------------------------------------------------------------------------------------------------------
+Step 5: Create Rgister Component -> src/app/features/auth/register/register.component.ts
+ng g c features/auth/rigster --standalone --type=component
+
+---------------------------------------------------------------------------------------------------------------------
+Step 6: Routes setup karo
+src/app/app.routes.ts
+
+--------------------------------------------------------------------------------------------------------------------
+Step 7: Temporary Dashboard banao (testing ke liye)
+File: src/app/features/dashboard/dashboard.component.ts
