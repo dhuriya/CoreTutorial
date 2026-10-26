@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../core/services/auth.service';
+import { WeatherService } from '../../core/services/weather.service';
 
 @Component({
   standalone: true,
@@ -21,4 +22,13 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class DashboardComponent {
   authService = inject(AuthService);
+
+  weatherService = inject(WeatherService);
+
+  ngOnInit() {
+    this.weatherService.getWeather('Mumbai').subscribe(data => {
+      console.log('Weather:', data);
+    });
+  }
 }
+

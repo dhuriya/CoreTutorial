@@ -98,3 +98,34 @@ src/app/app.routes.ts
 --------------------------------------------------------------------------------------------------------------------
 Step 7: Temporary Dashboard banao (testing ke liye)
 File: src/app/features/dashboard/dashboard.component.ts
+
+=============================================================================================================
+Phase 3: 
+#	File	                                   Kaam
+1	core/models/task.model.ts	               Task ka structure
+2	core/services/task.service.ts	           Tasks ka CRUD logic + Signals
+3	core/services/weather.service.ts	        Weather API call
+--------------------------------------------------------------------------------------------------------------
+Concept	                           Kyu Use Kar Rahe Hai
+Task Model (interface)	           Type safety — task.title, task.priority sab typed rahega
+TaskService with Signals	       UI auto-update jab task add/edit/delete ho. Signals = reactive state ka modern way
+localStorage	                   Refresh ke baad bhi tasks save rahein
+WeatherService + HttpClient	       External API call. Angular ka built-in HTTP client
+provideHttpClient()	               Angular 17+ me HttpClientModule ki jagah ye use hota hai (standalone apps me)
+environment file	               API key ko code me hardcode na karo — environment me rakho
+
+---------------------------------------------------------------------------
+Step 1: Task Model 
+        -> src/app/core/models/task.model.ts
+Step 2: TaskService
+        -> src/app/core/services/task.service.ts (ng generate service core/services/task, ng g s core/services/task,
+        ng g s core/services/task --type=service --skip-tests)
+Step 3: Environment file setup karo
+        -> src/environments/environment.ts (agar nahi hai, manually banao)
+Step 4: WeatherService banao
+        -> src/app/core/services/weather.service.ts
+Step 5:  HttpClient provide karo
+        -> src/app/app.config.ts
+Step 6: Verify karo
+        -> src/main.ts — check karo, ye aisa hona chahiye:
+---------------------------------------------------------------------------
