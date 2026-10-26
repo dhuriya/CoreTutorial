@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using StudentManagementFile.API.Models;
 
@@ -11,5 +10,6 @@ namespace StudentManagementFile.API.Services
         Student Add(Student student);
         bool Update(int id, Student student);
         bool Delete(int id);
+        PagedResult<Student> GetFiltered(StudentQueryParameters query);
     }
 }

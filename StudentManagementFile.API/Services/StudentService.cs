@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Text.Json;
 using StudentManagementFile.API.Models;
 
@@ -9,16 +8,23 @@ namespace StudentManagementFile.API.Services
         private readonly string _filePath;
         private readonly object _lock = new(); // Thread safety ke liye
 
-        public StudentService()
+        // ─────────────────────────────────────────────────────────
+        // Constructor 1: Production ke liye (DI se IConfiguration aata hai)
+        // ─────────────────────────────────────────────────────────
+        public StudentService(IConfiguration config)
         {
-            // File project ke root folder mein banegi
-            _filePath = Path.Combine(Directory.GetCurrentDirectory(), "students.json");
-            
-            // Agar file exist nahi karti, toh empty list ke saath create karein
-            if (!File.Exists(_filePath))
-            {
-                File.WriteAllText(_filePath, JsonSerializer.Serialize(new List<Student>()));
-            }
+            var relativePath = config["StudentFileSettings:FilePath"] ?? "students.json";
+            _filePath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+            InitializeFile();
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // Constructor 2: Testing ke liye (direct file path)
+        // ─────────────────────────────────────────────────────────
+        public StudentService(string fileName)
+        {
+            _filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            InitializeFile();
         }
 
         public List<Student> GetAll()
@@ -84,6 +90,78 @@ namespace StudentManagementFile.API.Services
         {
             var json = JsonSerializer.Serialize(students, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
+        }
+        public PagedResult<Student> GetFiltered(StudentQueryParameters query)
+        {
+            var students = GetAll().AsQueryable();
+
+            // 1. Search filter (name ya email mein)
+            if (!string.IsNullOrWhiteSpace(query.Search))
+            {
+                var search = query.Search.Trim().ToLower();
+                students = students.Where(s =>
+                    s.Name.ToLower().Contains(search) ||
+                    s.Email.ToLower().Contains(search));
+            }
+
+            // 2. Course filter (exact match, case-insensitive)
+            if (!string.IsNullOrWhiteSpace(query.Course))
+            {
+                var course = query.Course.Trim().ToLower();
+                students = students.Where(s => s.Course.ToLower() == course);
+            }
+
+            // 3. Age range filter
+            if (query.MinAge.HasValue)
+                students = students.Where(s => s.Age >= query.MinAge.Value);
+
+            if (query.MaxAge.HasValue)
+                students = students.Where(s => s.Age <= query.MaxAge.Value);
+
+            // 4. Sorting
+            students = (query.SortBy?.ToLower(), query.SortOrder?.ToLower()) switch
+            {
+                ("name", "desc") => students.OrderByDescending(s => s.Name),
+                ("name", _)      => students.OrderBy(s => s.Name),
+                ("email", "desc") => students.OrderByDescending(s => s.Email),
+                ("email", _)     => students.OrderBy(s => s.Email),
+                ("age", "desc")  => students.OrderByDescending(s => s.Age),
+                ("age", _)       => students.OrderBy(s => s.Age),
+                ("course", "desc") => students.OrderByDescending(s => s.Course),
+                ("course", _)    => students.OrderBy(s => s.Course),
+                ("id", "desc")   => students.OrderByDescending(s => s.Id),
+                _                => students.OrderBy(s => s.Id)  // default
+            };
+
+            // 5. Total count (pagination se pehle)
+            var totalCount = students.Count();
+
+            // 6. Pagination
+            var skip = (long)(query.Page - 1) * query.PageSize;
+            var items = skip >= totalCount
+                ? new List<Student>()
+                : students.Skip((int)skip).Take(query.PageSize).ToList();
+
+            return new PagedResult<Student>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
+        }
+
+        // ─────────────────────────────────────────────────────────
+        // Common initialization logic (duplicate code avoid karne ke liye)
+        // ─────────────────────────────────────────────────────────
+        private void InitializeFile()
+        {
+            var dir = Path.GetDirectoryName(_filePath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(_filePath))
+                File.WriteAllText(_filePath, JsonSerializer.Serialize(new List<Student>()));
         }
     }
 }
