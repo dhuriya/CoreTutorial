@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudentManagementFile.API.Models;
+using StudentManagementFile.API.Models.DTOs;
 using StudentManagementFile.API.Services;
 
 namespace StudentManagementFile.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class StudentController : ControllerBase
     {
         private readonly IStudentService _studentService;
@@ -45,6 +48,7 @@ namespace StudentManagementFile.API.Controllers
             var response = ApiResponse<Student>.Ok(created, "Student created successfully");
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, response);
         }
+        [Authorize(Roles ="Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ApiResponse<Student>), 200)]
         [ProducesResponseType(typeof(ApiResponse<Student>), 404)]
@@ -61,6 +65,7 @@ namespace StudentManagementFile.API.Controllers
             var updated = _studentService.GetById(id);
             return Ok(ApiResponse<Student>.Ok(updated!, "Student updated successfully"));
         }
+        [Authorize(Roles ="Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ApiResponse<object>), 200)]
         [ProducesResponseType(typeof(ApiResponse<object>), 404)]
@@ -72,6 +77,12 @@ namespace StudentManagementFile.API.Controllers
 
             return Ok(ApiResponse<object>.Ok(null!, $"Student with Id {id} deleted successfully"));
         }
-
+        [HttpGet("details")]
+        [ProducesResponseType(typeof(ApiResponse<List<StudentWithCourseDTO>>), 200)]
+        public IActionResult GetAllWtihDetails()
+        {
+            var result = _studentService.GetAllWtihCourseDetails();
+            return Ok(ApiResponse<List<StudentWithCourseDTO>>.Ok(result, $"{result.Count} students with course details found"));
+        }
     }
 }

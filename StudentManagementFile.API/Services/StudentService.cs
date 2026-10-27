@@ -1,18 +1,21 @@
 using System.Text.Json;
 using StudentManagementFile.API.Models;
+using StudentManagementFile.API.Models.DTOs;
 
 namespace StudentManagementFile.API.Services
 {
     public class StudentService : IStudentService
     {
+        private readonly ICourseService _courseService;
         private readonly string _filePath;
         private readonly object _lock = new(); // Thread safety ke liye
 
         // ─────────────────────────────────────────────────────────
         // Constructor 1: Production ke liye (DI se IConfiguration aata hai)
         // ─────────────────────────────────────────────────────────
-        public StudentService(IConfiguration config)
+        public StudentService(IConfiguration config, ICourseService courseService)
         {
+            _courseService = courseService;
             var relativePath = config["StudentFileSettings:FilePath"] ?? "students.json";
             _filePath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
             InitializeFile();
@@ -24,6 +27,7 @@ namespace StudentManagementFile.API.Services
         public StudentService(string fileName)
         {
             _filePath = Path.Combine(Directory.GetCurrentDirectory(), fileName);
+            _courseService = null!; // Test-only constructor
             InitializeFile();
         }
 
@@ -65,7 +69,7 @@ namespace StudentManagementFile.API.Services
                 existing.Name = updatedStudent.Name;
                 existing.Email = updatedStudent.Email;
                 existing.Age = updatedStudent.Age;
-                existing.Course = updatedStudent.Course;
+                existing.CourseId = updatedStudent.CourseId;
 
                 SaveToFile(students);
                 return true;
@@ -91,7 +95,7 @@ namespace StudentManagementFile.API.Services
             var json = JsonSerializer.Serialize(students, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
         }
-        public PagedResult<Student> GetFiltered(StudentQueryParameters query)
+       public PagedResult<Student> GetFiltered(StudentQueryParameters query)
         {
             var students = GetAll().AsQueryable();
 
@@ -104,11 +108,10 @@ namespace StudentManagementFile.API.Services
                     s.Email.ToLower().Contains(search));
             }
 
-            // 2. Course filter (exact match, case-insensitive)
-            if (!string.IsNullOrWhiteSpace(query.Course))
+            // 2. Course filter (Ab CourseId integer se match hoga)
+            if (query.CourseId.HasValue)
             {
-                var course = query.Course.Trim().ToLower();
-                students = students.Where(s => s.Course.ToLower() == course);
+                students = students.Where(s => s.CourseId == query.CourseId.Value);
             }
 
             // 3. Age range filter
@@ -127,8 +130,8 @@ namespace StudentManagementFile.API.Services
                 ("email", _)     => students.OrderBy(s => s.Email),
                 ("age", "desc")  => students.OrderByDescending(s => s.Age),
                 ("age", _)       => students.OrderBy(s => s.Age),
-                ("course", "desc") => students.OrderByDescending(s => s.Course),
-                ("course", _)    => students.OrderBy(s => s.Course),
+                ("courseid", "desc") => students.OrderByDescending(s => s.CourseId), // 👈 Updated
+                ("courseid", _)  => students.OrderBy(s => s.CourseId),               // 👈 Updated
                 ("id", "desc")   => students.OrderByDescending(s => s.Id),
                 _                => students.OrderBy(s => s.Id)  // default
             };
@@ -162,6 +165,26 @@ namespace StudentManagementFile.API.Services
 
             if (!File.Exists(_filePath))
                 File.WriteAllText(_filePath, JsonSerializer.Serialize(new List<Student>()));
+        }
+
+        public List<StudentWithCourseDTO> GetAllWtihCourseDetails()
+        {
+            var students = GetAll();
+            var courses = _courseService.GetAll();
+            //LINQ join (Student + Course)
+            var result = from s in students
+                         join c in courses on s.CourseId equals c.Id into studentCourse
+                         from c in studentCourse.DefaultIfEmpty()
+                         select new StudentWithCourseDTO{
+                            Id = s.Id,
+                            Name = s.Name,
+                            Email = s.Email,
+                            Age = s.Age,
+                            CourseId = s.CourseId,
+                            CourseName = c?.CourseName ?? "Unknown Course",
+                            CourseCode = c?.CourseCode ?? "N/A"
+                         };
+            return result.ToList();
         }
     }
 }

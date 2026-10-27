@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using StudentManagementFile.API.Models;
+using StudentManagementFile.API.Models.DTOs;
 
 namespace StudentManagementFile.API.Services
 {
@@ -11,5 +11,7 @@ namespace StudentManagementFile.API.Services
         bool Update(int id, Student student);
         bool Delete(int id);
         PagedResult<Student> GetFiltered(StudentQueryParameters query);
+
+        List<StudentWithCourseDTO> GetAllWtihCourseDetails();
     }
 }

@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 
 namespace StudentManagementFile.API.Models
 {
@@ -14,7 +13,8 @@ namespace StudentManagementFile.API.Models
         public string Email { get; set; } = string.Empty;
         [Range(5, 75, ErrorMessage ="Age between 5 to 75")]
         public int Age { get; set; }
-        [Required]
-        public string Course { get; set; } = string.Empty;
+        [Required(ErrorMessage ="Course id is required")]
+        [Range(1, int.MaxValue, ErrorMessage ="Please Enter Valid Course Id")]
+        public int CourseId {get; set;}
     }
 }

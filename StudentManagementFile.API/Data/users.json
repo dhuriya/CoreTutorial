@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "Username": "admin",
+    "Email": "admin@gmail.com",
+    "PasswordHash": "$2a$11$kleOmxrL2D45zXJzd2Z06.MXfvEINWunadVZ6e4KohldfKQoorshm",
+    "Role": "Admin",
+    "CreatedAt": "2026-10-27T06:36:19.5453477Z"
+  }
+]

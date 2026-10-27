@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +7,8 @@ namespace StudentManagementFile.API.Models
     {
         // Search — name ya email mein match
         public string? Search { get; set; }
-        // Filter — course exact match
-        public string? Course { get; set; }
+        // Purana: public string? Course { get; set; }
+        public int? CourseId { get; set; } // 👈 Ye update karein
         // Filter — age range
         public int? MinAge { get; set; }
         public int? MaxAge { get; set; }

@@ -1,0 +1,79 @@
+[
+  {
+    "Id": 1,
+    "CourseName": "B.Tech Computer Science",
+    "CourseCode": "CS101",
+    "DurationInSemesters": 8,
+    "Fee": 150000
+  },
+  {
+    "Id": 2,
+    "CourseName": "B.Tech Computer Science",
+    "CourseCode": "CS101",
+    "DurationInSemesters": 8,
+    "Fee": 150000
+  },
+  {
+    "Id": 3,
+    "CourseName": "B.Tech Information Technology",
+    "CourseCode": "IT102",
+    "DurationInSemesters": 8,
+    "Fee": 140000
+  },
+  {
+    "Id": 4,
+    "CourseName": "Bachelor of Business Administration",
+    "CourseCode": "BBA201",
+    "DurationInSemesters": 6,
+    "Fee": 100000
+  },
+  {
+    "Id": 5,
+    "CourseName": "Bachelor of Computer Applications",
+    "CourseCode": "BCA103",
+    "DurationInSemesters": 6,
+    "Fee": 80000
+  },
+  {
+    "Id": 6,
+    "CourseName": "Master of Computer Applications",
+    "CourseCode": "MCA501",
+    "DurationInSemesters": 4,
+    "Fee": 120000
+  },
+  {
+    "Id": 7,
+    "CourseName": "B.Tech Electronics \u0026 Communication",
+    "CourseCode": "EC104",
+    "DurationInSemesters": 8,
+    "Fee": 145000
+  },
+  {
+    "Id": 8,
+    "CourseName": "B.Tech Mechanical Engineering",
+    "CourseCode": "ME105",
+    "DurationInSemesters": 8,
+    "Fee": 130000
+  },
+  {
+    "Id": 9,
+    "CourseName": "Bachelor of Commerce",
+    "CourseCode": "BCOM202",
+    "DurationInSemesters": 6,
+    "Fee": 60000
+  },
+  {
+    "Id": 10,
+    "CourseName": "Master of Business Administration",
+    "CourseCode": "MBA502",
+    "DurationInSemesters": 4,
+    "Fee": 250000
+  },
+  {
+    "Id": 11,
+    "CourseName": "B.Sc Data Science",
+    "CourseCode": "DS106",
+    "DurationInSemesters": 6,
+    "Fee": 160000
+  }
+]
